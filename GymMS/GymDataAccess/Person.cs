@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GymDataAccess
 {
-    public abstract class Person : BaseEntity
+    public abstract class Person : BaseEntity//inherits from BaseEbtry
     {
         //variable members
         string fullName;
@@ -32,8 +32,11 @@ namespace GymDataAccess
             set { birthDate = value; }
         }
 
+        //constructors
+        //for new objects
         public Person() : base() { }
 
+        //for  existing  data
         public Person(int id)
         {
             LoadById(id);
