@@ -48,14 +48,14 @@ namespace GymDataAccess
             {
                 SqlCommand comm = new SqlCommand(@"insert into members 
             (full_name, phone_pumber, birth_date, start_date, created_by, end_date)
-            VALUES (@n,@p,@b,@s,@c,@e)", GymDBConnection);
+            VALUES (@name,@phone,@birthDate,@startDate,@createdBy,@endDate)", GymDBConnection);
 
-                comm.Parameters.AddWithValue("@n", FullName);
-                comm.Parameters.AddWithValue("@p", (object)PhoneNumber ?? DBNull.Value);
-                comm.Parameters.AddWithValue("@b", (object)BirthDate ?? DBNull.Value);
-                comm.Parameters.AddWithValue("@s", StartDate);
-                comm.Parameters.AddWithValue("@c", CreatedBy);
-                comm.Parameters.AddWithValue("@e", (object)EndDate ?? DBNull.Value);
+                comm.Parameters.AddWithValue("@name", FullName);
+                comm.Parameters.AddWithValue("@phone", (object)PhoneNumber ?? DBNull.Value);
+                comm.Parameters.AddWithValue("@birthDate", (object)BirthDate ?? DBNull.Value);
+                comm.Parameters.AddWithValue("@startDate", StartDate);
+                comm.Parameters.AddWithValue("@createdBy", CreatedBy);
+                comm.Parameters.AddWithValue("@endDate", (object)EndDate ?? DBNull.Value);
 
                 GymDBConnection.Open();
                 comm.ExecuteNonQuery();
@@ -68,17 +68,17 @@ namespace GymDataAccess
         {
             try
             {
-                SqlCommand cmd = new SqlCommand(@"UPDATE members SET
-            full_name=@n, phone_pumber=@p, birth_date=@b,
-            start_date=@s, end_date=@e
+                SqlCommand cmd = new SqlCommand(@"update members set
+            full_name=@name, phone_pumber=@phone, birth_date=@birthDate,
+            start_date=@startDate, end_date=@endDate
             WHERE id=@id", GymDBConnection);
 
                 cmd.Parameters.AddWithValue("@id", Id);
-                cmd.Parameters.AddWithValue("@n", FullName);
-                cmd.Parameters.AddWithValue("@p", (object)PhoneNumber ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@b", (object)BirthDate ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@s", StartDate);
-                cmd.Parameters.AddWithValue("@e", (object)EndDate ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@name", FullName);
+                cmd.Parameters.AddWithValue("@phone", (object)PhoneNumber ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@birthDate", (object)BirthDate ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@startDate", StartDate);
+                cmd.Parameters.AddWithValue("@endDate", (object)EndDate ?? DBNull.Value);
 
                 GymDBConnection.Open();
                 cmd.ExecuteNonQuery();
