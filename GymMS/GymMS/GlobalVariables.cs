@@ -10,8 +10,8 @@ namespace GymMS
     {
 
         static GymDataAccess.Users loginUser;
-        static GymDataAccess.Users LoginUser { get { return loginUser; } }
-        static void InitailizeLoginUser(GymDataAccess.Users u)
+        public static GymDataAccess.Users LoginUser { get { return loginUser; } }
+       public static void InitailizeLoginUser(GymDataAccess.Users u)
         {
             loginUser = u;
         }
