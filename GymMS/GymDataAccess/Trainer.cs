@@ -9,12 +9,15 @@ namespace GymDataAccess
 {
     public class Trainer : Person
     {
-        string specialization;
+        //variable members
+        int specialty_id;
         decimal salary;
 
-        public string Specialization { get { return specialization; } }
+        //properties
+        public int Specialty_id { get { return specialty_id; } }
         public decimal Salary { get { return salary; } }
 
+        //constructors
         public Trainer() { }
 
         public Trainer(int id)
@@ -22,5 +25,7 @@ namespace GymDataAccess
             LoadById(id);
         }
 
+
+        
     }
 }
