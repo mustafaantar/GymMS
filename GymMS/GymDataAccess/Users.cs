@@ -131,7 +131,7 @@ namespace GymDataAccess
 
             return list;
         }
-        public Users Login(string username, string password)
+        public static Users Login(string username, string password)
         {
             string str = "select * from users where username=@username and password=@password";
             SqlCommand comm = new SqlCommand(str, GymDBConnection);
@@ -141,12 +141,13 @@ namespace GymDataAccess
 
             try
             {
+                Users u = null;
                 GymDBConnection.Open();
                 SqlDataReader reader = comm.ExecuteReader();
 
                 if (reader.Read())
                 {
-                    Users u = new Users();
+                    u = new Users();
                     u.Id = (int)reader["id"];
                     u.username = reader["username"].ToString();
                     u.password = reader["password"].ToString();
@@ -154,8 +155,8 @@ namespace GymDataAccess
                     u.isActive = (bool)reader["is_active"];
                     u.CreatedBy = (int)reader["created_by"];
                     u.CreationDate = (DateTime)reader["creation_date"];
-                    return u;
                 }
+                    return u;
             }
             catch (Exception ex) { return null; }
             finally { GymDBConnection.Close(); }
