@@ -44,6 +44,7 @@
             this.bn_login.TabIndex = 0;
             this.bn_login.Text = "Login";
             this.bn_login.UseVisualStyleBackColor = true;
+            this.bn_login.Click += new System.EventHandler(this.bn_login_Click);
             // 
             // tb_username
             // 
@@ -85,6 +86,7 @@
             this.bn_exit.TabIndex = 0;
             this.bn_exit.Text = "Exit";
             this.bn_exit.UseVisualStyleBackColor = true;
+            this.bn_exit.Click += new System.EventHandler(this.bn_exit_Click);
             // 
             // frmLogin
             // 
