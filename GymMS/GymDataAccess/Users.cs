@@ -83,7 +83,7 @@ namespace GymDataAccess
             {
                 SqlCommand cmd = new SqlCommand(@"UPDATE users SET
             username=@username, password=@password, user_type=@user_type, is_active=@active
-            WHERE id=@id", GymDBConnection);
+            where id=@id", GymDBConnection);
 
                 cmd.Parameters.AddWithValue("@id", Id);
                 cmd.Parameters.AddWithValue("@username", Username);
@@ -100,11 +100,10 @@ namespace GymDataAccess
         public static List<Users> ListData(string filter)
         {
             List<Users> list = new List<Users>();
-
-            SqlCommand comm = new SqlCommand(@"SELECT * FROM users
-        WHERE (@filter IS NULL 
-        OR username LIKE '%' + @filter + '%'
-        OR full_name LIKE '%' + @filter + '%')", GymDBConnection);
+            string str = "select * from users";
+            if ((filter != null) && (filter != ""))
+                str += "where (username like '%' + @filter + '%' or full_name like '%' + @filter + '%')";
+            SqlCommand comm = new SqlCommand(str, GymDBConnection);
 
             comm.Parameters.AddWithValue("@filter",
                 string.IsNullOrEmpty(filter) ? (object)DBNull.Value : filter);
