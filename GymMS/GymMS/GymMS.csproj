@@ -108,5 +108,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GymDataAccess\GymDataAccess.csproj">
+      <Project>{9a0844f8-f538-4a9b-9151-fe8d28aafaf9}</Project>
+      <Name>GymDataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
