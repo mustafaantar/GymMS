@@ -97,6 +97,41 @@ namespace GymDataAccess
             finally { GymDBConnection.Close(); }
         }
 
-        
+        public static List<Users> ListData(string filter)
+        {
+            List<Users> list = new List<Users>();
+
+            SqlCommand comm = new SqlCommand(@"SELECT * FROM users
+        WHERE (@filter IS NULL 
+        OR username LIKE '%' + @filter + '%'
+        OR full_name LIKE '%' + @filter + '%')", GymDBConnection);
+
+            comm.Parameters.AddWithValue("@filter",
+                string.IsNullOrEmpty(filter) ? (object)DBNull.Value : filter);
+
+            try
+            {
+                GymDBConnection.Open();
+                SqlDataReader reader = comm.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Users u = new Users();
+
+                    u.Id = (int)reader["id"];
+                    u.username = reader["username"].ToString();
+                    u.password = reader["password"].ToString();
+                    u.userType = (int)reader["user_type"];
+                    u.isActive = (bool)reader["is_active"];
+                    u.CreatedBy = (int)reader["created_by"];
+                    u.CreationDate = (DateTime)reader["creation_date"];
+
+                    list.Add(u);
+                }
+            }
+            finally { GymDBConnection.Close(); }
+
+            return list;
+        }
     }
 }
