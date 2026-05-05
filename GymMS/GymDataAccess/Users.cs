@@ -29,7 +29,6 @@ namespace GymDataAccess
             LoadById(id);
         }
 
-        // 🔷 Load single user
         public override void LoadById(int id)
         {
             SqlCommand comm = new SqlCommand("select * from users where id=@id", GymDBConnection);
@@ -131,6 +130,35 @@ namespace GymDataAccess
             finally { GymDBConnection.Close(); }
 
             return list;
+        }
+        public Users Login(string username, string password)
+        {
+            string str = "select * from users where username=@username and password=@password";
+            SqlCommand comm = new SqlCommand(str, GymDBConnection);
+
+            comm.Parameters.AddWithValue("@username", username);
+            comm.Parameters.AddWithValue("@password", password);
+
+            try
+            {
+                GymDBConnection.Open();
+                SqlDataReader reader = comm.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    Users u = new Users();
+                    u.Id = (int)reader["id"];
+                    u.username = reader["username"].ToString();
+                    u.password = reader["password"].ToString();
+                    u.userType = (int)reader["user_type"];
+                    u.isActive = (bool)reader["is_active"];
+                    u.CreatedBy = (int)reader["created_by"];
+                    u.CreationDate = (DateTime)reader["creation_date"];
+                    return u;
+                }
+            }
+            catch (Exception ex) { return null; }
+            finally { GymDBConnection.Close(); }
         }
     }
 }
