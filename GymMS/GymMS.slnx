@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="GymDataAccess/GymDataAccess.csproj" Id="9a0844f8-f538-4a9b-9151-fe8d28aafaf9" />
   <Project Path="GymMS/GymMS.csproj" Id="dfd4a3c7-7a6d-497c-8029-0acfb50c25dd" />
 </Solution>
