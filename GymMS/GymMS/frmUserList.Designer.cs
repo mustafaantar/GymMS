@@ -36,6 +36,7 @@
             this.tb_search = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.bn_add = new System.Windows.Forms.Button();
+            this.bn_search = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_data)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,6 +56,7 @@
             this.dgv_data.Size = new System.Drawing.Size(568, 345);
             this.dgv_data.StandardTab = true;
             this.dgv_data.TabIndex = 0;
+            this.dgv_data.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_data_CellMouseDoubleClick);
             // 
             // userId
             // 
@@ -104,12 +106,24 @@
             this.bn_add.TabIndex = 3;
             this.bn_add.Text = "Add";
             this.bn_add.UseVisualStyleBackColor = true;
+            this.bn_add.Click += new System.EventHandler(this.bn_add_Click);
+            // 
+            // bn_search
+            // 
+            this.bn_search.Location = new System.Drawing.Point(198, 10);
+            this.bn_search.Name = "bn_search";
+            this.bn_search.Size = new System.Drawing.Size(67, 23);
+            this.bn_search.TabIndex = 4;
+            this.bn_search.Text = "Search";
+            this.bn_search.UseVisualStyleBackColor = true;
+            this.bn_search.Click += new System.EventHandler(this.bn_search_Click);
             // 
             // frmUserList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(590, 391);
+            this.Controls.Add(this.bn_search);
             this.Controls.Add(this.bn_add);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tb_search);
@@ -117,6 +131,7 @@
             this.Name = "frmUserList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "User list";
+            this.Load += new System.EventHandler(this.frmUserList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_data)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -133,5 +148,6 @@
         private System.Windows.Forms.TextBox tb_search;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button bn_add;
+        private System.Windows.Forms.Button bn_search;
     }
 }
