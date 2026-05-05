@@ -80,6 +80,7 @@
             this.bn_save.TabIndex = 4;
             this.bn_save.Text = "Save";
             this.bn_save.UseVisualStyleBackColor = true;
+            this.bn_save.Click += new System.EventHandler(this.bn_save_Click);
             // 
             // cb_type
             // 
@@ -124,6 +125,7 @@
             this.bn_close.TabIndex = 4;
             this.bn_close.Text = "Close";
             this.bn_close.UseVisualStyleBackColor = true;
+            this.bn_close.Click += new System.EventHandler(this.bn_close_Click);
             // 
             // frmUserdata
             // 
