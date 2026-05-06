@@ -81,52 +81,5 @@ namespace GymDataAccess
             catch (Exception ex) { throw ex; }
             finally { GymDBConnection.Close(); }
         }
-
-        public static List<Room> ListData(string filter)
-        {
-            //create empty list
-            List<Room> list = new List<Room>();
-
-            //prepare select statement
-            string str = "select * from rooms";
-
-            //if filter used add it to select statement
-            if ((filter != null) && (filter != ""))
-                str += "where room_name like '%' + @filter + '%'";
-
-            //preparing command
-            SqlCommand comm = new SqlCommand(str, GymDBConnection);
-
-            //add filter to command
-            comm.Parameters.AddWithValue("@filter", string.IsNullOrEmpty(filter) ? (object)DBNull.Value : filter);
-
-            try
-            {
-                //open connection
-                GymDBConnection.Open();
-
-                //Execute select statement
-                SqlDataReader reader = comm.ExecuteReader();
-
-                //if data exists read it
-                while (reader.Read())
-                {
-                    Room s = new Room();
-
-                    //Assign data into object
-                    s.Id = (int)reader["id"];
-                    s.roomName = reader["room_name"].ToString();
-                    s.capacity = (int)reader["capacity"];
-
-                    //Add object to list
-                    list.Add(s);
-                }
-            }
-            //any exception throw it to up level
-            catch (Exception ex) { throw ex; }
-            //close connection
-            //finally { GymDBConnection.Close(); }
-            return list;
-        }
     }
 }
