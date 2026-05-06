@@ -88,7 +88,7 @@ namespace GymDataAccess
 
         }
 
-        public static List<Specialties> ListData(string filter)
+        public static List<Specialties> ListData()
         {
             //create empty list
             List<Specialties> list = new List<Specialties>();
@@ -96,15 +96,8 @@ namespace GymDataAccess
             //prepare select statement
             string str = "select * from specialties";
 
-            //if filter used add it to select statement
-            if ((filter != null) && (filter != ""))
-                str += "where specialty_name like '%' + @filter + '%'";
-
             //preparing command
             SqlCommand comm = new SqlCommand(str, GymDBConnection);
-
-            //add filter to command
-            comm.Parameters.AddWithValue("@filter",string.IsNullOrEmpty(filter) ? (object)DBNull.Value : filter);
 
             try
             {
