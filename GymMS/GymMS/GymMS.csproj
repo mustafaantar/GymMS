@@ -66,11 +66,11 @@
     <Compile Include="frmUserdata.Designer.cs">
       <DependentUpon>frmUserdata.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmUserList.cs">
+    <Compile Include="frmPeopleList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmUserList.Designer.cs">
-      <DependentUpon>frmUserList.cs</DependentUpon>
+    <Compile Include="frmPeopleList.Designer.cs">
+      <DependentUpon>frmPeopleList.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalVariables.cs" />
     <Compile Include="Program.cs" />
@@ -84,8 +84,8 @@
     <EmbeddedResource Include="frmUserdata.resx">
       <DependentUpon>frmUserdata.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmUserList.resx">
-      <DependentUpon>frmUserList.cs</DependentUpon>
+    <EmbeddedResource Include="frmPeopleList.resx">
+      <DependentUpon>frmPeopleList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
