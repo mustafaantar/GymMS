@@ -29,7 +29,7 @@ namespace GymMS
             //search for specialies using filter
         }
 
-      void Search()
+        void Search()
         {
             //display all specialies 
             //clear grid
@@ -51,7 +51,7 @@ namespace GymMS
         private void bn_add_Click(object sender, EventArgs e)
         {
             //open data form 
-                (new frmSpecialtyData()).ShowDialog();
+            (new frmSpecialtiesData()).ShowDialog();
 
             //Read data again(Do refresh)
             Search();
@@ -67,7 +67,7 @@ namespace GymMS
             Specialties s = (Specialties)dgv_data.CurrentRow.Tag;
 
             //Open data form 
-                new((Specialties)s).ShowDialog();
+            (new frmSpecialtiesData(s)).ShowDialog();
 
             //Read data again(Do refresh)
             Search();
