@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Booking.cs" />
     <Compile Include="Room.cs" />
     <Compile Include="Specialties.cs" />
     <Compile Include="subscription.cs" />

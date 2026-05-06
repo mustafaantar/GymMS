@@ -45,7 +45,7 @@ namespace GymDataAccess
             finally { GymDBConnection.Close(); }
         }
 
-        public override void AddInDB()
+        public override void AddtoDB()
         {
             try
             {

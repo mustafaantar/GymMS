@@ -14,7 +14,7 @@ namespace GymDataAccess
         //variable members
         string specialtyName { get; set; }
         //properties
-        public string SpecialtyName { get {return specialtyName } set { specialtyName = value; } }
+        public string SpecialtyName { get { return specialtyName; } set { specialtyName = value; } }
 
         //constructors
         public Specialties() { }
@@ -47,7 +47,7 @@ namespace GymDataAccess
 
         }
 
-        public override void AddInDB()
+        public override void AddtoDB()
         {
             try
             {
