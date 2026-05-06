@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.dgv_data = new System.Windows.Forms.DataGridView();
-            this.userId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.username = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.password = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tb_search = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.bn_add = new System.Windows.Forms.Button();
             this.bn_search = new System.Windows.Forms.Button();
+            this.fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.username = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.password = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_data)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,7 +45,7 @@
             this.dgv_data.AllowUserToAddRows = false;
             this.dgv_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.userId,
+            this.fullname,
             this.username,
             this.password,
             this.userType});
@@ -53,34 +53,10 @@
             this.dgv_data.Name = "dgv_data";
             this.dgv_data.RowHeadersWidth = 15;
             this.dgv_data.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_data.Size = new System.Drawing.Size(568, 345);
+            this.dgv_data.Size = new System.Drawing.Size(519, 301);
             this.dgv_data.StandardTab = true;
             this.dgv_data.TabIndex = 0;
             this.dgv_data.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_data_CellMouseDoubleClick);
-            // 
-            // userId
-            // 
-            this.userId.HeaderText = "User ID";
-            this.userId.Name = "userId";
-            this.userId.ReadOnly = true;
-            // 
-            // username
-            // 
-            this.username.HeaderText = "Username";
-            this.username.Name = "username";
-            this.username.Width = 150;
-            // 
-            // password
-            // 
-            this.password.HeaderText = "Password";
-            this.password.Name = "password";
-            this.password.Width = 150;
-            // 
-            // userType
-            // 
-            this.userType.HeaderText = "User type";
-            this.userType.Name = "userType";
-            this.userType.Width = 150;
             // 
             // tb_search
             // 
@@ -100,9 +76,9 @@
             // 
             // bn_add
             // 
-            this.bn_add.Location = new System.Drawing.Point(475, 10);
+            this.bn_add.Location = new System.Drawing.Point(465, 10);
             this.bn_add.Name = "bn_add";
-            this.bn_add.Size = new System.Drawing.Size(105, 23);
+            this.bn_add.Size = new System.Drawing.Size(66, 23);
             this.bn_add.TabIndex = 3;
             this.bn_add.Text = "Add";
             this.bn_add.UseVisualStyleBackColor = true;
@@ -118,11 +94,32 @@
             this.bn_search.UseVisualStyleBackColor = true;
             this.bn_search.Click += new System.EventHandler(this.bn_search_Click);
             // 
+            // fullname
+            // 
+            this.fullname.HeaderText = "Full name";
+            this.fullname.Name = "fullname";
+            this.fullname.Width = 200;
+            // 
+            // username
+            // 
+            this.username.HeaderText = "Username";
+            this.username.Name = "username";
+            // 
+            // password
+            // 
+            this.password.HeaderText = "Password";
+            this.password.Name = "password";
+            // 
+            // userType
+            // 
+            this.userType.HeaderText = "User type";
+            this.userType.Name = "userType";
+            // 
             // frmUserList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(590, 391);
+            this.ClientSize = new System.Drawing.Size(541, 347);
             this.Controls.Add(this.bn_search);
             this.Controls.Add(this.bn_add);
             this.Controls.Add(this.label1);
@@ -130,7 +127,7 @@
             this.Controls.Add(this.dgv_data);
             this.Name = "frmUserList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "User list";
+            this.Text = "Users list";
             this.Load += new System.EventHandler(this.frmUserList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_data)).EndInit();
             this.ResumeLayout(false);
@@ -141,13 +138,13 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgv_data;
-        private System.Windows.Forms.DataGridViewTextBoxColumn userId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn username;
-        private System.Windows.Forms.DataGridViewTextBoxColumn password;
-        private System.Windows.Forms.DataGridViewTextBoxColumn userType;
         private System.Windows.Forms.TextBox tb_search;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button bn_add;
         private System.Windows.Forms.Button bn_search;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fullname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn username;
+        private System.Windows.Forms.DataGridViewTextBoxColumn password;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userType;
     }
 }

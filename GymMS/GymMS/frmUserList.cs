@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GymDataAccess;
 
 namespace GymMS
 {
@@ -16,6 +17,7 @@ namespace GymMS
         {
             InitializeComponent();
         }
+
 
         private void frmUserList_Load(object sender, EventArgs e)
         {
@@ -31,28 +33,35 @@ namespace GymMS
 
         void Search(string filter)
         {
+
+
             //clear grid
             dgv_data.Rows.Clear();
 
             //read list of users from the databaes
-            List<GymDataAccess.Users> list = GymDataAccess.Users.ListData(filter);
-            
+            List<Users> list = GymDataAccess.Users.ListData(filter);
+
             //loop into the lists items
-            for (int i = 0; i < list.Count; i++)
-                //add data to the grid
-                dgv_data.Rows.Add(list[i].Id, list[i].Username, list[i].Password, list[i].UserType);
+            foreach (Users u in list)
+            {
+                int rowIndex = dgv_data.Rows.Add(
+                    u.Id,
+                    u.Username,
+                    u.Password,
+                    u.UserType
+                );
+
+                // store the object in the row
+                dgv_data.Rows[rowIndex].Tag = u;
+            }
         }
 
         private void bn_add_Click(object sender, EventArgs e)
         {
-            //open data form to add new user into the database
-            frmUserdata f = new frmUserdata();
-
-            //display the form
-            f.ShowDialog();
+            //open data form 
+                (new frmUserdata()).ShowDialog();
 
             //Read data again(Do refresh)
-            Search(tb_search.Text);
             Search(tb_search.Text);
         }
 
@@ -62,21 +71,14 @@ namespace GymMS
             if (dgv_data.SelectedRows.Count == 0)
                 return;
 
-            //read selected id
-            int id = (int)dgv_data.SelectedRows[0].Cells["user_id"].FormattedValue;
+            //read selected object
+            Users u = (Users)dgv_data.CurrentRow.Tag;
 
-            //read object data from database
-            GymDataAccess.Users u = new GymDataAccess.Users(id);
-
-            //sender the object to data form
-            frmUserdata f = new frmUserdata(u);
-
-            //display data form
-            f.ShowDialog();
+            //Open data form 
+                new frmUserdata((Users)u).ShowDialog();
 
             //Read data again(Do refresh)
             Search(tb_search.Text);
-
         }
     }
 }
