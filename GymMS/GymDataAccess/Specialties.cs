@@ -1,0 +1,138 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GymDataAccess
+{
+    using System.CodeDom;
+    using System.Data.SqlClient;
+
+    public class Specialties : BaseEntity
+    {
+        //variable members
+        string specialtyName { get; set; }
+        //properties
+        public string SpecialtyName { get {return specialtyName } set { specialtyName = value; } }
+
+        //constructors
+        public Specialties() { }
+
+        public Specialties(int id)
+        {
+            LoadById(id);
+        }
+
+        public override void LoadById(int id)
+        {
+            try
+            {
+                var cmd = new SqlCommand("select * from specialties where id=@id", GymDBConnection);
+                cmd.Parameters.AddWithValue("@id", id);
+
+                GymDBConnection.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    Id = (int)reader["id"];
+                    specialtyName = reader["specialty_name"].ToString();
+                }
+            }
+            //any exception throw it to up level
+            catch (Exception ex) { throw ex; }
+            //close connection
+            finally { GymDBConnection.Close(); }
+
+        }
+
+        public override void AddInDB()
+        {
+            try
+            {
+                var cmd = new SqlCommand(
+                "insert into specialties (specialty_name) values (@name)", GymDBConnection);
+
+                cmd.Parameters.AddWithValue("@name", specialtyName);
+
+                GymDBConnection.Open();
+                cmd.ExecuteNonQuery();
+
+            }
+            //any exception throw it to up level
+            catch (Exception ex) { throw ex; }
+            //close connection
+            finally { GymDBConnection.Close(); }
+
+        }
+
+        public override void UpdateInDB()
+        {
+            try
+            {
+                var cmd = new SqlCommand(
+                    "update specialties set specialty_name=@name where id=@id", GymDBConnection);
+
+                cmd.Parameters.AddWithValue("@id", Id);
+                cmd.Parameters.AddWithValue("@name", specialtyName);
+
+                GymDBConnection.Open();
+                cmd.ExecuteNonQuery();
+
+            }
+            //any exception throw it to up level
+            catch (Exception ex) { throw ex; }
+            //close connection
+            finally { GymDBConnection.Close(); }
+
+        }
+
+        public static List<Specialties> ListData(string filter)
+        {
+            //create empty list
+            List<Specialties> list = new List<Specialties>();
+
+            //prepare select statement
+            string str = "select * from specialties";
+
+            //if filter used add it to select statement
+            if ((filter != null) && (filter != ""))
+                str += "where specialty_name like '%' + @filter + '%'";
+
+            //preparing command
+            SqlCommand comm = new SqlCommand(str, GymDBConnection);
+
+            //add filter to command
+            comm.Parameters.AddWithValue("@filter",string.IsNullOrEmpty(filter) ? (object)DBNull.Value : filter);
+
+            try
+            {
+                //open connection
+                GymDBConnection.Open();
+
+                //Execute select statement
+                SqlDataReader reader = comm.ExecuteReader();
+
+                //if data exists read it
+                while (reader.Read())
+                {
+                    Specialties s = new Specialties();
+
+                    //Assign data into object
+                    s.Id = (int)reader["id"];
+                    s.specialtyName = reader["specialty_name"].ToString();
+
+                    //Add object to list
+                    list.Add(s);
+                }
+            }
+            //any exception throw it to up level
+            catch (Exception ex) { throw ex; }
+            //close connection
+            finally { GymDBConnection.Close(); }
+
+            return list;
+        }
+    }
+}
