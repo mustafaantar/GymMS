@@ -77,7 +77,7 @@ namespace GymDataAccess
             try
             {
                 //method to edit data into database
-                string str = @"update trainers "
+                string str = "update trainers "
                     + "set full_name=@name, phone_number=@phone, birth_date=@birthDate,"
                     + "specialty_id=@specialty_id where id=@id";
                 SqlCommand cmd = new SqlCommand(str, GymDBConnection);
