@@ -49,7 +49,7 @@ namespace GymDataAccess
         {
             try
             {
-                string str = "INSERT INTO rooms (room_name, capacity, created_by)"
+                string str = "insert into rooms (room_name, capacity, created_by)"
                     + "values(@name, @capacity, @createdBy)";
                 var cmd = new SqlCommand(str, GymDBConnection);
 
@@ -65,7 +65,7 @@ namespace GymDataAccess
         }
 
 
-        public override void UpdateInDB()
+        public override void updateInDB()
         {
             try
             {

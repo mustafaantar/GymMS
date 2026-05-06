@@ -60,7 +60,7 @@ namespace GymDataAccess
             //method to add data into database
             try
             {
-                SqlCommand comm = new SqlCommand(@"INSERT INTO users (username, password, user_type, is_active, created_by)
+                SqlCommand comm = new SqlCommand(@"insert into users (username, password, user_type, is_active, created_by)
             VALUES (@user,@pass,@name,@active,@createdBy)", GymDBConnection);
 
                 comm.Parameters.AddWithValue("@user", Username);
@@ -75,12 +75,12 @@ namespace GymDataAccess
             finally { GymDBConnection.Close(); }
         }
 
-        public override void UpdateInDB()
+        public override void updateInDB()
         {
             //method to edit data into database
             try
             {
-                SqlCommand cmd = new SqlCommand(@"UPDATE users SET
+                SqlCommand cmd = new SqlCommand(@"update users SET
             username=@username, password=@password, user_type=@user_type, is_active=@active
             where id=@id", GymDBConnection);
 

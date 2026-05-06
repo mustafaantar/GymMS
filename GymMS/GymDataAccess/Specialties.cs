@@ -67,7 +67,7 @@ namespace GymDataAccess
 
         }
 
-        public override void UpdateInDB()
+        public override void updateInDB()
         {
             try
             {

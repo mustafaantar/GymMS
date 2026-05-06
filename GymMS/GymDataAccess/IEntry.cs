@@ -16,6 +16,6 @@ namespace GymDataAccess
         void AddtoDB();
 
         //Edit object data in a table in the database
-        void UpdateInDB();
+        void updateInDB();
     }
 }

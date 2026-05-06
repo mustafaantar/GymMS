@@ -97,7 +97,7 @@ namespace GymDataAccess
                 finally { GymDBConnection.Close(); }
             }
 
-            public override void UpdateInDB()
+            public override void updateInDB()
             {
                 try
                 {
