@@ -24,7 +24,7 @@ namespace GymMS
         private void frmUserList_Load(object sender, EventArgs e)
         {
             cb_personType.SelectedIndex = 0;
-            //display all users 
+            //display all people
             Search(null);
         }
 
@@ -42,7 +42,7 @@ namespace GymMS
             dgv_data.Rows.Clear();
 
             //read list of users from the databaes
-            List<Person> list = GymDataAccess.Users.ListData(filter);
+            List<Person> list = new List<Person>();// GymDataAccess.Person.ListData(filter);
 
             //loop into the lists items
             foreach (Person p in list)
@@ -54,7 +54,7 @@ namespace GymMS
                     p.GetType().Name
                 );
 
-                // تخزين الكائن داخل الصف
+                // Store the object in the row
                 dgv_data.Rows[rowIndex].Tag = p;
             }
         }
@@ -64,9 +64,9 @@ namespace GymMS
             //open data form to add new person into the database
             if (cb_personType.SelectedIndex == 0)
             //display the form
-                (new frmTrainerdata()).ShowDialog();
+                (new frmTrainerData()).ShowDialog();
             else
-                (new frmMemberdata()).ShowDialog();
+                (new frmMemberData()).ShowDialog();
 
             //Read data again(Do refresh)
             Search(tb_search.Text);
@@ -78,7 +78,7 @@ namespace GymMS
             if (dgv_data.SelectedRows.Count == 0)
                 return;
 
-            int id = (int)dgv_data.SelectedRows[0].Cells["user_id"].FormattedValue;
+            int id = (int)dgv_data.SelectedRows[0].Cells[0].FormattedValue;
 
             //read selected object
             Person p = (Person)dgv_data.CurrentRow.Tag;
@@ -93,11 +93,6 @@ namespace GymMS
             {
                 //display data form
                 new frmTrainerData((Trainer)p).ShowDialog();
-            }
-            else if (p is User)
-            {
-                //display data form
-                new frmUserData((Users)p).ShowDialog();
             }
 
             //Read data again(Do refresh)
