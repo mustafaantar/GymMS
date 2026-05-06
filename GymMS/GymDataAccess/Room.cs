@@ -26,7 +26,7 @@ namespace GymDataAccess
         {
             try
             {
-                var cmd = new SqlCommand("select * from rooms where id=@id", GymDBConnection);
+                SqlCommand cmd = new SqlCommand("select * from rooms where id=@id", GymDBConnection);
                 cmd.Parameters.AddWithValue("@id", id);
 
                 GymDBConnection.Open();
@@ -45,13 +45,13 @@ namespace GymDataAccess
             finally { GymDBConnection.Close(); }
         }
 
-        public override void AddtoDB()
+        public override void AddToDB()
         {
             try
             {
                 string str = "insert into rooms (room_name, capacity, created_by)"
                     + "values(@name, @capacity, @createdBy)";
-                var cmd = new SqlCommand(str, GymDBConnection);
+                SqlCommand cmd = new SqlCommand(str, GymDBConnection);
 
                 cmd.Parameters.AddWithValue("@name", RoomName);
                 cmd.Parameters.AddWithValue("@capacity", Capacity);
@@ -64,13 +64,12 @@ namespace GymDataAccess
             finally { GymDBConnection.Close(); }
         }
 
-
-        public override void updateInDB()
+        public override void UpdateInDB()
         {
             try
             {
                 string str = "update rooms set room_name=@name, capacity=@capacity where id=@id";
-                var cmd = new SqlCommand(str, GymDBConnection);
+                SqlCommand cmd = new SqlCommand(str, GymDBConnection);
 
                 cmd.Parameters.AddWithValue("@id", Id);
                 cmd.Parameters.AddWithValue("@name", RoomName);

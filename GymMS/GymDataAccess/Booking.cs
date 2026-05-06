@@ -39,7 +39,7 @@ namespace GymDataAccess
                 try
                 {
                     //preparing command 
-                    var cmd = new SqlCommand("select * from booking where id=@id", GymDBConnection);
+                    SqlCommand cmd = new SqlCommand("select * from booking where id=@id", GymDBConnection);
 
                     //adding id to command paramenters
                     cmd.Parameters.AddWithValue("@id", id);
@@ -68,7 +68,7 @@ namespace GymDataAccess
                 finally { GymDBConnection.Close(); }
             }
 
-            public override void AddtoDB()
+            public override void AddToDB()
             {
                 try
                 {
@@ -77,7 +77,7 @@ namespace GymDataAccess
                                + "values(@date, @member, @class, @createdBy)";
 
                     //preparing command
-                    var cmd = new SqlCommand(str, GymDBConnection);
+                    SqlCommand cmd = new SqlCommand(str, GymDBConnection);
 
                     //adding data into command parameters
                     cmd.Parameters.AddWithValue("@date", BookingDate);
@@ -97,7 +97,7 @@ namespace GymDataAccess
                 finally { GymDBConnection.Close(); }
             }
 
-            public override void updateInDB()
+            public override void UpdateInDB()
             {
                 try
                 {
@@ -105,7 +105,7 @@ namespace GymDataAccess
                     string str = "update booking set booking_date=@date, member_id=@member, class_id=@class where id=@id";
 
                     //preparing command
-                    var cmd = new SqlCommand(str, GymDBConnection);
+                    SqlCommand cmd = new SqlCommand(str, GymDBConnection);
 
                     //add data to the update statement
                     cmd.Parameters.AddWithValue("@id", Id);

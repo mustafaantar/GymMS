@@ -42,7 +42,7 @@ namespace GymDataAccess
             }
         }
 
-        public override void AddtoDB()
+        public override void AddToDB()
         {
             try
             {
@@ -64,7 +64,7 @@ namespace GymDataAccess
             finally { GymDBConnection.Close(); }
         }
 
-        public override void updateInDB()
+        public override void UpdateInDB()
         {
             try
             {

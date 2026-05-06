@@ -28,7 +28,7 @@ namespace GymDataAccess
         {
             try
             {
-                var cmd = new SqlCommand("select * from specialties where id=@id", GymDBConnection);
+                SqlCommand cmd = new SqlCommand("select * from specialties where id=@id", GymDBConnection);
                 cmd.Parameters.AddWithValue("@id", id);
 
                 GymDBConnection.Open();
@@ -47,11 +47,11 @@ namespace GymDataAccess
 
         }
 
-        public override void AddtoDB()
+        public override void AddToDB()
         {
             try
             {
-                var cmd = new SqlCommand(
+                SqlCommand cmd = new SqlCommand(
                 "insert into specialties (specialty_name) values (@name)", GymDBConnection);
 
                 cmd.Parameters.AddWithValue("@name", specialtyName);
@@ -67,11 +67,11 @@ namespace GymDataAccess
 
         }
 
-        public override void updateInDB()
+        public override void UpdateInDB()
         {
             try
             {
-                var cmd = new SqlCommand(
+                SqlCommand cmd = new SqlCommand(
                     "update specialties set specialty_name=@name where id=@id", GymDBConnection);
 
                 cmd.Parameters.AddWithValue("@id", Id);

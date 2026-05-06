@@ -55,7 +55,7 @@ namespace GymDataAccess
         }
 
         //methods
-        public override void AddtoDB()
+        public override void AddToDB()
         {
             //method to add data into database
             try
@@ -75,7 +75,7 @@ namespace GymDataAccess
             finally { GymDBConnection.Close(); }
         }
 
-        public override void updateInDB()
+        public override void UpdateInDB()
         {
             //method to edit data into database
             try
