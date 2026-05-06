@@ -30,15 +30,15 @@ namespace GymDataAccess
                 cmd.Parameters.AddWithValue("@id", id);
 
                 GymDBConnection.Open();
-                var dr = cmd.ExecuteReader();
+                SqlDataReader datareader = cmd.ExecuteReader();
 
-                if (dr.Read())
+                if (datareader.Read())
                 {
-                    Id = (int)dr["id"];
-                    RoomName = dr["room_name"].ToString();
-                    Capacity = (int)dr["capacity"];
-                    CreatedBy = (int)dr["created_by"];
-                    CreationDate = (DateTime)dr["creation_date"];
+                    Id = (int)datareader["id"];
+                    RoomName = datareader["room_name"].ToString();
+                    Capacity = (int)datareader["capacity"];
+                    CreatedBy = (int)datareader["created_by"];
+                    CreationDate = (DateTime)datareader["creation_date"];
                 }
             }
             catch (Exception ex) { throw ex; }
