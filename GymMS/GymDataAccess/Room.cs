@@ -122,8 +122,10 @@ namespace GymDataAccess
                     list.Add(s);
                 }
             }
+            //any exception throw it to up level
             catch (Exception ex) { throw ex; }
-            finally { GymDBConnection.Close(); }
+            //close connection
+            //finally { GymDBConnection.Close(); }
             return list;
         }
     }
