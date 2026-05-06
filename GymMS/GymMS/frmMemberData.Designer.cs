@@ -146,8 +146,8 @@
             this.MinimizeBox = false;
             this.Name = "frmUserdata";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "User data";
-            this.Load += new System.EventHandler(this.frmUserdata_Load);
+            this.Text = "Member data";
+            this.Load += new System.EventHandler(this.frmMemberData_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

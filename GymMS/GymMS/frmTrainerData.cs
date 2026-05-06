@@ -56,7 +56,7 @@ namespace GymMS
                 this.trainer.FullName= tb_username.Text;
 
                 //add the object data into the database
-                this.trainer.AddtoDB();
+                this.trainer.AddToDB();
 
                 //show success insert message
                 MessageBox.Show("New user added successfully", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
