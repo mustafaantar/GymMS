@@ -18,12 +18,12 @@ namespace GymDataAccess
         DateTime endDate;
 
         // Properties
-        public Member Member { get { return new Member(memberId); } }
+        public Member Member { get { return new Member(memberId); } set { memberId = value.Id; } }
         public int SubscriptionType { get { return subscriptionType; } set { subscriptionType = value; } }
         public int SubscriptionAmount { get { return subscriptionAmount; } set { subscriptionAmount = value; } }
         public int PaidAmount { get { return paidAmount; } set { paidAmount = value; } }
-        public DateTime StartDate { get { return startDate; } }
-        public DateTime EndDate { get { return endDate; } }
+        public DateTime StartDate { get { return startDate; } set { startDate = value; } }
+        public DateTime EndDate { get { return endDate; } set { endDate = value; } }
 
         //constructors
         public Subscription() { }
