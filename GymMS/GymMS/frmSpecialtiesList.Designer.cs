@@ -30,8 +30,8 @@
         {
             this.dgv_data = new System.Windows.Forms.DataGridView();
             this.bn_add = new System.Windows.Forms.Button();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.specialty_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_data)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,17 +61,17 @@
             this.bn_add.UseVisualStyleBackColor = true;
             this.bn_add.Click += new System.EventHandler(this.bn_add_Click);
             // 
-            // id
-            // 
-            this.id.HeaderText = "Id";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            // 
             // specialty_name
             // 
             this.specialty_name.HeaderText = "Specialty name";
             this.specialty_name.Name = "specialty_name";
             this.specialty_name.Width = 150;
+            // 
+            // id
+            // 
+            this.id.HeaderText = "Id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
             // 
             // frmSpecialtiesList
             // 
