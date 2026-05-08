@@ -13,13 +13,13 @@ namespace GymDataAccess
         // Variable members
         string username;
         string password;
-        int userType;
+        char userType;
         bool isActive;
 
         // Properties
         public string Username { get { return username; } set { username = value; } }
         public string Password { get { return password; } set { password = value; } }
-        public int UserType { get { return UserType; } set { UserType = value; } }
+        public string UserType { get { return userType=='R'?"Receiptist":userType=='A'?"Administrator":"Accountant"; } set { UserType = value; } }
         public bool IsActive { get { return isActive; } }
 
         public Users() { }
@@ -45,7 +45,7 @@ namespace GymDataAccess
                     id = (int)reader["id"];
                     username = reader["username"].ToString();
                     password = reader["password"].ToString();
-                    userType = (int)reader["user_type"];
+                    userType = (char)reader["user_type"];
                     isActive = (bool)reader["is_active"];
                     createdBy = (int)reader["created_by"];
                     creationDate = (DateTime)reader["creation_date"];
@@ -99,13 +99,10 @@ namespace GymDataAccess
         public static List<Users> ListData(string filter)
         {
             List<Users> list = new List<Users>();
-            string str = "select * from users";
-            if ((filter != null) && (filter != ""))
-                str += "where (username like '%' + @filter + '%' or full_name like '%' + @filter + '%')";
+            string str = "select * from users where (username like '%' + @filter + '%' or full_name like '%' + @filter + '%' or @filter is null)";
             SqlCommand comm = new SqlCommand(str, GymDBConnection);
 
-            comm.Parameters.AddWithValue("@filter",
-                string.IsNullOrEmpty(filter) ? (object)DBNull.Value : filter);
+            comm.Parameters.AddWithValue("@filter",string.IsNullOrEmpty(filter) ? (object)DBNull.Value : filter);
 
             try
             {
@@ -119,7 +116,7 @@ namespace GymDataAccess
                     u.id = (int)reader["id"];
                     u.username = reader["username"].ToString();
                     u.password = reader["password"].ToString();
-                    u.userType = (int)reader["user_type"];
+                    u.userType = (char)reader["user_type"];
                     u.isActive = (bool)reader["is_active"];
                     u.createdBy = (int)reader["created_by"];
                     u.creationDate = (DateTime)reader["creation_date"];
@@ -151,7 +148,7 @@ namespace GymDataAccess
                     u.id = (int)reader["id"];
                     u.username = reader["username"].ToString();
                     u.password = reader["password"].ToString();
-                    u.userType = (int)reader["user_type"];
+                    u.userType = (char)reader["user_type"];
                     u.isActive = (bool)reader["is_active"];
                     u.createdBy = (int)reader["created_by"];
                     u.creationDate = (DateTime)reader["creation_date"];
