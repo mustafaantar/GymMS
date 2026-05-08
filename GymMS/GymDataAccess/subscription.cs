@@ -137,22 +137,25 @@ namespace GymDataAccess
             finally { GymDBConnection.Close(); }
         }
 
-        public static List<Subscription> ListData(int? memberIdFilter)
+        public static List<Subscription> ListData(int? memberId, int? typeId, DateTime? fromDate, DateTime? toDate)
         {
             //prepare the list
             List<Subscription> list = new List<Subscription>();
 
             //prepare the select statement
-            string str = "select * from subscriptions";
-
-            //check if member filter parameter exists
-            if (memberIdFilter.HasValue)
-                str += " where member_id = @memberId";
+            string str = "select * from subscriptions "
+                + "where member_id = @memberId"
+                + " and subscription_type = @TypeId"
+                + " and (subscription_date >= @fromDate or @fromDate is null)"
+                + " and (subscription_date <= @toDate or @toDate is null)";
 
             //prepare SQL command
             SqlCommand comm = new SqlCommand(str, GymDBConnection);
 
-            comm.Parameters.AddWithValue("@memberId", (object)memberIdFilter ?? DBNull.Value);
+            comm.Parameters.AddWithValue("@memberId", (object)memberId ?? DBNull.Value);
+            comm.Parameters.AddWithValue("@TypeId", (object)TypeId ?? DBNull.Value);
+            comm.Parameters.AddWithValue("@fromDate", (object)fromDate ?? DBNull.Value);
+            comm.Parameters.AddWithValue("@toDate", (object)toDate ?? DBNull.Value);
 
             try
             {
