@@ -15,7 +15,7 @@ namespace GymDataAccess
         int subscriptionAmount;
         int paidAmount;
         DateTime startDate;
-        DateTime? endDate;
+        DateTime endDate;
 
         // Properties
         public Member Member { get { return new Member(memberId); } }
@@ -23,7 +23,7 @@ namespace GymDataAccess
         public int SubscriptionAmount { get { return subscriptionAmount; } }
         public int PaidAmount { get { return paidAmount; } }
         public DateTime StartDate { get { return startDate; } }
-        public DateTime? EndDate { get { return endDate; } }
+        public DateTime EndDate { get { return endDate; } }
 
         //constructors
         public Subscription() { }
@@ -64,7 +64,7 @@ namespace GymDataAccess
                     subscriptionAmount = (int)reader["subscription_amount"];
                     paidAmount = (int)reader["paid_amount"];
                     startDate = (DateTime)reader["start_date"];
-                    endDate = reader["end_date"] as DateTime?;
+                    endDate = (DateTime)reader["end_date"];
                     CreatedBy = (int)reader["created_by"];
                     CreationDate = (DateTime)reader["creation_date"];
                 }
@@ -92,7 +92,7 @@ namespace GymDataAccess
                 comm.Parameters.AddWithValue("@subscriptionAmount", subscriptionAmount);
                 comm.Parameters.AddWithValue("@paidAmount", paidAmount);
                 comm.Parameters.AddWithValue("@startDate", startDate);
-                comm.Parameters.AddWithValue("@endDate", (object)endDate ?? DBNull.Value);
+                comm.Parameters.AddWithValue("@endDate", endDate);
                 comm.Parameters.AddWithValue("@createdBy", CreatedBy);
 
                 //Open the database connection
@@ -125,11 +125,11 @@ namespace GymDataAccess
                 cmd.Parameters.AddWithValue("@subscriptionAmount", subscriptionAmount);
                 cmd.Parameters.AddWithValue("@paidAmount", paidAmount);
                 cmd.Parameters.AddWithValue("@startDate", startDate);
-                cmd.Parameters.AddWithValue("@endDate", (object)endDate ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@endDate", endDate);
 
                 //Open the database connection
                 GymDBConnection.Open();
-                
+
                 //execute the update statement
                 cmd.ExecuteNonQuery();
             }
@@ -177,7 +177,7 @@ namespace GymDataAccess
                     s.subscriptionAmount = (int)reader["subscription_amount"];
                     s.paidAmount = (int)reader["paid_amount"];
                     s.startDate = (DateTime)reader["start_date"];
-                    s.endDate = reader["end_date"] as DateTime?;
+                    s.endDate = (DateTime)reader["end_date"];
                     s.CreatedBy = (int)reader["created_by"];
                     s.CreationDate = (DateTime)reader["creation_date"];
 
