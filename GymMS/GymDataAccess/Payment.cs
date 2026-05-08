@@ -59,7 +59,7 @@ namespace GymDataAccess
             finally { GymDBConnection.Close(); }
         }
 
-        public override void AddToDB()
+        public override void AddToDB(int userId)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace GymDataAccess
                 cmd.Parameters.AddWithValue("@date", paymentDate);
                 cmd.Parameters.AddWithValue("@subscription_id", subscriptionId);
                 cmd.Parameters.AddWithValue("@amount", amount);
-                cmd.Parameters.AddWithValue("@createdBy", createdBy);
+                cmd.Parameters.AddWithValue("@createdBy", userId);
 
                 //open connection
                 GymDBConnection.Open();

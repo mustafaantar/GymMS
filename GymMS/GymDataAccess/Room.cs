@@ -35,8 +35,8 @@ namespace GymDataAccess
                 if (datareader.Read())
                 {
                     id = (int)datareader["id"];
-                    RoomName = datareader["room_name"].ToString();
-                    Capacity = (int)datareader["capacity"];
+                    roomName = datareader["room_name"].ToString();
+                    capacity = (int)datareader["capacity"];
                     createdBy = (int)datareader["created_by"];
                     creationDate = (DateTime)datareader["creation_date"];
                 }
@@ -45,7 +45,7 @@ namespace GymDataAccess
             finally { GymDBConnection.Close(); }
         }
 
-        public override void AddToDB()
+        public override void AddToDB(int userId)
         {
             try
             {
@@ -53,9 +53,9 @@ namespace GymDataAccess
                     + "values(@name, @capacity, @createdBy)";
                 SqlCommand cmd = new SqlCommand(str, GymDBConnection);
 
-                cmd.Parameters.AddWithValue("@name", RoomName);
-                cmd.Parameters.AddWithValue("@capacity", Capacity);
-                cmd.Parameters.AddWithValue("@createdBy", CreatedBy);
+                cmd.Parameters.AddWithValue("@name", roomName);
+                cmd.Parameters.AddWithValue("@capacity", capacity);
+                cmd.Parameters.AddWithValue("@createdBy", userId);
 
                 GymDBConnection.Open();
                 cmd.ExecuteNonQuery();
@@ -72,8 +72,8 @@ namespace GymDataAccess
                 SqlCommand cmd = new SqlCommand(str, GymDBConnection);
 
                 cmd.Parameters.AddWithValue("@id", Id);
-                cmd.Parameters.AddWithValue("@name", RoomName);
-                cmd.Parameters.AddWithValue("@capacity", Capacity);
+                cmd.Parameters.AddWithValue("@name", roomName);
+                cmd.Parameters.AddWithValue("@capacity", capacity);
 
                 GymDBConnection.Open();
                 cmd.ExecuteNonQuery();

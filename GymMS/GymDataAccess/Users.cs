@@ -55,7 +55,7 @@ namespace GymDataAccess
         }
 
         //methods
-        public override void AddToDB()
+        public override void AddToDB(int userId)
         {
             //method to add data into database
             try
@@ -66,8 +66,8 @@ namespace GymDataAccess
                 comm.Parameters.AddWithValue("@user", Username);
                 comm.Parameters.AddWithValue("@pass", Password);
                 comm.Parameters.AddWithValue("@user_type", userType);
-                comm.Parameters.AddWithValue("@active", IsActive);
-                comm.Parameters.AddWithValue("@createdBy", CreatedBy);
+                comm.Parameters.AddWithValue("@active", isActive);
+                comm.Parameters.AddWithValue("@createdBy", userId);
 
                 GymDBConnection.Open();
                 comm.ExecuteNonQuery();

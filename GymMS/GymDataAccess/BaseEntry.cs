@@ -24,7 +24,7 @@ namespace GymDataAccess
         }
 
         public abstract void LoadById(int id);
-        public abstract void AddToDB();
+        public abstract void AddToDB(int userId);
         public abstract void UpdateInDB();
     }
 }

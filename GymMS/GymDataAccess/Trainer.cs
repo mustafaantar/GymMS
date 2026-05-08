@@ -50,7 +50,7 @@ namespace GymDataAccess
             finally { GymDBConnection.Close(); }
         }
 
-        public override void AddToDB()
+        public override void AddToDB(int userId)
         {
             try
             {
@@ -64,7 +64,8 @@ namespace GymDataAccess
                 comm.Parameters.AddWithValue("@phone", (object)PhoneNumber ?? DBNull.Value);
                 comm.Parameters.AddWithValue("@birthDate", (object)BirthDate ?? DBNull.Value);
                 comm.Parameters.AddWithValue("@specialty_id", specialty_id);
-                comm.Parameters.AddWithValue("@createdBy", CreatedBy);
+                comm.Parameters.AddWithValue("@createdBy",         public override void AddToDB(int userId)
+);
 
                 GymDBConnection.Open();
                 comm.ExecuteNonQuery();

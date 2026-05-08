@@ -13,7 +13,7 @@ namespace GymDataAccess
         //Load object data by ID (primaryy key) of each table type
         void LoadById(int id);
         //Add data row into a table in the database
-        void AddToDB();
+        void AddToDB(int userId);
 
         //Edit object data in a table in the database
         void UpdateInDB();

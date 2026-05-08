@@ -47,14 +47,16 @@ namespace GymDataAccess
 
         }
 
-        public override void AddToDB()
+        public override void AddToDB(int userId)
         {
             try
             {
                 SqlCommand cmd = new SqlCommand(
-                "insert into specialties (specialty_name) values (@name)", GymDBConnection);
+                "insert into specialties (specialty_name, created_by, creation_date) values (@name, @createdBy, @creationDate)", GymDBConnection);
 
                 cmd.Parameters.AddWithValue("@name", specialtyName);
+                cmd.Parameters.AddWithValue("@created_by", userId);
+                cmd.Parameters.AddWithValue("@creation_date", creationDate);
 
                 GymDBConnection.Open();
                 cmd.ExecuteNonQuery();
