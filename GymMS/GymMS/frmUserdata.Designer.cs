@@ -38,12 +38,13 @@
             this.tb_id = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.bn_close = new System.Windows.Forms.Button();
+            this.cb_active = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 67);
+            this.label2.Location = new System.Drawing.Point(201, 41);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 7;
@@ -60,7 +61,7 @@
             // 
             // tb_password
             // 
-            this.tb_password.Location = new System.Drawing.Point(76, 64);
+            this.tb_password.Location = new System.Drawing.Point(265, 38);
             this.tb_password.Name = "tb_password";
             this.tb_password.Size = new System.Drawing.Size(119, 20);
             this.tb_password.TabIndex = 5;
@@ -74,7 +75,7 @@
             // 
             // bn_save
             // 
-            this.bn_save.Location = new System.Drawing.Point(121, 138);
+            this.bn_save.Location = new System.Drawing.Point(121, 112);
             this.bn_save.Name = "bn_save";
             this.bn_save.Size = new System.Drawing.Size(75, 23);
             this.bn_save.TabIndex = 4;
@@ -86,7 +87,7 @@
             // 
             this.cb_type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_type.FormattingEnabled = true;
-            this.cb_type.Location = new System.Drawing.Point(76, 90);
+            this.cb_type.Location = new System.Drawing.Point(76, 64);
             this.cb_type.Name = "cb_type";
             this.cb_type.Size = new System.Drawing.Size(119, 21);
             this.cb_type.TabIndex = 10;
@@ -94,7 +95,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 93);
+            this.label3.Location = new System.Drawing.Point(12, 67);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 7;
@@ -119,7 +120,7 @@
             // 
             // bn_close
             // 
-            this.bn_close.Location = new System.Drawing.Point(12, 138);
+            this.bn_close.Location = new System.Drawing.Point(12, 112);
             this.bn_close.Name = "bn_close";
             this.bn_close.Size = new System.Drawing.Size(75, 23);
             this.bn_close.TabIndex = 4;
@@ -127,11 +128,22 @@
             this.bn_close.UseVisualStyleBackColor = true;
             this.bn_close.Click += new System.EventHandler(this.bn_close_Click);
             // 
+            // cb_active
+            // 
+            this.cb_active.AutoSize = true;
+            this.cb_active.Location = new System.Drawing.Point(204, 14);
+            this.cb_active.Name = "cb_active";
+            this.cb_active.Size = new System.Drawing.Size(56, 17);
+            this.cb_active.TabIndex = 11;
+            this.cb_active.Text = "Active";
+            this.cb_active.UseVisualStyleBackColor = true;
+            // 
             // frmUserdata
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(208, 173);
+            this.ClientSize = new System.Drawing.Size(392, 144);
+            this.Controls.Add(this.cb_active);
             this.Controls.Add(this.cb_type);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -165,5 +177,6 @@
         private System.Windows.Forms.TextBox tb_id;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button bn_close;
+        private System.Windows.Forms.CheckBox cb_active;
     }
 }
