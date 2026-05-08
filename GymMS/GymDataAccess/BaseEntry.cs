@@ -10,12 +10,13 @@ namespace GymDataAccess
         public static SqlConnection GymDBConnection = new SqlConnection(connectionString);
 
         //Shared variable members
-        int id;
-        int createdBy;
-        DateTime creationDate;
-        public int Id { get { return id; } protected set { id = value; } }
-        public int CreatedBy { get { return createdBy; } protected set { createdBy = value; } }
-        public DateTime CreationDate { get { return creationDate; } protected set { creationDate = value; } }
+        protected int id;
+       protected int createdBy;
+        protected DateTime creationDate;
+
+        public int Id { get { return id; }set { id = value; } }
+        public Users CreatedBy { get { return new Users(createdBy); } }
+        public DateTime CreationDate { get { return creationDate; } }
 
         public BaseEntity()
         {

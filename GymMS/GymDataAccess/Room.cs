@@ -34,11 +34,11 @@ namespace GymDataAccess
 
                 if (datareader.Read())
                 {
-                    Id = (int)datareader["id"];
+                    id = (int)datareader["id"];
                     RoomName = datareader["room_name"].ToString();
                     Capacity = (int)datareader["capacity"];
-                    CreatedBy = (int)datareader["created_by"];
-                    CreationDate = (DateTime)datareader["creation_date"];
+                    createdBy = (int)datareader["created_by"];
+                    creationDate = (DateTime)datareader["creation_date"];
                 }
             }
             catch (Exception ex) { throw ex; }

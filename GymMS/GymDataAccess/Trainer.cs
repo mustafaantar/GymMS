@@ -38,13 +38,13 @@ namespace GymDataAccess
 
                 if (reader.Read())
                 {
-                    Id = (int)reader["id"];
+                    id = (int)reader["id"];
                     FullName = reader["full_name"].ToString();
                     PhoneNumber = reader["phone_number"].ToString();
                     BirthDate = reader["birth_date"] as DateTime?;
                     specialty_id = (int)reader["specialty_id"];
-                    CreatedBy = (int)reader["created_by"];
-                    CreationDate = (DateTime)reader["creation_date"];
+                    createdBy = (int)reader["created_by"];
+                    creationDate = (DateTime)reader["creation_date"];
                 }
             }
             finally { GymDBConnection.Close(); }
