@@ -44,7 +44,7 @@ namespace GymMS
 
             for (int i = 0; i < cb_type.Items.Count; i++)
             {
-                if ((int)cb_member.Items[i] == this.subscription.SubscriptionType;
+                if ((int)cb_member.Items[i] == this.subscription.SubscriptionType)
                 {
                     cb_type.SelectedIndex = i;
                     break;
@@ -71,7 +71,11 @@ namespace GymMS
                 this.subscription = new GymDataAccess.Subscription();
 
                 //assign data from controls into the object
-                this.subscription.FullName = tb_username.Text;
+                this.subscription.Member = new Member(((Member)cb_member.SelectedItem).Id);
+                this.subscription.StartDate = d_fromDate.Value;
+                this.subscription.EndDate = d_toDate.Value;
+                this.subscription.SubscriptionAmount = int.Parse(tb_amount.Text);
+                this.subscription.PaidAmount = int.Parse(tb_paid_amount.Text);
 
                 //add the object data into the database
                 this.subscription.AddToDB();
@@ -84,8 +88,11 @@ namespace GymMS
                 //Edit exists data object in the database
 
                 //assign data from controls into the existing object
-                //this.subscription.Member.FullName = tb_username.Text;
-
+                this.subscription.Member = new Member(((Member)cb_member.SelectedItem).Id);
+                this.subscription.StartDate = d_fromDate.Value;
+                this.subscription.EndDate = d_toDate.Value;
+                this.subscription.SubscriptionAmount = int.Parse(tb_amount.Text);
+                this.subscription.PaidAmount = int.Parse(tb_paid_amount.Text);
                 //add the object data into the database
                 this.subscription.UpdateInDB();
 

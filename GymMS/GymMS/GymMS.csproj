@@ -75,6 +75,12 @@
     <Compile Include="frmMainMdi.Designer.cs">
       <DependentUpon>frmMainMdi.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPaymentData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPaymentData.Designer.cs">
+      <DependentUpon>frmPaymentData.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSubscriptionData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +92,12 @@
     </Compile>
     <Compile Include="frmMemberData.Designer.cs">
       <DependentUpon>frmMemberData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPaymentList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPaymentList.Designer.cs">
+      <DependentUpon>frmPaymentList.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSubscriptionList.cs">
       <SubType>Form</SubType>
@@ -138,11 +150,17 @@
     <EmbeddedResource Include="frmMainMdi.resx">
       <DependentUpon>frmMainMdi.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPaymentData.resx">
+      <DependentUpon>frmPaymentData.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSubscriptionData.resx">
       <DependentUpon>frmSubscriptionData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMemberData.resx">
       <DependentUpon>frmMemberData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPaymentList.resx">
+      <DependentUpon>frmPaymentList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSubscriptionList.resx">
       <DependentUpon>frmSubscriptionList.cs</DependentUpon>

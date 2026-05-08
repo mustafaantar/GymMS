@@ -77,14 +77,14 @@ namespace GymMS
             //loop into the lists items
             foreach (Subscription s in list)
             {
-                int rowIndex = dgv_data.Rows.Add(s.Id, s.MemberId.Id,
+                int rowIndex = dgv_data.Rows.Add(s.Id, s.Member.Id,
                     (s.SubscriptionType==1?"Weekly": s.SubscriptionType==2?"Monthly":"Yearly"),
                     s.SubscriptionAmount,
                     s.PaidAmount,
                     s.StartDate,
                     s.EndDate,
-                    s.CreatedBy.Username.
-                    s.creationDate);
+                    s.CreatedBy.Username,
+                    s.CreationDate);
 
                 // store the object in the row
                 dgv_data.Rows[rowIndex].Tag = s;
