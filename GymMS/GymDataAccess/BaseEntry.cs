@@ -6,7 +6,7 @@ namespace GymDataAccess
     public abstract class BaseEntity : IEntity
     {
         //SQL connection
-        static string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename="+ Assembly.GetExecutingAssembly() +"\\GymDB.mdf;Integrated Security=True;Connect Timeout=30";
+        static string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + Assembly.GetExecutingAssembly().Location.Substring(0, Assembly.GetExecutingAssembly().Location.LastIndexOf("\\")) + "\\GymDB.mdf;Integrated Security=True;Connect Timeout=30";
         public static SqlConnection GymDBConnection = new SqlConnection(connectionString);
 
         //Shared variable members
