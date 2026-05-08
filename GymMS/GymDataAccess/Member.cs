@@ -11,8 +11,8 @@ namespace GymDataAccess
     {
         DateTime startDate;
         DateTime? endDate;
-        public DateTime StartDate { get { return startDate; } }
-        public DateTime? EndDate { get { return endDate; } }
+        public DateTime StartDate { get { return startDate; }set{ startDate = value; }
+        public DateTime? EndDate { get { return endDate; } set { endDate = value; } }
 
         public Member() { }
 
