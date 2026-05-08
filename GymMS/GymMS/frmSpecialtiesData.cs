@@ -52,7 +52,7 @@ namespace GymMS
                 s.SpecialtyName = tb_username.Text;
 
                 //add the object data into the database
-                s.AddToDB();
+                s.AddToDB(GlobalVariables.LoginUser.Id);
 
                 //show success insert message
                 MessageBox.Show("New Specialty added successfully", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -60,7 +60,7 @@ namespace GymMS
                 u.UserType = cb_type.SelectedIndex;
 
                 //add the object data into the database
-                u.AddToDB();
+                u.AddToDB(GlobalVariables.LoginUser.Id);
 
                 //show success insert message
                 MessageBox.Show("New user added successfully", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
