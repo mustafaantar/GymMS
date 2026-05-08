@@ -11,12 +11,12 @@ namespace GymDataAccess
     {
         //variable members
         DateTime paymentDate;
-        int memberId;
+        int subscriptionId;
         decimal amount;
 
         //properties (Encapsulation)
         public DateTime PaymentDate { get { return paymentDate; } set { paymentDate = value; } }
-        public Member Member { get { return new Member(memberId); } }
+        public Subscription Subscription { get { return new Subscription(subscriptionId); } }
         public decimal Amount { get { return amount; } set { amount = value; } }
 
         //constructors
@@ -47,7 +47,7 @@ namespace GymDataAccess
                     //assign data into object
                     id = (int)datareader["id"];
                     paymentDate = (DateTime)datareader["payment_date"];
-                    memberId = (int)datareader["member_id"];
+                    subscriptionId = (int)datareader["subscription_id"];
                     amount = (decimal)datareader["amount"];
                     createdBy = (int)datareader["created_by"];
                     creationDate = (DateTime)datareader["creation_date"];
@@ -64,15 +64,15 @@ namespace GymDataAccess
             try
             {
                 //prepare insert statement
-                string str = "insert into payments (payment_date, member_id, amount, created_by) "
-                           + "values(@date, @member, @amount, @createdBy)";
+                string str = "insert into payments (payment_date, subscription_id, amount, created_by) "
+                           + "values(@date, @subscription_id, @amount, @createdBy)";
 
                 //prepare command
                 SqlCommand cmd = new SqlCommand(str, GymDBConnection);
 
                 //add parameters
                 cmd.Parameters.AddWithValue("@date", paymentDate);
-                cmd.Parameters.AddWithValue("@member", memberId);
+                cmd.Parameters.AddWithValue("@subscription_id", subscriptionId);
                 cmd.Parameters.AddWithValue("@amount", amount);
                 cmd.Parameters.AddWithValue("@createdBy", createdBy);
 
@@ -150,7 +150,7 @@ namespace GymDataAccess
                     //assign data into object
                     p.id = (int)reader["id"];
                     p.paymentDate = (DateTime)reader["payment_date"];
-                    p.memberId = (int)reader["member_id"];
+                    p.subscriptionId = (int)reader["subscription_id"];
                     p.amount = (decimal)reader["amount"];
 
                     //add object to list
