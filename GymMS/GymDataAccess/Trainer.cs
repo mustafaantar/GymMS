@@ -64,8 +64,7 @@ namespace GymDataAccess
                 comm.Parameters.AddWithValue("@phone", (object)PhoneNumber ?? DBNull.Value);
                 comm.Parameters.AddWithValue("@birthDate", (object)BirthDate ?? DBNull.Value);
                 comm.Parameters.AddWithValue("@specialty_id", specialty_id);
-                comm.Parameters.AddWithValue("@createdBy",         public override void AddToDB(int userId)
-);
+                comm.Parameters.AddWithValue("@createdBy", userId);
 
                 GymDBConnection.Open();
                 comm.ExecuteNonQuery();
