@@ -19,8 +19,8 @@ namespace GymDataAccess
         // Properties
         public string Username { get { return username; } set { username = value; } }
         public string Password { get { return password; } set { password = value; } }
-        public string UserType { get { return userType=='R'?"Receiptist":userType=='A'?"Administrator":"Accountant"; } set { UserType = value; } }
-        public bool IsActive { get { return isActive; } }
+        public string UserType { get { return userType=='R'?"Receiptist":userType=='M'?"Manager":"Accountant"; } set { UserType = value; } }
+        public bool IsActive { get { return isActive; } set { isActive = value; } }
 
         public Users() { }
 
