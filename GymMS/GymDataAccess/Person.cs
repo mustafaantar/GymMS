@@ -13,7 +13,7 @@ namespace GymDataAccess
         string fullName;
         string phoneNumber;
         string address;
-        DateTime? birthDate;
+        DateTime birthDate;
 
         // Properties for Encapsulation
         public string FullName
@@ -28,7 +28,7 @@ namespace GymDataAccess
             set { phoneNumber = value; }
         }
 
-        public DateTime? BirthDate
+        public DateTime BirthDate
         {
             get { return birthDate; }
             set { birthDate = value; }
@@ -56,11 +56,7 @@ namespace GymDataAccess
             List<Person> list = new List<Person>();
 
             //prepare select statement
-            string str = "select * from v_persons";
-
-            //if filter used add it to select statement
-            if ((filter != null) && (filter != ""))
-                str += "where fullname like '%' + @filter + '%'";
+            string str = "select * from v_persons where (fullname like '%' + @filter + '%' or @filter is null)";
 
             //preparing command
             SqlCommand comm = new SqlCommand(str, GymDBConnection);

@@ -41,7 +41,7 @@ namespace GymDataAccess
                     id = (int)reader["id"];
                     FullName = reader["full_name"].ToString();
                     PhoneNumber = reader["phone_number"].ToString();
-                    BirthDate = reader["birth_date"] as DateTime?;
+                    BirthDate = (DateTime)reader["birth_date"];
                     specialty_id = (int)reader["specialty_id"];
                     createdBy = (int)reader["created_by"];
                     creationDate = (DateTime)reader["creation_date"];
