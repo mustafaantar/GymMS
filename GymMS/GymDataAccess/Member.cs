@@ -31,14 +31,14 @@ namespace GymDataAccess
             if (reader.Read())
             {
 
-                Id = (int)reader["id"];
+                id = (int)reader["id"];
                 FullName = reader["full_name"].ToString();
                 PhoneNumber = reader["phone_pumber"].ToString();
                 BirthDate = reader["birth_date"] as DateTime?;
                 startDate = (DateTime)reader["start_date"];
                 endDate = reader["end_date"] as DateTime?;
-                CreatedBy = (int)reader["created_by"];
-                CreationDate = (DateTime)reader["creation_date"];
+                createdBy = (int)reader["created_by"];
+                creationDate = (DateTime)reader["creation_date"];
             }
         }
 

@@ -42,13 +42,13 @@ namespace GymDataAccess
 
                 if (reader.Read())
                 {
-                    Id = (int)reader["id"];
+                    id = (int)reader["id"];
                     username = reader["username"].ToString();
                     password = reader["password"].ToString();
                     userType = (int)reader["user_type"];
                     isActive = (bool)reader["is_active"];
-                    CreatedBy = (int)reader["created_by"];
-                    CreationDate = (DateTime)reader["creation_date"];
+                    createdBy = (int)reader["created_by"];
+                    creationDate = (DateTime)reader["creation_date"];
                 }
             }
             finally { GymDBConnection.Close(); }
@@ -116,13 +116,13 @@ namespace GymDataAccess
                 {
                     Users u = new Users();
 
-                    u.Id = (int)reader["id"];
+                    u.id = (int)reader["id"];
                     u.username = reader["username"].ToString();
                     u.password = reader["password"].ToString();
                     u.userType = (int)reader["user_type"];
                     u.isActive = (bool)reader["is_active"];
-                    u.CreatedBy = (int)reader["created_by"];
-                    u.CreationDate = (DateTime)reader["creation_date"];
+                    u.createdBy = (int)reader["created_by"];
+                    u.creationDate = (DateTime)reader["creation_date"];
 
                     list.Add(u);
                 }
@@ -148,13 +148,13 @@ namespace GymDataAccess
                 if (reader.Read())
                 {
                     u = new Users();
-                    u.Id = (int)reader["id"];
+                    u.id = (int)reader["id"];
                     u.username = reader["username"].ToString();
                     u.password = reader["password"].ToString();
                     u.userType = (int)reader["user_type"];
                     u.isActive = (bool)reader["is_active"];
-                    u.CreatedBy = (int)reader["created_by"];
-                    u.CreationDate = (DateTime)reader["creation_date"];
+                    u.createdBy = (int)reader["created_by"];
+                    u.creationDate = (DateTime)reader["creation_date"];
                 }
                     return u;
             }

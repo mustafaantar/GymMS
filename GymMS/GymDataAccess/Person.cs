@@ -81,12 +81,12 @@ namespace GymDataAccess
                         p = new Trainer();
 
                     //Assign data into object
-                    p.Id = (int)reader["id"];
+                    p.id = (int)reader["id"];
                     p.FullName = reader["full_name"].ToString();
                     p.PhoneNumber = reader["phone_number"].ToString();
                     p.BirthDate = (DateTime)reader["birth_date"];
-                    p.CreatedBy = (int)reader["created_by"];
-                    p.CreationDate = (DateTime)reader["creation_date"];
+                    p.createdBy = (int)reader["created_by"];
+                    p.creationDate = (DateTime)reader["creation_date"];
 
                     //Add object to list
                     list.Add(p);
@@ -137,12 +137,12 @@ namespace GymDataAccess
                     p = new Member();
 
                     //Assign data into object
-                    p.Id = (int)reader["id"];
-                    p.FullName = reader["full_name"].ToString();
-                    p.PhoneNumber = reader["phone_number"].ToString();
-                    p.BirthDate = (DateTime)reader["birth_date"];
-                    p.CreatedBy = (int)reader["created_by"];
-                    p.CreationDate = (DateTime)reader["creation_date"];
+                    p.id = (int)reader["id"];
+                    p.fullName = reader["full_name"].ToString();
+                    p.phoneNumber = reader["phone_number"].ToString();
+                    p.birthDate = (DateTime)reader["birth_date"];
+                    p.createdBy = (int)reader["created_by"];
+                    p.creationDate = (DateTime)reader["creation_date"];
 
                     //Add object to list
                     list.Add((Member)p);
@@ -156,5 +156,4 @@ namespace GymDataAccess
             return list;
         }
     }
-}
 }

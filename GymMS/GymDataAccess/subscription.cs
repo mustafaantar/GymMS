@@ -58,15 +58,15 @@ namespace GymDataAccess
                 if (reader.Read())
                 {
                     //assign the data into the variable members of the object
-                    Id = (int)reader["id"];
+                    id = (int)reader["id"];
                     memberId = (int)reader["member_id"];
-                    subscriptionType = (int)reader["subscription_type"]x;
+                    subscriptionType = (int)reader["subscription_type"];
                     subscriptionAmount = (int)reader["subscription_amount"];
                     paidAmount = (int)reader["paid_amount"];
                     startDate = (DateTime)reader["start_date"];
                     endDate = (DateTime)reader["end_date"];
-                    CreatedBy = (int)reader["created_by"];
-                    CreationDate = (DateTime)reader["creation_date"];
+                    createdBy = (int)reader["created_by"];
+                    creationDate = (DateTime)reader["creation_date"];
                 }
             }
             //close the conneciton
@@ -153,7 +153,7 @@ namespace GymDataAccess
             SqlCommand comm = new SqlCommand(str, GymDBConnection);
 
             comm.Parameters.AddWithValue("@memberId", (object)memberId ?? DBNull.Value);
-            comm.Parameters.AddWithValue("@TypeId", (object)TypeId ?? DBNull.Value);
+            comm.Parameters.AddWithValue("@TypeId", (object)typeId ?? DBNull.Value);
             comm.Parameters.AddWithValue("@fromDate", (object)fromDate ?? DBNull.Value);
             comm.Parameters.AddWithValue("@toDate", (object)toDate ?? DBNull.Value);
 
@@ -171,15 +171,15 @@ namespace GymDataAccess
                     Subscription s = new Subscription();
 
                     //assign read data to the object
-                    s.Id = (int)reader["id"];
+                    s.id = (int)reader["id"];
                     s.memberId = (int)reader["member_id"];
                     s.subscriptionType = (int)reader["subscription_type"];
                     s.subscriptionAmount = (int)reader["subscription_amount"];
                     s.paidAmount = (int)reader["paid_amount"];
                     s.startDate = (DateTime)reader["start_date"];
                     s.endDate = (DateTime)reader["end_date"];
-                    s.CreatedBy = (int)reader["created_by"];
-                    s.CreationDate = (DateTime)reader["creation_date"];
+                    s.createdBy = (int)reader["created_by"];
+                    s.creationDate = (DateTime)reader["creation_date"];
 
                     //add the object to the list
                     list.Add(s);

@@ -45,12 +45,12 @@ namespace GymDataAccess
                 if (datareader.Read())
                 {
                     //assign data into object
-                    Id = (int)datareader["id"];
+                    id = (int)datareader["id"];
                     PaymentDate = (DateTime)datareader["payment_date"];
                     MemberId = datareader["member_id"] as int?;
                     Amount = (decimal)datareader["amount"];
-                    CreatedBy = (int)datareader["created_by"];
-                    CreationDate = (DateTime)datareader["creation_date"];
+                    createdBy = (int)datareader["created_by"];
+                    creationDate = (DateTime)datareader["creation_date"];
                 }
             }
             //any exception throw it to up level
@@ -154,7 +154,7 @@ namespace GymDataAccess
                     Payment p = new Payment();
 
                     //assign data into object
-                    p.Id = (int)reader["id"];
+                    p.id = (int)reader["id"];
                     p.paymentDate = (DateTime)reader["payment_date"];
                     p.memberId = reader["member_id"] as int?;
                     p.amount = (decimal)reader["amount"];

@@ -36,7 +36,7 @@ namespace GymDataAccess
 
                 if (reader.Read())
                 {
-                    Id = (int)reader["id"];
+                    id = (int)reader["id"];
                     specialtyName = reader["specialty_name"].ToString();
                 }
             }
@@ -113,7 +113,7 @@ namespace GymDataAccess
                     Specialties s = new Specialties();
 
                     //Assign data into object
-                    s.Id = (int)reader["id"];
+                    s.id = (int)reader["id"];
                     s.specialtyName = reader["specialty_name"].ToString();
 
                     //Add object to list

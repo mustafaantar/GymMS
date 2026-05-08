@@ -54,12 +54,12 @@ namespace GymDataAccess
                     if (reader.Read())
                     {
                         //asign data into object variable members
-                        Id = (int)reader["id"];
+                        id = (int)reader["id"];
                         bookingDate = (DateTime)reader["booking_date"];
                         memberId = reader["member_id"] as int?;
                         classId = reader["class_id"] as int?;
-                        CreatedBy = (int)reader["created_by"];
-                        CreationDate = (DateTime)reader["creation_date"];
+                        createdBy = (int)reader["created_by"];
+                        creationDate = (DateTime)reader["creation_date"];
                     }
                 }
                 //any exception throw it to up level
@@ -156,7 +156,7 @@ namespace GymDataAccess
                         Booking b = new Booking();
                         
                         //assign data to object variables
-                        b.Id = (int)reader["id"];
+                        b.id = (int)reader["id"];
                         b.bookingDate = (DateTime)reader["booking_date"];
                         b.memberId = reader["member_id"] as int?;
                         b.classId = reader["class_id"] as int?;
