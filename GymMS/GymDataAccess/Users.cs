@@ -63,10 +63,10 @@ namespace GymDataAccess
                 SqlCommand comm = new SqlCommand(@"insert into users (username, password, user_type, is_active, created_by)
             VALUES (@user,@pass,@name,@active,@createdBy)", GymDBConnection);
 
-                comm.Parameters.AddWithValue("@user", Username);
-                comm.Parameters.AddWithValue("@pass", Password);
+                comm.Parameters.AddWithValue("@user", username);
+                comm.Parameters.AddWithValue("@pass", password);
                 comm.Parameters.AddWithValue("@user_type", userType);
-                comm.Parameters.AddWithValue("@active", isActive);
+                comm.Parameters.AddWithValue("@active", isActive ? 1 : 0);
                 comm.Parameters.AddWithValue("@createdBy", userId);
 
                 GymDBConnection.Open();
@@ -85,10 +85,10 @@ namespace GymDataAccess
             where id=@id", GymDBConnection);
 
                 cmd.Parameters.AddWithValue("@id", Id);
-                cmd.Parameters.AddWithValue("@username", Username);
-                cmd.Parameters.AddWithValue("@password", Password);
+                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@password", password);
                 cmd.Parameters.AddWithValue("@user_type", userType);
-                cmd.Parameters.AddWithValue("@active", IsActive);
+                cmd.Parameters.AddWithValue("@active", isActive?1:0);
 
                 GymDBConnection.Open();
                 cmd.ExecuteNonQuery();
