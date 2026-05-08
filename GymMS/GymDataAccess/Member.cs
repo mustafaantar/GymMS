@@ -86,42 +86,5 @@ namespace GymDataAccess
             catch (Exception ex) { throw ex; }
             finally { GymDBConnection.Close(); }
         }
-
-        public static List<Member> ListData(string filter)
-        {
-            List<Member> list = new List<Member>();
-            string str = "select * from members";
-            if ((filter != null) && (filter != ""))
-                str += "where fullname like '%' + @filter + '%'";
-            SqlCommand comm = new SqlCommand(str, GymDBConnection);
-
-            comm.Parameters.AddWithValue("@filter",
-                string.IsNullOrEmpty(filter) ? (object)DBNull.Value : filter);
-
-            try
-            {
-                GymDBConnection.Open();
-                SqlDataReader reader = comm.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    Member m = new Member();
-
-                    m.Id = (int)reader["id"];
-                    m.FullName= reader["full_name"].ToString();
-                    m.PhoneNumber = reader["phone_number"].ToString();
-                    m.BirthDate = (DateTime)reader["birth_date"];
-                    m.startDate = (DateTime)reader["start_date"];
-                    m.endDate = reader["end_date"] as DateTime?;
-                    m.CreatedBy = (int)reader["created_by"];
-                    m.CreationDate = (DateTime)reader["creation_date"];
-
-                    list.Add(m);
-                }
-            }
-            finally { GymDBConnection.Close(); }
-
-            return list;
-        }
     }
 }
