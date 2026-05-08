@@ -75,17 +75,53 @@
     <Compile Include="frmMainMdi.Designer.cs">
       <DependentUpon>frmMainMdi.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPaymentData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPaymentData.Designer.cs">
+      <DependentUpon>frmPaymentData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSubscriptionData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSubscriptionData.Designer.cs">
+      <DependentUpon>frmSubscriptionData.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMemberData.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMemberData.Designer.cs">
       <DependentUpon>frmMemberData.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPaymentList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPaymentList.Designer.cs">
+      <DependentUpon>frmPaymentList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSubscriptionList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSubscriptionList.Designer.cs">
+      <DependentUpon>frmSubscriptionList.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTrainerData.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmTrainerData.Designer.cs">
       <DependentUpon>frmTrainerData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSpecialtiesList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpecialtiesList.Designer.cs">
+      <DependentUpon>frmSpecialtiesList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSpecialtiesData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpecialtiesData.Designer.cs">
+      <DependentUpon>frmSpecialtiesData.cs</DependentUpon>
     </Compile>
     <Compile Include="frmUserList.cs">
       <SubType>Form</SubType>
@@ -114,11 +150,29 @@
     <EmbeddedResource Include="frmMainMdi.resx">
       <DependentUpon>frmMainMdi.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPaymentData.resx">
+      <DependentUpon>frmPaymentData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSubscriptionData.resx">
+      <DependentUpon>frmSubscriptionData.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMemberData.resx">
       <DependentUpon>frmMemberData.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPaymentList.resx">
+      <DependentUpon>frmPaymentList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSubscriptionList.resx">
+      <DependentUpon>frmSubscriptionList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmTrainerData.resx">
       <DependentUpon>frmTrainerData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpecialtiesList.resx">
+      <DependentUpon>frmSpecialtiesList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpecialtiesData.resx">
+      <DependentUpon>frmSpecialtiesData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUserList.resx">
       <DependentUpon>frmUserList.cs</DependentUpon>
