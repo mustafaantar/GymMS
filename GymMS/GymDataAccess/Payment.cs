@@ -11,12 +11,12 @@ namespace GymDataAccess
     {
         //variable members
         DateTime paymentDate;
-        int? memberId;
+        int memberId;
         decimal amount;
 
         //properties (Encapsulation)
         public DateTime PaymentDate { get { return paymentDate; } set { paymentDate = value; } }
-        public int? MemberId { get { return memberId; } set { memberId = value; } }
+        public Member Member { get { return new Member(memberId); } }
         public decimal Amount { get { return amount; } set { amount = value; } }
 
         //constructors
@@ -46,9 +46,9 @@ namespace GymDataAccess
                 {
                     //assign data into object
                     id = (int)datareader["id"];
-                    PaymentDate = (DateTime)datareader["payment_date"];
-                    MemberId = datareader["member_id"] as int?;
-                    Amount = (decimal)datareader["amount"];
+                    paymentDate = (DateTime)datareader["payment_date"];
+                    memberId = (int)datareader["member_id"];
+                    amount = (decimal)datareader["amount"];
                     createdBy = (int)datareader["created_by"];
                     creationDate = (DateTime)datareader["creation_date"];
                 }
@@ -71,10 +71,10 @@ namespace GymDataAccess
                 SqlCommand cmd = new SqlCommand(str, GymDBConnection);
 
                 //add parameters
-                cmd.Parameters.AddWithValue("@date", PaymentDate);
-                cmd.Parameters.AddWithValue("@member", (object)MemberId ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@amount", Amount);
-                cmd.Parameters.AddWithValue("@createdBy", CreatedBy);
+                cmd.Parameters.AddWithValue("@date", paymentDate);
+                cmd.Parameters.AddWithValue("@member", memberId);
+                cmd.Parameters.AddWithValue("@amount", amount);
+                cmd.Parameters.AddWithValue("@createdBy", createdBy);
 
                 //open connection
                 GymDBConnection.Open();
@@ -93,16 +93,15 @@ namespace GymDataAccess
             try
             {
                 //prepare update statement
-                string str = "update payments set payment_date=@date, member_id=@member, amount=@amount where id=@id";
+                string str = "update payments set payment_date=@date, amount=@amount where id=@id";
 
                 //prepare command
                 SqlCommand cmd = new SqlCommand(str, GymDBConnection);
 
                 //add parameters
-                cmd.Parameters.AddWithValue("@id", Id);
-                cmd.Parameters.AddWithValue("@date", PaymentDate);
-                cmd.Parameters.AddWithValue("@member", (object)MemberId ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@amount", Amount);
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@date", paymentDate);
+                cmd.Parameters.AddWithValue("@amount", amount);
 
                 //open connection
                 GymDBConnection.Open();
@@ -122,15 +121,10 @@ namespace GymDataAccess
             List<Payment> list = new List<Payment>();
 
             //prepare select statement
-            string str = "select * from payments where 1=1";
-
-            //if filter used add it to select statement
-            if (memberId.HasValue)
-                str += " and member_id=@memberId";
-            if (fromDate.HasValue)
-                str += " and payment_date >= @fromDate";
-            if (toDate.HasValue)
-                str += " and payment_date <= @toDate";
+            string str = "select * from payments where "
+                + " (member_id=@memberId or @memberId is null)"
+                + " and (payment_date >= @fromDate or @fromDate is null)"
+                + " and (payment_date <= @toDate or @toDate is null)";
 
             //preparing command
             SqlCommand comm = new SqlCommand(str, GymDBConnection);
@@ -156,7 +150,7 @@ namespace GymDataAccess
                     //assign data into object
                     p.id = (int)reader["id"];
                     p.paymentDate = (DateTime)reader["payment_date"];
-                    p.memberId = reader["member_id"] as int?;
+                    p.memberId = (int)reader["member_id"];
                     p.amount = (decimal)reader["amount"];
 
                     //add object to list
