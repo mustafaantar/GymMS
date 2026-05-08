@@ -33,6 +33,13 @@ namespace GymDataAccess
             LoadById(id);
         }
 
+        //copy constructor
+        public Subscription(Subscription subscription)
+        {
+            this.id = subscription.id;
+            LoadById(id);
+        }
+
         public override void LoadById(int id)
         {
             //Load object data from the database
