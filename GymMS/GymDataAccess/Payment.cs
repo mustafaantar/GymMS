@@ -16,7 +16,7 @@ namespace GymDataAccess
 
         //properties (Encapsulation)
         public DateTime PaymentDate { get { return paymentDate; } set { paymentDate = value; } }
-        public Subscription Subscription { get { return new Subscription(subscriptionId); } }
+        public Subscription Subscription { get { return new Subscription(subscriptionId); } set { subscriptionId = value.Id; } }
         public decimal Amount { get { return amount; } set { amount = value; } }
 
         //constructors
