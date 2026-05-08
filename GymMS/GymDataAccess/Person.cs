@@ -100,10 +100,10 @@ namespace GymDataAccess
             return list;
         }
 
-        public static List<Person> ListMembersData(string filter)
+        public static List<Member> ListMembersData(string filter)
         {
             //create empty list
-            List<Person> list = new List<Person>();
+            List<Member> list = new List<Member>();
 
             //prepare select statement
             string str = "select * from v_persons";
