@@ -13,7 +13,7 @@ namespace GymDataAccess
         int specialty_id;
 
         //properties
-        public int Specialty_id { get { return specialty_id; } }
+        public int Specialty_id { get { return specialty_id; } set { specialty_id = value; } }
 
         //constructors
         public Trainer() { }
