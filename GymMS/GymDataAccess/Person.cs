@@ -12,6 +12,7 @@ namespace GymDataAccess
         //variable members
         string fullName;
         string phoneNumber;
+        string address;
         DateTime? birthDate;
 
         // Properties for Encapsulation
@@ -31,6 +32,12 @@ namespace GymDataAccess
         {
             get { return birthDate; }
             set { birthDate = value; }
+        }
+
+        public string Address
+        {
+            get { return address; }
+            set { address = value; }
         }
 
         //constructors
@@ -82,9 +89,10 @@ namespace GymDataAccess
 
                     //Assign data into object
                     p.id = (int)reader["id"];
-                    p.FullName = reader["full_name"].ToString();
-                    p.PhoneNumber = reader["phone_number"].ToString();
-                    p.BirthDate = (DateTime)reader["birth_date"];
+                    p.fullName = reader["full_name"].ToString();
+                    p.phoneNumber = reader["phone_number"].ToString();
+                    p.address = reader["address"].ToString();
+                    p.birthDate = (DateTime)reader["birth_date"];
                     p.createdBy = (int)reader["created_by"];
                     p.creationDate = (DateTime)reader["creation_date"];
 
@@ -140,6 +148,7 @@ namespace GymDataAccess
                     p.id = (int)reader["id"];
                     p.fullName = reader["full_name"].ToString();
                     p.phoneNumber = reader["phone_number"].ToString();
+                    p.address = reader["address"].ToString();
                     p.birthDate = (DateTime)reader["birth_date"];
                     p.createdBy = (int)reader["created_by"];
                     p.creationDate = (DateTime)reader["creation_date"];
