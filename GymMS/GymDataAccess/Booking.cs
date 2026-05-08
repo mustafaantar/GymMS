@@ -68,7 +68,7 @@ namespace GymDataAccess
                 finally { GymDBConnection.Close(); }
             }
 
-            public override void AddToDB()
+            public override void AddToDB(int userId)
             {
                 try
                 {
@@ -81,9 +81,9 @@ namespace GymDataAccess
 
                     //adding data into command parameters
                     cmd.Parameters.AddWithValue("@date", BookingDate);
-                    cmd.Parameters.AddWithValue("@member", (object)MemberId ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@class", (object)ClassId ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@createdBy", CreatedBy);
+                    cmd.Parameters.AddWithValue("@member", (object)memberId ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@class", (object)classId ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@createdBy", userId);
 
                     //open connection
                     GymDBConnection.Open();
