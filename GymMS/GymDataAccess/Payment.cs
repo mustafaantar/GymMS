@@ -99,7 +99,7 @@ namespace GymDataAccess
                 SqlCommand cmd = new SqlCommand(str, GymDBConnection);
 
                 //add parameters
-                cmd.Parameters.AddWithValue("@id", pd);
+                cmd.Parameters.AddWithValue("@id", id);
                 cmd.Parameters.AddWithValue("@date", paymentDate);
                 cmd.Parameters.AddWithValue("@amount", amount);
 
@@ -150,7 +150,7 @@ namespace GymDataAccess
                     //assign data into object
                     p.id = (int)reader["id"];
                     p.paymentDate = (DateTime)reader["payment_date"];
-                    p.memberId = reader["member_id"] as int?;
+                    p.memberId = (int)reader["member_id"];
                     p.amount = (decimal)reader["amount"];
 
                     //add object to list
