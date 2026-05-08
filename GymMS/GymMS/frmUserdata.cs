@@ -39,6 +39,7 @@ namespace GymMS
             tb_username.Text = this.user.Username;
             tb_password.Text = this.user.Password;
             cb_type.SelectedIndex = this.user.UserType;
+            cb_active.Checked = this.user.IsActive;
         }
 
         private void bn_close_Click(object sender, EventArgs e)
@@ -58,6 +59,7 @@ namespace GymMS
                 u.Username = tb_username.Text;
                 u.Password = tb_password.Text;
                 u.UserType = cb_type.SelectedIndex;
+                u.IsActive = cb_active.Checked;
 
                 //add the object data into the database
                 u.AddToDB(GlobalVariables.LoginUser.Id);
@@ -73,6 +75,7 @@ namespace GymMS
                 this.user.Username = tb_username.Text;
                 this.user.Password = tb_password.Text;
                 this.user.UserType = cb_type.SelectedIndex;
+                this.user.IsActive = cb_active.Checked;
 
                 //add the object data into the database
                 this.user.UpdateInDB();
