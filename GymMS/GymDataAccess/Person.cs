@@ -145,7 +145,7 @@ namespace GymDataAccess
                     p.CreationDate = (DateTime)reader["creation_date"];
 
                     //Add object to list
-                    list.Add(p);
+                    list.Add((Member)p);
                 }
             }
             //any exception throw it to up level
