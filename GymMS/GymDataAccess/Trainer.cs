@@ -93,5 +93,10 @@ namespace GymDataAccess
             }
             finally { GymDBConnection.Close(); }
         }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

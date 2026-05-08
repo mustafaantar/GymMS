@@ -158,5 +158,10 @@ namespace GymDataAccess
             catch (Exception ex) { return null; }
             finally { GymDBConnection.Close(); }
         }
+
+        public override string ToString()
+        {
+            return this.username;
+        }
     }
 }

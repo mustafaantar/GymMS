@@ -16,14 +16,14 @@ namespace GymDataAccess
         {
             //variable members
             DateTime bookingDate;
-            int? memberId;
-            int? classId;
+            int memberId;
+            int classId;
 
 
             //properties
             public DateTime BookingDate { get { return bookingDate; } set { bookingDate = value; } }
-            public int? MemberId { get { return memberId; } set { memberId = value; } }
-            public int? ClassId { get { return classId; } set { classId = value; } }
+            public Member Member { get { return new Member(memberId); } set { memberId = value.Id; } }
+            public int ClassId { get { return classId; } set { classId = value; } }
 
             //constructors
             public Booking() { }
@@ -56,8 +56,8 @@ namespace GymDataAccess
                         //asign data into object variable members
                         id = (int)reader["id"];
                         bookingDate = (DateTime)reader["booking_date"];
-                        memberId = reader["member_id"] as int?;
-                        classId = reader["class_id"] as int?;
+                        memberId = (int)reader["member_id"];
+                        classId = (int)reader["class_id"];
                         createdBy = (int)reader["created_by"];
                         creationDate = (DateTime)reader["creation_date"];
                     }
@@ -81,8 +81,8 @@ namespace GymDataAccess
 
                     //adding data into command parameters
                     cmd.Parameters.AddWithValue("@date", BookingDate);
-                    cmd.Parameters.AddWithValue("@member", (object)memberId ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@class", (object)classId ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@member", memberId);
+                    cmd.Parameters.AddWithValue("@class", classId);
                     cmd.Parameters.AddWithValue("@createdBy", userId);
 
                     //open connection
@@ -101,7 +101,7 @@ namespace GymDataAccess
             {
                 try
                 {
-                //preparing update statement
+                    //preparing update statement
                     string str = "update booking set booking_date=@date, member_id=@member, class_id=@class where id=@id";
 
                     //preparing command
@@ -110,8 +110,8 @@ namespace GymDataAccess
                     //add data to the update statement
                     cmd.Parameters.AddWithValue("@id", Id);
                     cmd.Parameters.AddWithValue("@date", BookingDate);
-                    cmd.Parameters.AddWithValue("@member", (object)MemberId ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@class", (object)ClassId ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@member", memberId);
+                    cmd.Parameters.AddWithValue("@class", ClassId);
 
                     //open connection
                     GymDBConnection.Open();
@@ -140,7 +140,7 @@ namespace GymDataAccess
 
                 SqlCommand comm = new SqlCommand(str, GymDBConnection);
 
-                comm.Parameters.AddWithValue("@fromDate",!fromDate.HasValue ? (object)DBNull.Value : fromDate);
+                comm.Parameters.AddWithValue("@fromDate", !fromDate.HasValue ? (object)DBNull.Value : fromDate);
 
                 try
                 {
@@ -154,12 +154,12 @@ namespace GymDataAccess
                     while (reader.Read())
                     {
                         Booking b = new Booking();
-                        
+
                         //assign data to object variables
                         b.id = (int)reader["id"];
                         b.bookingDate = (DateTime)reader["booking_date"];
-                        b.memberId = reader["member_id"] as int?;
-                        b.classId = reader["class_id"] as int?;
+                        b.memberId = (int)reader["member_id"];
+                        b.classId = (int)reader["class_id"];
 
                         //add the object to list
                         list.Add(b);
@@ -172,6 +172,11 @@ namespace GymDataAccess
 
                 //return results
                 return list;
+            }
+
+            public override string ToString()
+            {
+                return this.id + "/" + this.Member.FullName;
             }
         }
     }

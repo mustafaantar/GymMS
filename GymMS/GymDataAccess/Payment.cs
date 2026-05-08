@@ -165,5 +165,10 @@ namespace GymDataAccess
             //return result list
             return list;
         }
+        
+        public override string ToString()
+        {
+            return this.id + "/" + this.subscriptionId + "/" + this.Subscription.Member.FullName;
+        }
     }
 }

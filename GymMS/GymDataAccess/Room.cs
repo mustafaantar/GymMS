@@ -81,5 +81,10 @@ namespace GymDataAccess
             catch (Exception ex) { throw ex; }
             finally { GymDBConnection.Close(); }
         }
+
+        public override string ToString()
+        {
+            return this.RoomName;
+        }
     }
 }

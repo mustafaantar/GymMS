@@ -129,5 +129,9 @@ namespace GymDataAccess
 
             return list;
         }
+        public override string ToString()
+        {
+            return this.specialtyName;
+        }
     }
 }
