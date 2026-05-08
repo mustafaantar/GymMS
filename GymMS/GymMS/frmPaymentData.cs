@@ -65,7 +65,7 @@ namespace GymMS
                 this.payment.Amount = int.Parse(tb_amount.Text);
 
                 //add the object data into the database
-                this.payment.AddToDB();
+                this.payment.AddToDB(GlobalVariables.LoginUser.Id);
 
                 //show success insert message
                 MessageBox.Show("New subscription added successfully", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
