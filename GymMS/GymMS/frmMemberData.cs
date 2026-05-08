@@ -24,18 +24,25 @@ namespace GymMS
             InitializeComponent();
             if (p is Member)
                 member = (Member)p;
-            else
-                member = new Member();
         }
 
         private void frmMemberData_Load(object sender, EventArgs e)
         {
-           
+
             if (this.member == null)//if form opened for adding return (do nothing)
                 return;
             //assign object data into controls
             tb_id.Text = this.member.Id + "";
-            tb_username.Text = this.member.FullName;
+            tb_fillname.Text = this.member.FullName;
+            tb_phone.Text = this.member.PhoneNumber;
+            tb_address.Text = this.member.Address;
+            d_birth_Date.Value = this.member.BirthDate;
+            d_start_date.Value = this.member.StartDate;
+            if (this.member.EndDate.HasValue)
+            {
+                d_end_date.Checked = true;
+                d_end_date.Value = this.member.EndDate;
+            }
         }
 
         private void bn_close_Click(object sender, EventArgs e)
@@ -52,8 +59,12 @@ namespace GymMS
                 this.member = new GymDataAccess.Member();
 
                 //assign data from controls into the object
-                this.member.FullName = tb_username.Text;
-
+                this.member.FullName = tb_fillname.Text;
+                this.member.PhoneNumber = tb_phone.Text;
+                this.member.Address = tb_address.Text;
+                this.member.BirthDate = d_birth_Date.Value;
+                this.member.StartDate = d_start_date.Value;
+                this.member.EndDate = d_end_date.Checked ? d_end_date.Value : null;
                 //add the object data into the database
                 this.member.AddToDB(GlobalVariables.LoginUser.Id);
 
@@ -65,7 +76,12 @@ namespace GymMS
                 //Edit exists data object in the database
 
                 //assign data from controls into the existing object
-                this.member.FullName = tb_username.Text;
+                this.member.FullName = tb_fillname.Text;
+                this.member.PhoneNumber = tb_phone.Text;
+                this.member.Address = tb_address.Text;
+                this.member.BirthDate = d_birth_Date.Value;
+                this.member.StartDate = d_start_date.Value;
+                this.member.EndDate = d_end_date.Checked ? d_end_date..Value : null;
 
                 //add the object data into the database
                 this.member.UpdateInDB();

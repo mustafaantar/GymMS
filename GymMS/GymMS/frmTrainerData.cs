@@ -25,18 +25,25 @@ namespace GymMS
             InitializeComponent();
             if (p is Trainer)
                 trainer = (Trainer)p;
-            else
-                trainer = new Trainer();
         }
 
         private void frmTrainerData_Load(object sender, EventArgs e)
         {
-            
+
             if (this.trainer == null)//if form opened for adding return (do nothing)
                 return;
             //assign object data into controls
             tb_id.Text = this.trainer.Id + "";
-            tb_username.Text = this.trainer.FullName;
+            tb_fillname.Text = this.trainer.FullName;
+            tb_phone.Text = this.trainer.PhoneNumber;
+            tb_address.Text = this.trainer.Address;
+            dateTimePicker1.Value = this.trainer.BirthDate;
+            for (int i = 0; i < cb_specialty.Items.Count; i++)
+                if (((Specialties)cb_specialty.Items[i]).Id == this.trainer.Specialty_id)
+                {
+                    cb_specialty.SelectedIndex = i;
+                    break;
+                }
         }
 
         private void bn_close_Click(object sender, EventArgs e)
@@ -53,8 +60,11 @@ namespace GymMS
                 this.trainer = new GymDataAccess.Trainer();
 
                 //assign data from controls into the object
-                this.trainer.FullName= tb_username.Text;
-
+                this.trainer.FullName = tb_fillname.Text;
+                this.trainer.PhoneNumber = tb_phone.Text;
+                this.trainer.Address = tb_address.Text;
+                this.trainer.BirthDate = dateTimePicker1.Value;
+                this.trainer.Specialty_id = ((Specialties)cb_specialty.SelectedItem).Id;
                 //add the object data into the database
                 this.trainer.AddToDB(GlobalVariables.LoginUser.Id);
 
@@ -66,7 +76,11 @@ namespace GymMS
                 //Edit exists data object in the database
 
                 //assign data from controls into the existing object
-                this.trainer.FullName = tb_username.Text;
+                this.trainer.FullName = tb_fillname.Text;
+                this.trainer.PhoneNumber = tb_phone.Text;
+                this.trainer.Address = tb_address.Text;
+                this.trainer.BirthDate = dateTimePicker1.Value;
+                this.trainer.Specialty_id = ((Specialties)cb_specialty.SelectedItem).Id;
 
                 //add the object data into the database
                 this.trainer.UpdateInDB();

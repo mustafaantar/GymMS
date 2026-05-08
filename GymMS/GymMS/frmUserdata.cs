@@ -38,7 +38,7 @@ namespace GymMS
             tb_id.Text = this.user.Id + "";
             tb_username.Text = this.user.Username;
             tb_password.Text = this.user.Password;
-            cb_type.SelectedIndex = this.user.UserType;
+            cb_type.SelectedIndex = cb_type.Items.IndexOf(this.user.UserType);
             cb_active.Checked = this.user.IsActive;
         }
 
@@ -58,7 +58,7 @@ namespace GymMS
                 //assign data from controls into the object
                 u.Username = tb_username.Text;
                 u.Password = tb_password.Text;
-                u.UserType = cb_type.SelectedIndex;
+                u.UserType = cb_type.SelectedIndex==0?"R": cb_type.SelectedIndex ==1?"M":"A";
                 u.IsActive = cb_active.Checked;
 
                 //add the object data into the database
@@ -74,7 +74,7 @@ namespace GymMS
                 //assign data from controls into the existing object
                 this.user.Username = tb_username.Text;
                 this.user.Password = tb_password.Text;
-                this.user.UserType = cb_type.SelectedIndex;
+                this.user.UserType = cb_type.SelectedIndex==0?"R": cb_type.SelectedIndex ==1?"M":"A";
                 this.user.IsActive = cb_active.Checked;
 
                 //add the object data into the database
