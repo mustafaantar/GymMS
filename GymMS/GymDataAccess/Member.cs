@@ -21,6 +21,12 @@ namespace GymDataAccess
             LoadById(id);
         }
 
+        public Member(Member copyMember)
+        {
+            this.id = copyMember.id;
+            LoadById(id);
+        }
+
         public override void LoadById(int id)
         {
             SqlCommand comm = new SqlCommand("select * from members where id=" + id, GymDBConnection);
