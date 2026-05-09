@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GymDataAccess
 {
@@ -56,7 +53,7 @@ namespace GymDataAccess
             List<Person> list = new List<Person>();
 
             //prepare select statement
-            string str = "select * from v_persons where (fullname like '%' + @filter + '%' or @filter is null)";
+            string str = "select person_type, id from v_persons where (full_name like '%' + @filter + '%' or @filter is null)";
 
             //preparing command
             SqlCommand comm = new SqlCommand(str, GymDBConnection);
@@ -67,7 +64,8 @@ namespace GymDataAccess
             try
             {
                 //open connection
-                GymDBConnection.Open();
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
+                    GymDBConnection.Open();
 
                 //Execute select statement
                 SqlDataReader reader = comm.ExecuteReader();
@@ -79,18 +77,9 @@ namespace GymDataAccess
 
                     //create member or trainer object depending on person type
                     if (reader["person_type"].ToString() == "Member")
-                        p = new Member();
+                        p = new Member((int)reader["id"]);
                     else
-                        p = new Trainer();
-
-                    //Assign data into object
-                    p.id = (int)reader["id"];
-                    p.fullName = reader["full_name"].ToString();
-                    p.phoneNumber = reader["phone_pumber"].ToString();
-                    p.address = reader["address"].ToString();
-                    p.birthDate = (DateTime)reader["birth_date"];
-                    p.createdBy = (int)reader["created_by"];
-                    p.creationDate = (DateTime)reader["creation_date"];
+                        p = new Trainer((int)reader["id"]);
 
                     //Add object to list
                     list.Add(p);
@@ -125,7 +114,8 @@ namespace GymDataAccess
             try
             {
                 //open connection
-                GymDBConnection.Open();
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
+                    GymDBConnection.Open();
 
                 //Execute select statement
                 SqlDataReader reader = comm.ExecuteReader();
