@@ -81,6 +81,7 @@ namespace GymDataAccess
                     else
                         p = new Trainer((int)reader["id"]);
 
+
                     //Add object to list
                     list.Add(p);
                 }
