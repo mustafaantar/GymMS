@@ -75,7 +75,7 @@ namespace GymDataAccess
                     this.id = (int)reader["id"];
                     username = reader["username"].ToString();
                     password = reader["password"].ToString();
-                    userType = (char)reader["user_type"];
+                    userType = char.Parse(reader["user_type"].ToString());
                     isActive = (int)reader["is_active"] == 1;
                     createdBy = (int)reader["created_by"];
                     creationDate = (DateTime)reader["creation_date"];
@@ -177,7 +177,7 @@ namespace GymDataAccess
                     u.id = (int)reader["id"];
                     u.username = reader["username"].ToString();
                     u.password = reader["password"].ToString();
-                    u.userType = (char)reader["user_type"];
+                    u.userType = char.Parse(reader["user_type"].ToString());
                     u.isActive = (int)reader["is_active"] == 1;
                     u.createdBy = (int)reader["created_by"];
                     u.creationDate = (DateTime)reader["creation_date"];
@@ -224,7 +224,7 @@ namespace GymDataAccess
                     u.id = (int)reader["id"];
                     u.username = reader["username"].ToString();
                     u.password = reader["password"].ToString();
-                    u.userType = (char)reader["user_type"];
+                    u.userType = char.Parse(reader["user_type"].ToString());
                     u.isActive = (int)reader["is_active"] == 1;
                     u.createdBy = (int)reader["created_by"];
                     u.creationDate = (DateTime)reader["creation_date"];
