@@ -17,13 +17,13 @@ namespace GymDataAccess
             //variable members
             DateTime bookingDate;
             int memberId;
-            int classId;
+            int trainerId;
 
 
             //Properties for Encapsulation
             public DateTime BookingDate { get { return bookingDate; } set { bookingDate = value; } }
             public Member Member { get { return new Member(memberId); } set { memberId = value.Id; } }
-            public int ClassId { get { return classId; } set { classId = value; } }
+            public Trainer Trainer { get { return new Trainer(trainerId); } set { trainerId = value.Id; } }
 
             //constructors
             public Booking() { }
@@ -58,7 +58,7 @@ namespace GymDataAccess
                         id = (int)reader["id"];
                         bookingDate = (DateTime)reader["booking_date"];
                         memberId = (int)reader["member_id"];
-                        classId = (int)reader["class_id"];
+                        trainerId = (int)reader["trainer_id"];
                         createdBy = (int)reader["created_by"];
                         creationDate = (DateTime)reader["creation_date"];
                     }
@@ -74,8 +74,8 @@ namespace GymDataAccess
                 try
                 {
                     //preparing insert statement
-                    string str = "insert into booking (booking_date, member_id, class_id, created_by) "
-                               + "values(@date, @member, @class, @createdBy)";
+                    string str = "insert into booking (booking_date, member_id, trainer_id, created_by) "
+                               + "values(@date, @member, @trainerId, @createdBy)";
 
                     //preparing command
                     SqlCommand cmd = new SqlCommand(str, GymDBConnection);
@@ -83,7 +83,7 @@ namespace GymDataAccess
                     //adding data into command parameters
                     cmd.Parameters.AddWithValue("@date", BookingDate);
                     cmd.Parameters.AddWithValue("@member", memberId);
-                    cmd.Parameters.AddWithValue("@class", classId);
+                    cmd.Parameters.AddWithValue("@trainer_id", trainerId);
                     cmd.Parameters.AddWithValue("@createdBy", userId);
 
                     //open connection
@@ -104,16 +104,16 @@ namespace GymDataAccess
                 try
                 {
                     //preparing update statement
-                    string str = "update booking set booking_date=@date, member_id=@member, class_id=@class where id=@id";
+                    string str = "update booking set booking_date=@date, member_id=@memberId, trainer_id=@trainerId where id=@id";
 
                     //preparing command
                     SqlCommand cmd = new SqlCommand(str, GymDBConnection);
 
                     //add data to the update statement
-                    cmd.Parameters.AddWithValue("@id", Id);
-                    cmd.Parameters.AddWithValue("@date", BookingDate);
-                    cmd.Parameters.AddWithValue("@member", memberId);
-                    cmd.Parameters.AddWithValue("@class", ClassId);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@date", bookingDate);
+                    cmd.Parameters.AddWithValue("@memberId", memberId);
+                    cmd.Parameters.AddWithValue("@trainerId", trainerId);
 
                     //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
@@ -129,21 +129,24 @@ namespace GymDataAccess
             }
 
 
-            public static List<Booking> ListData(DateTime? fromDate)
+            public static List<Booking> ListData(int? memberId, int? trainerId, DateTime? fromDate, DateTime? toDate)
             {
                 //preparing empty list
                 List<Booking> list = new List<Booking>();
 
                 //prepare select statement
-                string str = "select * from booking where 1=1 ";
-
-                //if from date filter used add it to the statement
-                if (!fromDate.HasValue)
-                    str += " and  booking_date >= @fromDate";
+                string str = "select * from booking where "
+                    + "(member_id= @memberId or @memberId is null)"
+                    + "(trainer_id= @trainerId or @trainerId is null)"
+                    + "(booking_date >= @fromDate or @fromDate is null)"
+                    + "(booking_date <= @toDate or @toDate is null)";
 
                 SqlCommand comm = new SqlCommand(str, GymDBConnection);
 
+                comm.Parameters.AddWithValue("@memberId", !memberId.HasValue ? (object)DBNull.Value : memberId);
+                comm.Parameters.AddWithValue("@trainerId", !trainerId.HasValue ? (object)DBNull.Value : trainerId);
                 comm.Parameters.AddWithValue("@fromDate", !fromDate.HasValue ? (object)DBNull.Value : fromDate);
+                comm.Parameters.AddWithValue("@toDate", !toDate.HasValue ? (object)DBNull.Value : toDate);
 
                 try
                 {
@@ -163,7 +166,7 @@ namespace GymDataAccess
                         b.id = (int)reader["id"];
                         b.bookingDate = (DateTime)reader["booking_date"];
                         b.memberId = (int)reader["member_id"];
-                        b.classId = (int)reader["class_id"];
+                        b.trainerId = (int)reader["trainer_id"];
 
                         //add the object to list
                         list.Add(b);
