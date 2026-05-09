@@ -52,7 +52,7 @@ namespace GymDataAccess
                     //Assign data into object
                     this.id = (int)reader["id"];
                     FullName = reader["full_name"].ToString();
-                    PhoneNumber = reader["phone_number"].ToString();
+                    PhoneNumber = reader["phone_pumber"].ToString();
                     BirthDate = (DateTime)reader["birth_date"];
                     specialty_id = (int)reader["specialty_id"];
                     createdBy = (int)reader["created_by"];
@@ -69,7 +69,7 @@ namespace GymDataAccess
             {
                 //prepare insert statement
                 string str = "insert into trainers "
-                    + "(full_name, phone_number, birth_date, specialty_id, created_by)"
+                    + "(full_name, phone_pumber, birth_date, specialty_id, created_by)"
                     + "values (@name,@phone,@birthDate,@specialty_id,@createdBy)";
 
                 //preparing command
@@ -98,7 +98,7 @@ namespace GymDataAccess
             {
                 //prepare update statement
                 string str = "update trainers "
-                    + "set full_name=@name, phone_number=@phone, birth_date=@birthDate,"
+                    + "set full_name=@name, phone_pumber=@phone, birth_date=@birthDate,"
                     + "specialty_id=@specialty_id where id=@id";
 
                 //preparing command

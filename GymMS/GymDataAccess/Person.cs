@@ -86,7 +86,7 @@ namespace GymDataAccess
                     //Assign data into object
                     p.id = (int)reader["id"];
                     p.fullName = reader["full_name"].ToString();
-                    p.phoneNumber = reader["phone_number"].ToString();
+                    p.phoneNumber = reader["phone_pumber"].ToString();
                     p.address = reader["address"].ToString();
                     p.birthDate = (DateTime)reader["birth_date"];
                     p.createdBy = (int)reader["created_by"];
@@ -143,7 +143,7 @@ namespace GymDataAccess
                     //Assign data into object
                     p.id = (int)reader["id"];
                     p.fullName = reader["full_name"].ToString();
-                    p.phoneNumber = reader["phone_number"].ToString();
+                    p.phoneNumber = reader["phone_pumber"].ToString();
                     p.address = reader["address"].ToString();
                     p.birthDate = (DateTime)reader["birth_date"];
                     p.createdBy = (int)reader["created_by"];
