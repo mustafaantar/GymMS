@@ -13,7 +13,7 @@ namespace GymDataAccess
     {
         //variable members
         string specialtyName { get; set; }
-        //properties
+        //Properties for Encapsulation
         public string SpecialtyName { get { return specialtyName; } set { specialtyName = value; } }
 
         //constructors
@@ -131,6 +131,7 @@ namespace GymDataAccess
         }
         public override string ToString()
         {
+            //overridded method to display specialty name
             return this.specialtyName;
         }
     }

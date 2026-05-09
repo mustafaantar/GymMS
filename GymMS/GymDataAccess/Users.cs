@@ -8,22 +8,45 @@ using System.Threading.Tasks;
 
 namespace GymDataAccess
 {
-    public class Users : BaseEntity
+    public class Users : BaseEntity//inherits from BaseEntity
     {
-        // Variable members
+        //variable members
         string username;
         string password;
         char userType;
         bool isActive;
 
-        // Properties
-        public string Username { get { return username; } set { username = value; } }
-        public string Password { get { return password; } set { password = value; } }
-        public string UserType { get { return userType=='R'?"Receiptist":userType=='M'?"Manager":"Accountant"; } set { UserType = value; } }
-        public bool IsActive { get { return isActive; } set { isActive = value; } }
+        // Properties for Encapsulation
+        public string Username
+        {
+            get { return username; }
+            set { username = value; }
+        }
 
+        public string Password
+        {
+            get { return password; }
+            set { password = value; }
+        }
+
+        public string UserType
+        {
+            get { return userType == 'R' ? "Receiptist" : userType == 'M' ? "Manager" : "Accountant"; }
+            set { UserType = value; }
+        }
+
+        public bool IsActive
+        {
+            get { return isActive; }
+            set { isActive = value; }
+        }
+
+        //constructors
+
+        //for new objects
         public Users() { }
 
+        //for existing data
         public Users(int id)
         {
             LoadById(id);
@@ -31,26 +54,34 @@ namespace GymDataAccess
 
         public override void LoadById(int id)
         {
+            //prepare select statement
             SqlCommand comm = new SqlCommand("select * from users where id=@id", GymDBConnection);
 
+            //add parameters to command
             comm.Parameters.AddWithValue("@id", id);
 
             try
             {
+                //open connection
                 GymDBConnection.Open();
+
+                //Execute select statement
                 SqlDataReader reader = comm.ExecuteReader();
 
+                //if data exists read it
                 if (reader.Read())
                 {
-                    id = (int)reader["id"];
+                    //Assign data into object
+                    this.id = (int)reader["id"];
                     username = reader["username"].ToString();
                     password = reader["password"].ToString();
                     userType = (char)reader["user_type"];
-                    isActive = (bool)reader["is_active"];
+                    isActive = (int)reader["is_active"] == 1;
                     createdBy = (int)reader["created_by"];
                     creationDate = (DateTime)reader["creation_date"];
                 }
             }
+            //close connection
             finally { GymDBConnection.Close(); }
         }
 
@@ -60,18 +91,27 @@ namespace GymDataAccess
             //method to add data into database
             try
             {
-                SqlCommand comm = new SqlCommand(@"insert into users (username, password, user_type, is_active, created_by)
-            VALUES (@user,@pass,@name,@active,@createdBy)", GymDBConnection);
+                //prepare insert statement
+                string str = @"insert into users (username, password, user_type, is_active, created_by)
+                               values (@user,@pass,@user_type,@active,@createdBy)";
 
+                //preparing command
+                SqlCommand comm = new SqlCommand(str, GymDBConnection);
+
+                //add parameters to command
                 comm.Parameters.AddWithValue("@user", username);
                 comm.Parameters.AddWithValue("@pass", password);
                 comm.Parameters.AddWithValue("@user_type", userType);
                 comm.Parameters.AddWithValue("@active", isActive ? 1 : 0);
                 comm.Parameters.AddWithValue("@createdBy", userId);
 
+                //open connection
                 GymDBConnection.Open();
+
+                //Execute insert statement
                 comm.ExecuteNonQuery();
             }
+            //close connection
             finally { GymDBConnection.Close(); }
         }
 
@@ -80,87 +120,128 @@ namespace GymDataAccess
             //method to edit data into database
             try
             {
-                SqlCommand cmd = new SqlCommand(@"update users SET
-            username=@username, password=@password, user_type=@user_type, is_active=@active
-            where id=@id", GymDBConnection);
+                //prepare update statement
+                string str = @"update users set
+                               username=@username, password=@password,
+                               user_type=@user_type, is_active=@active
+                               where id=@id";
 
+                //preparing command
+                SqlCommand cmd = new SqlCommand(str, GymDBConnection);
+
+                //add parameters to command
                 cmd.Parameters.AddWithValue("@id", Id);
                 cmd.Parameters.AddWithValue("@username", username);
                 cmd.Parameters.AddWithValue("@password", password);
                 cmd.Parameters.AddWithValue("@user_type", userType);
-                cmd.Parameters.AddWithValue("@active", isActive?1:0);
+                cmd.Parameters.AddWithValue("@active", isActive ? 1 : 0);
 
+                //open connection
                 GymDBConnection.Open();
+
+                //Execute update statement
                 cmd.ExecuteNonQuery();
             }
+            //close connection
             finally { GymDBConnection.Close(); }
         }
 
         public static List<Users> ListData(string filter)
         {
+            //create empty list
             List<Users> list = new List<Users>();
-            string str = "select * from users where (username like '%' + @filter + '%' or full_name like '%' + @filter + '%' or @filter is null)";
+
+            //prepare select statement
+            string str = "select * from users where (username like '%' + @filter + '%' or @filter is null)";
+
+            //preparing command
             SqlCommand comm = new SqlCommand(str, GymDBConnection);
 
-            comm.Parameters.AddWithValue("@filter",string.IsNullOrEmpty(filter) ? (object)DBNull.Value : filter);
+            //add filter to command
+            comm.Parameters.AddWithValue("@filter", string.IsNullOrEmpty(filter) ? (object)DBNull.Value : filter);
 
             try
             {
+                //open connection
                 GymDBConnection.Open();
+
+                //Execute select statement
                 SqlDataReader reader = comm.ExecuteReader();
 
+                //if data exists read it
                 while (reader.Read())
                 {
                     Users u = new Users();
 
+                    //Assign data into object
                     u.id = (int)reader["id"];
                     u.username = reader["username"].ToString();
                     u.password = reader["password"].ToString();
                     u.userType = (char)reader["user_type"];
-                    u.isActive = (bool)reader["is_active"];
+                    u.isActive = (int)reader["is_active"] == 1;
                     u.createdBy = (int)reader["created_by"];
                     u.creationDate = (DateTime)reader["creation_date"];
 
+                    //Add object to list
                     list.Add(u);
                 }
             }
+            //close connection
             finally { GymDBConnection.Close(); }
 
+            //return results
             return list;
         }
+
         public static Users Login(string username, string password)
         {
+            //prepare select statement
             string str = "select * from users where username=@username and password=@password";
+
+            //preparing command
             SqlCommand comm = new SqlCommand(str, GymDBConnection);
 
+            //add parameters to command
             comm.Parameters.AddWithValue("@username", username);
             comm.Parameters.AddWithValue("@password", password);
 
             try
             {
                 Users u = null;
+
+                //open connection
                 GymDBConnection.Open();
+
+                //Execute select statement
                 SqlDataReader reader = comm.ExecuteReader();
 
+                //if data exists read it
                 if (reader.Read())
                 {
                     u = new Users();
+
+                    //Assign data into object
                     u.id = (int)reader["id"];
                     u.username = reader["username"].ToString();
                     u.password = reader["password"].ToString();
                     u.userType = (char)reader["user_type"];
-                    u.isActive = (bool)reader["is_active"];
+                    u.isActive = (int)reader["is_active"] == 1;
                     u.createdBy = (int)reader["created_by"];
                     u.creationDate = (DateTime)reader["creation_date"];
                 }
-                    return u;
+
+                return u;
             }
-            catch (Exception ex) { return null; }
+            //any exception throw it to up level
+            catch (Exception ex) { throw ex; }
+
+            //close connection
             finally { GymDBConnection.Close(); }
         }
 
         public override string ToString()
         {
+            //overridded method to display user name
             return this.username;
         }
     }

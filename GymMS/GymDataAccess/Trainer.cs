@@ -7,38 +7,50 @@ using System.Threading.Tasks;
 
 namespace GymDataAccess
 {
-    public class Trainer : Person
+    public class Trainer : Person//inherits from Person
     {
         //variable members
         int specialty_id;
 
-        //properties
-        public int Specialty_id { get { return specialty_id; } set { specialty_id = value; } }
+        // Properties for Encapsulation
+        public int Specialty_id
+        {
+            get { return specialty_id; }
+            set { specialty_id = value; }
+        }
 
         //constructors
+
+        //for new objects
         public Trainer() { }
 
+        //for existing data
         public Trainer(int id)
         {
             LoadById(id);
         }
 
-
         public override void LoadById(int id)
         {
-            //Load data from database
+            //prepare select statement
             SqlCommand comm = new SqlCommand("select * from trainers where id=@id", GymDBConnection);
 
+            //add parameter to command
             comm.Parameters.AddWithValue("@id", id);
 
             try
             {
+                //open connection
                 GymDBConnection.Open();
+
+                //Execute select statement
                 SqlDataReader reader = comm.ExecuteReader();
 
+                //if data exists read it
                 if (reader.Read())
                 {
-                    id = (int)reader["id"];
+                    //Assign data into object
+                    this.id = (int)reader["id"];
                     FullName = reader["full_name"].ToString();
                     PhoneNumber = reader["phone_number"].ToString();
                     BirthDate = (DateTime)reader["birth_date"];
@@ -47,6 +59,7 @@ namespace GymDataAccess
                     creationDate = (DateTime)reader["creation_date"];
                 }
             }
+            //close connection
             finally { GymDBConnection.Close(); }
         }
 
@@ -54,21 +67,28 @@ namespace GymDataAccess
         {
             try
             {
+                //prepare insert statement
                 string str = "insert into trainers "
                     + "(full_name, phone_number, birth_date, specialty_id, created_by)"
                     + "values (@name,@phone,@birthDate,@specialty_id,@createdBy)";
-                //method to add data into database
+
+                //preparing command
                 SqlCommand comm = new SqlCommand(str, GymDBConnection);
 
+                //add parameters to command
                 comm.Parameters.AddWithValue("@name", FullName);
                 comm.Parameters.AddWithValue("@phone", (object)PhoneNumber ?? DBNull.Value);
                 comm.Parameters.AddWithValue("@birthDate", (object)BirthDate ?? DBNull.Value);
                 comm.Parameters.AddWithValue("@specialty_id", specialty_id);
                 comm.Parameters.AddWithValue("@createdBy", userId);
 
+                //open connection
                 GymDBConnection.Open();
+
+                //Execute insert statement
                 comm.ExecuteNonQuery();
             }
+            //close connection
             finally { GymDBConnection.Close(); }
         }
 
@@ -76,26 +96,34 @@ namespace GymDataAccess
         {
             try
             {
-                //method to edit data into database
+                //prepare update statement
                 string str = "update trainers "
                     + "set full_name=@name, phone_number=@phone, birth_date=@birthDate,"
                     + "specialty_id=@specialty_id where id=@id";
+
+                //preparing command
                 SqlCommand cmd = new SqlCommand(str, GymDBConnection);
 
+                //add parameters to command
                 cmd.Parameters.AddWithValue("@id", Id);
                 cmd.Parameters.AddWithValue("@name", FullName);
                 cmd.Parameters.AddWithValue("@phone", (object)PhoneNumber ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@birthDate", (object)BirthDate ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@specialty_id", specialty_id);
 
+                //open connection
                 GymDBConnection.Open();
+
+                //Execute update statement
                 cmd.ExecuteNonQuery();
             }
+            //close connection
             finally { GymDBConnection.Close(); }
         }
 
         public override string ToString()
         {
+            //overridded method to display trainer name
             return base.ToString();
         }
     }

@@ -14,7 +14,7 @@ namespace GymDataAccess
         int subscriptionId;
         decimal amount;
 
-        //properties (Encapsulation)
+        //Properties for Encapsulation
         public DateTime PaymentDate { get { return paymentDate; } set { paymentDate = value; } }
         public Subscription Subscription { get { return new Subscription(subscriptionId); } set { subscriptionId = value.Id; } }
         public decimal Amount { get { return amount; } set { amount = value; } }
@@ -32,7 +32,7 @@ namespace GymDataAccess
             try
             {
                 //prepare select statement
-                SqlCommand cmd = new SqlCommand("select * from payments where id=@id", GymDBConnection);
+                SqlCommand cmd = new SqlCommand("select * from payments where id = @id", GymDBConnection);
                 cmd.Parameters.AddWithValue("@id", id);
 
                 //open connection
@@ -168,6 +168,7 @@ namespace GymDataAccess
         
         public override string ToString()
         {
+            //overridded method to display payment No.
             return this.id + "/" + this.subscriptionId + "/" + this.Subscription.Member.FullName;
         }
     }

@@ -20,7 +20,7 @@ namespace GymDataAccess
             int classId;
 
 
-            //properties
+            //Properties for Encapsulation
             public DateTime BookingDate { get { return bookingDate; } set { bookingDate = value; } }
             public Member Member { get { return new Member(memberId); } set { memberId = value.Id; } }
             public int ClassId { get { return classId; } set { classId = value; } }
@@ -176,6 +176,7 @@ namespace GymDataAccess
 
             public override string ToString()
             {
+                //overrided method to display booking No.
                 return this.id + "/" + this.Member.FullName;
             }
         }

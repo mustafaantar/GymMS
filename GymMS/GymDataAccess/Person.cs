@@ -158,11 +158,13 @@ namespace GymDataAccess
             //close connection
             finally { GymDBConnection.Close(); }
 
+            //return results
             return list;
         }
 
         public override string ToString()
         {
+            //overridded method to display  person name
             return this.fullName;
         }
     }

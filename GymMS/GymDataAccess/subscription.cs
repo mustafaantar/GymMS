@@ -201,6 +201,7 @@ namespace GymDataAccess
 
         public override string ToString()
         {
+            //overridded method to display subscription No.
             return this.id + "-" + this.Member.FullName;
         }
     }
