@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GymDataAccess
 {
@@ -56,7 +53,7 @@ namespace GymDataAccess
             List<Person> list = new List<Person>();
 
             //prepare select statement
-            string str = "select * from v_persons where (fullname like '%' + @filter + '%' or @filter is null)";
+            string str = "select * from v_persons where (full_name like '%' + @filter + '%' or @filter is null)";
 
             //preparing command
             SqlCommand comm = new SqlCommand(str, GymDBConnection);
@@ -67,7 +64,8 @@ namespace GymDataAccess
             try
             {
                 //open connection
-                GymDBConnection.Open();
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
+                    GymDBConnection.Open();
 
                 //Execute select statement
                 SqlDataReader reader = comm.ExecuteReader();
@@ -125,6 +123,7 @@ namespace GymDataAccess
             try
             {
                 //open connection
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
                 GymDBConnection.Open();
 
                 //Execute select statement

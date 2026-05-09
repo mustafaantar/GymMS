@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GymMS
@@ -19,62 +12,105 @@ namespace GymMS
 
         private void frmMainMdi_Load(object sender, EventArgs e)
         {
-            //open login form
-            frmLogin f = new frmLogin();
-            f.ShowDialog();
-
-            //if lot logged in then close application
-            if (GlobalVariables.LoginUser == null)
-                Close();
-
-            //show/hide buttons depending on loggd user type
-
-            switch(GlobalVariables.LoginUser.UserType)
+            try
             {
-                case "R":
-                bn_users.Hide();
-                bn_payment.Hide();
-                    break;
-                case "A":
-                    bn_people.Hide();
+                //open login form
+                frmLogin f = new frmLogin();
+                f.ShowDialog();
 
-                    break;
+                //if not logged in then close application
+                if (GlobalVariables.LoginUser == null)
+                {
+                    Close();
+                    return;
+                }
+
+                //show/hide buttons depending on logged user type
+                switch (GlobalVariables.LoginUser.UserType[0].ToString())
+                {
+                    case "R":
+                        bn_users.Hide();
+                        bn_payment.Hide();
+                        break;
+
+                    case "A":
+                        bn_people.Hide();
+                        break;
+                }
             }
-
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void bn_people_Click(object sender, EventArgs e)
         {
-            frmPeopleList f = new frmPeopleList();
-            OpenForm(f);
+            try
+            {
+                frmPeopleList f = new frmPeopleList();
+                OpenForm(f);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         void OpenForm(Form f)
         {
-            f.ShowDialog();
+            try
+            {
+                f.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void bn_users_Click(object sender, EventArgs e)
         {
-            frmUserList f = new frmUserList();
-            OpenForm(f);
+            try
+            {
+                frmUserList f = new frmUserList();
+                OpenForm(f);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void bn_sub_Click(object sender, EventArgs e)
         {
-            frmSubscriptionList f = new frmSubscriptionList();
-            OpenForm(f);
+            try
+            {
+                frmSubscriptionList f = new frmSubscriptionList();
+                OpenForm(f);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void bn_payment_Click(object sender, EventArgs e)
         {
-            frmPaymentList f = new frmPaymentList();
-            OpenForm(f);
+            try
+            {
+                frmPaymentList f = new frmPaymentList();
+                OpenForm(f);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void bn_booking_Click(object sender, EventArgs e)
         {
-
+           
         }
     }
 }
