@@ -7,7 +7,7 @@ namespace GymDataAccess
     {
         //SQL connection
         static string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + Assembly.GetExecutingAssembly().Location.Substring(0, Assembly.GetExecutingAssembly().Location.LastIndexOf("\\")) + "\\GymDB.mdf;Integrated Security=True;Connect Timeout=30";
-        public static SqlConnection GymDBConnection = new SqlConnection(connectionString);
+        public static SqlConnection GymDBConnection { get { return new SqlConnection(connectionString); } }
 
         //Shared variable members
         protected int id;
