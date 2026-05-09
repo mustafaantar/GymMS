@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GymMS
@@ -14,6 +7,7 @@ namespace GymMS
     {
         //form variable member
         GymDataAccess.Specialties specialty;
+
         public frmSpecialtiesData()
         {
             InitializeComponent();
@@ -27,52 +21,74 @@ namespace GymMS
 
         private void frmSpecialtiesData_Load(object sender, EventArgs e)
         {
-            if (this.specialty == null)//if form opened for adding return (do nothing)
-                return;
+            try
+            {
+                //if form opened for adding return (do nothing)
+                if (this.specialty == null)
+                    return;
 
-            //assign object data into controls
-            tb_id.Text = this.specialty.Id + "";
-            tb_username.Text = this.specialty.SpecialtyName;
+                //assign object data into controls
+                tb_id.Text = this.specialty.Id + "";
+                tb_name.Text = this.specialty.SpecialtyName;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void bn_close_Click(object sender, EventArgs e)
         {
-            //close the form
-            Close();
+            try
+            {
+                //close the form
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void bn_save_Click(object sender, EventArgs e)
         {
-            if (this.specialty == null)
+            try
             {
-                //create object and fill data then send it to the database
-                GymDataAccess.Specialties s = new GymDataAccess.Specialties();
+                if (this.specialty == null)
+                {
+                    //create object and fill data then send it to the database
+                    GymDataAccess.Specialties s = new GymDataAccess.Specialties();
 
-                //assign data from controls into the object
-                s.SpecialtyName = tb_username.Text;
+                    //assign data from controls into the object
+                    s.SpecialtyName = tb_name.Text;
 
-                //add the object data into the database
-                s.AddToDB(GlobalVariables.LoginUser.Id);
+                    //add the object data into the database
+                    s.AddToDB(GlobalVariables.LoginUser.Id);
 
-                //show success insert message
-                MessageBox.Show("New Specialty added successfully", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //success message
+                    MessageBox.Show("New Specialty added successfully", this.Text,
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    //assign data from controls into the existing object
+                    this.specialty.SpecialtyName = tb_name.Text;
+
+                    //update object in database
+                    this.specialty.UpdateInDB();
+
+                    //success message
+                    MessageBox.Show("Data updated successfully", this.Text,
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                //close the form
+                Close();
             }
-            else
+            catch (Exception ex)
             {
-                //Edit exists data object in the database
-
-                //assign data from controls into the existing object
-                this.specialty.SpecialtyName = tb_username.Text;
-
-                //add the object data into the database
-                this.specialty.UpdateInDB();
-
-                //show success insert message
-                MessageBox.Show("Data updated successfully", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message);
             }
-
-            //close the form
-            Close();
         }
     }
 }

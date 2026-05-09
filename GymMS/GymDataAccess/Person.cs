@@ -53,7 +53,7 @@ namespace GymDataAccess
             List<Person> list = new List<Person>();
 
             //prepare select statement
-            string str = "select person_type, id from v_persons where (full_name like '%' + @filter + '%' or @filter is null)";
+            string str = "select * from v_persons where (full_name like '%' + @filter + '%' or @filter is null)";
 
             //preparing command
             SqlCommand comm = new SqlCommand(str, GymDBConnection);
@@ -77,9 +77,18 @@ namespace GymDataAccess
 
                     //create member or trainer object depending on person type
                     if (reader["person_type"].ToString() == "Member")
-                        p = new Member((int)reader["id"]);
+                        p = new Member();
                     else
-                        p = new Trainer((int)reader["id"]);
+                        p = new Trainer();
+
+                    //Assign data into object
+                    p.id = (int)reader["id"];
+                    p.fullName = reader["full_name"].ToString();
+                    p.phoneNumber = reader["phone_pumber"].ToString();
+                    p.address = reader["address"].ToString();
+                    p.birthDate = (DateTime)reader["birth_date"];
+                    p.createdBy = (int)reader["created_by"];
+                    p.creationDate = (DateTime)reader["creation_date"];
 
 
                     //Add object to list
@@ -116,7 +125,7 @@ namespace GymDataAccess
             {
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
-                    GymDBConnection.Open();
+                GymDBConnection.Open();
 
                 //Execute select statement
                 SqlDataReader reader = comm.ExecuteReader();

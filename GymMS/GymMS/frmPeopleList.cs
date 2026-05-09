@@ -1,13 +1,7 @@
-﻿using System;
+﻿using GymDataAccess;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using GymDataAccess;
 
 namespace GymMS
 {
@@ -16,87 +10,121 @@ namespace GymMS
         public frmPeopleList()
         {
             InitializeComponent();
+
             cb_personType.Items.Add("Trainer");
             cb_personType.Items.Add("Member");
         }
 
-
         private void frmUserList_Load(object sender, EventArgs e)
         {
-            cb_personType.SelectedIndex = 0;
-            //display all people
-            Search(null);
+            try
+            {
+                cb_personType.SelectedIndex = 0;
+
+                //display all people
+                Search(null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void bn_search_Click(object sender, EventArgs e)
         {
-            //search for users using filter
-            Search(tb_search.Text);
+            try
+            {
+                //search for users using filter
+                Search(tb_search.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         void Search(string filter)
         {
-
-
-            //clear grid
-            dgv_data.Rows.Clear();
-
-            //read list of users from the databaes
-            List<Person> list = new List<Person>();// GymDataAccess.Person.ListData(filter);
-
-            //loop into the lists items
-            foreach (Person p in list)
+            try
             {
-                int rowIndex = dgv_data.Rows.Add(
-                    p.Id,
-                    p.FullName,
-                    p.PhoneNumber,
-                    p.GetType().Name
-                );
+                //clear grid
+                dgv_data.Rows.Clear();
 
-                // Store the object in the row
-                dgv_data.Rows[rowIndex].Tag = p;
+                //read list of users from the databaes
+                List<Person> list = GymDataAccess.Person.ListData(tb_search.Text);
+
+                //loop into the lists items
+                foreach (Person p in list)
+                {
+                    int rowIndex = dgv_data.Rows.Add(
+                        p.FullName,
+                        p.PhoneNumber,
+                        p.GetType().Name,
+                        p.CreatedBy.Username,
+                        p.CreationDate
+                    );
+
+                    // Store the object in the row
+                    dgv_data.Rows[rowIndex].Tag = p;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void bn_add_Click(object sender, EventArgs e)
         {
-            //open data form to add new person into the database
-            if (cb_personType.SelectedIndex == 0)
-            //display the form
-                (new frmTrainerData()).ShowDialog();
-            else
-                (new frmMemberData()).ShowDialog();
+            try
+            {
+                //open data form to add new person into the database
+                if (cb_personType.SelectedIndex == 0)
 
-            //Read data again(Do refresh)
-            Search(tb_search.Text);
+                    //display the form
+                    (new frmTrainerData()).ShowDialog();
+                else
+                    (new frmMemberData()).ShowDialog();
+
+                //Read data again(Do refresh)
+                Search(tb_search.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void dgv_data_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //if no rows selected returns (do nothing)
-            if (dgv_data.SelectedRows.Count == 0)
-                return;
-
-            int id = (int)dgv_data.SelectedRows[0].Cells[0].FormattedValue;
-
-            //read selected object
-            Person p = (Person)dgv_data.CurrentRow.Tag;
-
-            //Open data form depending on person type
-            if (p is Member)
+            try
             {
-                //display data form
-                new frmMemberData((Member)p).ShowDialog();
-            }
-            else if (p is Trainer)
-            {
-                //display data form
-                new frmTrainerData((Trainer)p).ShowDialog();
-            }
+                //if no rows selected returns (do nothing)
+                if (dgv_data.SelectedRows.Count == 0)
+                    return;
 
-            //Read data again(Do refresh)
-            Search(tb_search.Text);
+                //read selected object
+                Person p = (Person)dgv_data.CurrentRow.Tag;
+
+                //Open data form depending on person type
+                if (p is Member)
+                {
+                    //display data form
+                    new frmMemberData((Member)p).ShowDialog();
+                }
+                else if (p is Trainer)
+                {
+                    //display data form
+                    new frmTrainerData((Trainer)p).ShowDialog();
+                }
+
+                //Read data again(Do refresh)
+                Search(tb_search.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
