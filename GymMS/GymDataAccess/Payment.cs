@@ -36,7 +36,8 @@ namespace GymDataAccess
                 cmd.Parameters.AddWithValue("@id", id);
 
                 //open connection
-                GymDBConnection.Open();
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
+                    GymDBConnection.Open();
 
                 //execute command
                 SqlDataReader datareader = cmd.ExecuteReader();
@@ -77,6 +78,7 @@ namespace GymDataAccess
                 cmd.Parameters.AddWithValue("@createdBy", userId);
 
                 //open connection
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
                 GymDBConnection.Open();
 
                 //execute command
@@ -104,7 +106,8 @@ namespace GymDataAccess
                 cmd.Parameters.AddWithValue("@amount", amount);
 
                 //open connection
-                GymDBConnection.Open();
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
+                    GymDBConnection.Open();
 
                 //execute command
                 cmd.ExecuteNonQuery();
@@ -137,6 +140,7 @@ namespace GymDataAccess
             try
             {
                 //open connection
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
                 GymDBConnection.Open();
 
                 //execute select statement

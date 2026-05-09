@@ -28,10 +28,16 @@ namespace GymDataAccess
         {
             try
             {
+                //preparing select statement
                 SqlCommand cmd = new SqlCommand("select * from specialties where id=@id", GymDBConnection);
+                //add parameter value
                 cmd.Parameters.AddWithValue("@id", id);
 
-                GymDBConnection.Open();
+                //open connection
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
+                    GymDBConnection.Open();
+
+                //execute select statement
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 if (reader.Read())
@@ -54,11 +60,16 @@ namespace GymDataAccess
                 SqlCommand cmd = new SqlCommand(
                 "insert into specialties (specialty_name, created_by, creation_date) values (@name, @createdBy, @creationDate)", GymDBConnection);
 
+                //add parameter values
                 cmd.Parameters.AddWithValue("@name", specialtyName);
                 cmd.Parameters.AddWithValue("@created_by", userId);
                 cmd.Parameters.AddWithValue("@creation_date", creationDate);
 
-                GymDBConnection.Open();
+                //open connection
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
+                    GymDBConnection.Open();
+
+                //execute insert statement
                 cmd.ExecuteNonQuery();
 
             }
@@ -73,13 +84,18 @@ namespace GymDataAccess
         {
             try
             {
-                SqlCommand cmd = new SqlCommand(
-                    "update specialties set specialty_name=@name where id=@id", GymDBConnection);
+                //preparing command
+                SqlCommand cmd = new SqlCommand("update specialties set specialty_name=@name where id=@id", GymDBConnection);
 
+                //add parameter values
                 cmd.Parameters.AddWithValue("@id", Id);
                 cmd.Parameters.AddWithValue("@name", specialtyName);
 
-                GymDBConnection.Open();
+                //open connection
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
+                    GymDBConnection.Open();
+
+                //execute update statement
                 cmd.ExecuteNonQuery();
 
             }
@@ -104,7 +120,8 @@ namespace GymDataAccess
             try
             {
                 //open connection
-                GymDBConnection.Open();
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
+                    GymDBConnection.Open();
 
                 //Execute select statement
                 SqlDataReader reader = comm.ExecuteReader();

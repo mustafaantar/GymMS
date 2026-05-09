@@ -50,7 +50,8 @@ namespace GymDataAccess
                 cmd.Parameters.AddWithValue("@id", id);
 
                 //open connection
-                GymDBConnection.Open();
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
+                    GymDBConnection.Open();
 
                 //execute select statement
                 SqlDataReader datareader = cmd.ExecuteReader();
@@ -90,6 +91,7 @@ namespace GymDataAccess
                 cmd.Parameters.AddWithValue("@createdBy", userId);
 
                 //open connection
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
                 GymDBConnection.Open();
 
                 //execute insert statement
@@ -118,6 +120,7 @@ namespace GymDataAccess
                 cmd.Parameters.AddWithValue("@capacity", capacity);
 
                 //open connection
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
                 GymDBConnection.Open();
 
                 //execute update statement

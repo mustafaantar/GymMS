@@ -56,6 +56,7 @@ namespace GymDataAccess
             try
             {
                 //open the connection
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
                 GymDBConnection.Open();
 
                 //execute select statement
@@ -103,6 +104,7 @@ namespace GymDataAccess
                 comm.Parameters.AddWithValue("@createdBy", userId);
 
                 //Open the database connection
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
                 GymDBConnection.Open();
 
                 //execute the insert statement
@@ -135,7 +137,8 @@ namespace GymDataAccess
                 cmd.Parameters.AddWithValue("@endDate", endDate);
 
                 //Open the database connection
-                GymDBConnection.Open();
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
+                    GymDBConnection.Open();
 
                 //execute the update statement
                 cmd.ExecuteNonQuery();
@@ -167,6 +170,7 @@ namespace GymDataAccess
             try
             {
                 //open the connection
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
                 GymDBConnection.Open();
 
                 //execute select statement

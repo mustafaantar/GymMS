@@ -41,6 +41,7 @@ namespace GymDataAccess
             try
             {
                 //open connection
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
                 GymDBConnection.Open();
 
                 //Execute select statement
@@ -83,6 +84,7 @@ namespace GymDataAccess
                 comm.Parameters.AddWithValue("@createdBy", userId);
 
                 //open connection
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
                 GymDBConnection.Open();
 
                 //Execute insert statement
@@ -112,7 +114,8 @@ namespace GymDataAccess
                 cmd.Parameters.AddWithValue("@specialty_id", specialty_id);
 
                 //open connection
-                GymDBConnection.Open();
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
+                    GymDBConnection.Open();
 
                 //Execute update statement
                 cmd.ExecuteNonQuery();

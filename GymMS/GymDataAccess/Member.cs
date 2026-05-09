@@ -61,6 +61,7 @@ namespace GymDataAccess
                 cmd.Parameters.AddWithValue("@id", id);
 
                 //open connection
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
                 GymDBConnection.Open();
 
                 //Execute select statement
@@ -109,6 +110,7 @@ namespace GymDataAccess
                 comm.Parameters.AddWithValue("@endDate", (object)EndDate ?? DBNull.Value);
 
                 //open connection
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
                 GymDBConnection.Open();
 
                 //Execute insert statement
@@ -144,7 +146,8 @@ namespace GymDataAccess
                 cmd.Parameters.AddWithValue("@endDate", (object)EndDate ?? DBNull.Value);
 
                 //open connection
-                GymDBConnection.Open();
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
+                    GymDBConnection.Open();
 
                 //Execute update statement
                 cmd.ExecuteNonQuery();
