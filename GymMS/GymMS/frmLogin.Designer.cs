@@ -41,7 +41,7 @@
             this.bn_login.Location = new System.Drawing.Point(201, 12);
             this.bn_login.Name = "bn_login";
             this.bn_login.Size = new System.Drawing.Size(75, 23);
-            this.bn_login.TabIndex = 0;
+            this.bn_login.TabIndex = 2;
             this.bn_login.Text = "Login";
             this.bn_login.UseVisualStyleBackColor = true;
             this.bn_login.Click += new System.EventHandler(this.bn_login_Click);
@@ -51,7 +51,7 @@
             this.tb_username.Location = new System.Drawing.Point(76, 12);
             this.tb_username.Name = "tb_username";
             this.tb_username.Size = new System.Drawing.Size(119, 20);
-            this.tb_username.TabIndex = 1;
+            this.tb_username.TabIndex = 0;
             // 
             // label1
             // 
@@ -83,7 +83,7 @@
             this.bn_exit.Location = new System.Drawing.Point(201, 41);
             this.bn_exit.Name = "bn_exit";
             this.bn_exit.Size = new System.Drawing.Size(75, 23);
-            this.bn_exit.TabIndex = 0;
+            this.bn_exit.TabIndex = 3;
             this.bn_exit.Text = "Exit";
             this.bn_exit.UseVisualStyleBackColor = true;
             this.bn_exit.Click += new System.EventHandler(this.bn_exit_Click);

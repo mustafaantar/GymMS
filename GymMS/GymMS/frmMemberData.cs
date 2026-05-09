@@ -41,7 +41,7 @@ namespace GymMS
             if (this.member.EndDate.HasValue)
             {
                 d_end_date.Checked = true;
-                d_end_date.Value = this.member.EndDate;
+                d_end_date.Value = this.member.EndDate.Value;
             }
         }
 
@@ -64,7 +64,10 @@ namespace GymMS
                 this.member.Address = tb_address.Text;
                 this.member.BirthDate = d_birth_Date.Value;
                 this.member.StartDate = d_start_date.Value;
-                this.member.EndDate = d_end_date.Checked ? d_end_date.Value : null;
+                if (d_end_date.Checked)
+                    this.member.EndDate = d_end_date.Value;
+                else
+                    this.member.EndDate = null;
                 //add the object data into the database
                 this.member.AddToDB(GlobalVariables.LoginUser.Id);
 
@@ -81,8 +84,10 @@ namespace GymMS
                 this.member.Address = tb_address.Text;
                 this.member.BirthDate = d_birth_Date.Value;
                 this.member.StartDate = d_start_date.Value;
-                this.member.EndDate = d_end_date.Checked ? d_end_date..Value : null;
-
+                if (d_end_date.Checked)
+                    this.member.EndDate = d_end_date.Value;
+                else
+                    this.member.EndDate = null;
                 //add the object data into the database
                 this.member.UpdateInDB();
 
