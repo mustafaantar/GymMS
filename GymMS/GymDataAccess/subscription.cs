@@ -43,18 +43,20 @@ namespace GymDataAccess
         public override void LoadById(int id)
         {
             //Load object data from the database
+            //prepare connection
+            SqlConnection con = GymDBConnection;
 
-            //prepare select statement
-            string str = "select * from subscriptions where id=@id";
+            try
+            { //prepare select statement
+                string str = "select * from subscriptions where id=@id";
 
             //prepare SQL statement
-            SqlCommand comm = new SqlCommand(str, GymDBConnection);
+            SqlCommand comm = new SqlCommand(str, con);
 
             //Add parameters to the command (to avoid SQL Injuction
             comm.Parameters.AddWithValue("@id", id);
 
-            try
-            {
+           
                 //open the connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
                 GymDBConnection.Open();
@@ -84,6 +86,9 @@ namespace GymDataAccess
         public override void AddToDB(int userId)
         {
             //Adding new data object to the database
+            //prepare connection
+            SqlConnection con = GymDBConnection;
+
             try
             {
                 //prepare insert statement
@@ -92,7 +97,7 @@ namespace GymDataAccess
             + "values (@memberId,@type,@subscriptionAmount,@paidAmount,@startDate,@endDate,@createdBy)";
 
                 //prepare SQL command
-                SqlCommand comm = new SqlCommand(str, GymDBConnection);
+                SqlCommand comm = new SqlCommand(str, con);
 
                 //Add parameters to the command (to avoid SQL Injuction
                 comm.Parameters.AddWithValue("@memberId", memberId);
@@ -117,6 +122,8 @@ namespace GymDataAccess
         public override void UpdateInDB()
         {
             //Edit an object data in the database
+            //prepare connection
+            SqlConnection con = GymDBConnection;
             try
             {
                 //prepare update statement
@@ -125,7 +132,7 @@ namespace GymDataAccess
                     + "paid_amount=@paidAmount,start_date=@startDate,end_date=@endDate where id=@id";
 
                 //prepare SQL command
-                SqlCommand cmd = new SqlCommand(str, GymDBConnection);
+                SqlCommand cmd = new SqlCommand(str, con);
 
                 //Add parameters to the command (to avoid SQL Injuction
                 cmd.Parameters.AddWithValue("@id", Id);
@@ -149,26 +156,30 @@ namespace GymDataAccess
 
         public static List<Subscription> ListData(int? memberId, int? typeId, DateTime? fromDate, DateTime? toDate)
         {
+            //prepare connection
+            SqlConnection con = GymDBConnection;
+
             //prepare the list
             List<Subscription> list = new List<Subscription>();
 
-            //prepare the select statement
-            string str = "select * from subscriptions "
+            try
+            {
+                //prepare the select statement
+                string str = "select * from subscriptions "
                 + "where member_id = @memberId"
                 + " and subscription_type = @TypeId"
                 + " and (subscription_date >= @fromDate or @fromDate is null)"
                 + " and (subscription_date <= @toDate or @toDate is null)";
 
             //prepare SQL command
-            SqlCommand comm = new SqlCommand(str, GymDBConnection);
+            SqlCommand comm = new SqlCommand(str, con);
 
             comm.Parameters.AddWithValue("@memberId", (object)memberId ?? DBNull.Value);
             comm.Parameters.AddWithValue("@TypeId", (object)typeId ?? DBNull.Value);
             comm.Parameters.AddWithValue("@fromDate", (object)fromDate ?? DBNull.Value);
             comm.Parameters.AddWithValue("@toDate", (object)toDate ?? DBNull.Value);
 
-            try
-            {
+
                 //open the connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
                 GymDBConnection.Open();

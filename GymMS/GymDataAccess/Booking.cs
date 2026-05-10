@@ -36,16 +36,19 @@ namespace GymDataAccess
             public override void LoadById(int id)
             {
                 //load booking data from database
+                //prepare connection
+                SqlConnection con = GymDBConnection;
+
                 try
                 {
-                    //preparing command 
-                    SqlCommand cmd = new SqlCommand("select * from booking where id=@id", GymDBConnection);
+                    //preparing command
+                    SqlCommand cmd = new SqlCommand("select * from booking where id=@id", con);
 
                     //adding id to command paramenters
                     cmd.Parameters.AddWithValue("@id", id);
 
                     //open connection
-                if (GymDBConnection.State != System.Data.ConnectionState.Open)
+                    if (GymDBConnection.State != System.Data.ConnectionState.Open)
                         GymDBConnection.Open();
 
                     //execute statement
@@ -71,6 +74,9 @@ namespace GymDataAccess
 
             public override void AddToDB(int userId)
             {
+                //prepare connection
+                SqlConnection con = GymDBConnection;
+
                 try
                 {
                     //preparing insert statement
@@ -78,7 +84,7 @@ namespace GymDataAccess
                                + "values(@date, @member, @trainerId, @createdBy)";
 
                     //preparing command
-                    SqlCommand cmd = new SqlCommand(str, GymDBConnection);
+                    SqlCommand cmd = new SqlCommand(str, con);
 
                     //adding data into command parameters
                     cmd.Parameters.AddWithValue("@date", BookingDate);
@@ -87,7 +93,7 @@ namespace GymDataAccess
                     cmd.Parameters.AddWithValue("@createdBy", userId);
 
                     //open connection
-                if (GymDBConnection.State != System.Data.ConnectionState.Open)
+                    if (GymDBConnection.State != System.Data.ConnectionState.Open)
                         GymDBConnection.Open();
 
                     //execute insert statement
@@ -101,13 +107,17 @@ namespace GymDataAccess
 
             public override void UpdateInDB()
             {
+                //prepare connection
+                SqlConnection con = GymDBConnection;
+
+
                 try
                 {
                     //preparing update statement
                     string str = "update booking set booking_date=@date, member_id=@memberId, trainer_id=@trainerId where id=@id";
 
                     //preparing command
-                    SqlCommand cmd = new SqlCommand(str, GymDBConnection);
+                    SqlCommand cmd = new SqlCommand(str, con);
 
                     //add data to the update statement
                     cmd.Parameters.AddWithValue("@id", id);
@@ -116,7 +126,7 @@ namespace GymDataAccess
                     cmd.Parameters.AddWithValue("@trainerId", trainerId);
 
                     //open connection
-                if (GymDBConnection.State != System.Data.ConnectionState.Open)
+                    if (GymDBConnection.State != System.Data.ConnectionState.Open)
                         GymDBConnection.Open();
 
                     //execute select statement
@@ -131,9 +141,14 @@ namespace GymDataAccess
 
             public static List<Booking> ListData(int? memberId, int? trainerId, DateTime? fromDate, DateTime? toDate)
             {
+                //prepare connection
+                SqlConnection con = GymDBConnection;
+
                 //preparing empty list
                 List<Booking> list = new List<Booking>();
 
+                try
+                {
                 //prepare select statement
                 string str = "select * from booking where "
                     + "(member_id= @memberId or @memberId is null)"
@@ -141,17 +156,16 @@ namespace GymDataAccess
                     + "(booking_date >= @fromDate or @fromDate is null)"
                     + "(booking_date <= @toDate or @toDate is null)";
 
-                SqlCommand comm = new SqlCommand(str, GymDBConnection);
+                SqlCommand comm = new SqlCommand(str, con);
 
                 comm.Parameters.AddWithValue("@memberId", !memberId.HasValue ? (object)DBNull.Value : memberId);
                 comm.Parameters.AddWithValue("@trainerId", !trainerId.HasValue ? (object)DBNull.Value : trainerId);
                 comm.Parameters.AddWithValue("@fromDate", !fromDate.HasValue ? (object)DBNull.Value : fromDate);
                 comm.Parameters.AddWithValue("@toDate", !toDate.HasValue ? (object)DBNull.Value : toDate);
 
-                try
-                {
+               
                     //open connection
-                if (GymDBConnection.State != System.Data.ConnectionState.Open)
+                    if (GymDBConnection.State != System.Data.ConnectionState.Open)
                         GymDBConnection.Open();
 
                     //execute select statement

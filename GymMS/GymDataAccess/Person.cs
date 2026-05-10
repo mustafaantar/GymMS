@@ -49,20 +49,24 @@ namespace GymDataAccess
 
         public static List<Person> ListData(string filter)
         {
-            //create empty list
-            List<Person> list = new List<Person>();
+            //prepare connection
+            SqlConnection con = GymDBConnection;
 
+            //create empty list
+            List<Person> list = new List<Person>(); 
+            
+            try
+            {
             //prepare select statement
             string str = "select * from v_persons where (full_name like '%' + @filter + '%' or @filter is null)";
 
             //preparing command
-            SqlCommand comm = new SqlCommand(str, GymDBConnection);
+            SqlCommand comm = new SqlCommand(str, con);
 
             //add filter to command
             comm.Parameters.AddWithValue("@filter", string.IsNullOrEmpty(filter) ? (object)DBNull.Value : filter);
 
-            try
-            {
+           
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
                     GymDBConnection.Open();
@@ -96,9 +100,13 @@ namespace GymDataAccess
 
         public static List<Member> ListMembersData(string filter)
         {
+            //prepare connection
+            SqlConnection con = GymDBConnection;
+
             //create empty list
             List<Member> list = new List<Member>();
-
+            try
+            {
             //prepare select statement
             string str = "select * from v_persons";
 
@@ -107,13 +115,12 @@ namespace GymDataAccess
                 str += "where fullname like '%' + @filter + '%'";
 
             //preparing command
-            SqlCommand comm = new SqlCommand(str, GymDBConnection);
+            SqlCommand comm = new SqlCommand(str, con);
 
             //add filter to command
             comm.Parameters.AddWithValue("@filter", string.IsNullOrEmpty(filter) ? (object)DBNull.Value : filter);
 
-            try
-            {
+            
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
                 GymDBConnection.Open();

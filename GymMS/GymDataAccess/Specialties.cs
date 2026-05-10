@@ -26,10 +26,12 @@ namespace GymDataAccess
 
         public override void LoadById(int id)
         {
+            //prepare connection
+            SqlConnection con = GymDBConnection;
             try
             {
                 //preparing select statement
-                SqlCommand cmd = new SqlCommand("select * from specialties where id=@id", GymDBConnection);
+                SqlCommand cmd = new SqlCommand("select * from specialties where id=@id", con);
                 //add parameter value
                 cmd.Parameters.AddWithValue("@id", id);
 
@@ -55,10 +57,12 @@ namespace GymDataAccess
 
         public override void AddToDB(int userId)
         {
+            //prepare connection
+            SqlConnection con = GymDBConnection;
             try
             {
                 SqlCommand cmd = new SqlCommand(
-                "insert into specialties (specialty_name, created_by, creation_date) values (@name, @createdBy, @creationDate)", GymDBConnection);
+                "insert into specialties (specialty_name, created_by, creation_date) values (@name, @createdBy, @creationDate)", con);
 
                 //add parameter values
                 cmd.Parameters.AddWithValue("@name", specialtyName);
@@ -82,10 +86,12 @@ namespace GymDataAccess
 
         public override void UpdateInDB()
         {
+            //prepare connection
+            SqlConnection con = GymDBConnection;
             try
             {
                 //preparing command
-                SqlCommand cmd = new SqlCommand("update specialties set specialty_name=@name where id=@id", GymDBConnection);
+                SqlCommand cmd = new SqlCommand("update specialties set specialty_name=@name where id=@id", con);
 
                 //add parameter values
                 cmd.Parameters.AddWithValue("@id", Id);
@@ -108,17 +114,20 @@ namespace GymDataAccess
 
         public static List<Specialties> ListData()
         {
+            //prepare connection
+            SqlConnection con = GymDBConnection;
             //create empty list
             List<Specialties> list = new List<Specialties>();
 
-            //prepare select statement
-            string str = "select * from specialties";
-
-            //preparing command
-            SqlCommand comm = new SqlCommand(str, GymDBConnection);
-
             try
             {
+                //prepare select statement
+                string str = "select * from specialties";
+
+            //preparing command
+            SqlCommand comm = new SqlCommand(str, con);
+
+          
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
                     GymDBConnection.Open();

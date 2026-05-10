@@ -1,5 +1,6 @@
-﻿    using System;
+﻿using System;
 using System.Data.SqlClient;
+using System.Net.NetworkInformation;
 using System.Reflection;
 namespace GymDataAccess
 {
@@ -7,20 +8,27 @@ namespace GymDataAccess
     {
         //SQL connection
         static string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + Assembly.GetExecutingAssembly().Location.Substring(0, Assembly.GetExecutingAssembly().Location.LastIndexOf("\\")) + "\\GymDB.mdf;Integrated Security=True;Connect Timeout=30";
-        public static SqlConnection GymDBConnection { get { return new SqlConnection(connectionString); } }
+        public static SqlConnection GymDBConnection
+        {
+            get
+            {
+                SqlConnection gymDBConnection = new SqlConnection(connectionString);
+                return gymDBConnection;
+            }
+        }
 
         //Shared variable members
         protected int id;
-       protected int createdBy;
+        protected int createdBy;
         protected DateTime creationDate;
 
-        public int Id { get { return id; }set { id = value; } }
+        public int Id { get { return id; } set { id = value; } }
         public Users CreatedBy { get { return new Users(createdBy); } }
         public DateTime CreationDate { get { return creationDate; } }
 
         public BaseEntity()
         {
-            
+
         }
 
         public abstract void LoadById(int id);

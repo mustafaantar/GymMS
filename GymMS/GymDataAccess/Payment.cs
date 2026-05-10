@@ -29,10 +29,13 @@ namespace GymDataAccess
 
         public override void LoadById(int id)
         {
+            //prepare connection
+            SqlConnection con = GymDBConnection;
+
             try
             {
                 //prepare select statement
-                SqlCommand cmd = new SqlCommand("select * from payments where id = @id", GymDBConnection);
+                SqlCommand cmd = new SqlCommand("select * from payments where id = @id", con);
                 cmd.Parameters.AddWithValue("@id", id);
 
                 //open connection
@@ -62,6 +65,9 @@ namespace GymDataAccess
 
         public override void AddToDB(int userId)
         {
+            //prepare connection
+            SqlConnection con = GymDBConnection;
+
             try
             {
                 //prepare insert statement
@@ -69,7 +75,7 @@ namespace GymDataAccess
                            + "values(@date, @subscription_id, @amount, @createdBy)";
 
                 //prepare command
-                SqlCommand cmd = new SqlCommand(str, GymDBConnection);
+                SqlCommand cmd = new SqlCommand(str, con);
 
                 //add parameters
                 cmd.Parameters.AddWithValue("@date", paymentDate);
@@ -92,13 +98,16 @@ namespace GymDataAccess
 
         public override void UpdateInDB()
         {
+            //prepare connection
+            SqlConnection con = GymDBConnection;
+
             try
             {
                 //prepare update statement
                 string str = "update payments set payment_date=@date, amount=@amount where id=@id";
 
                 //prepare command
-                SqlCommand cmd = new SqlCommand(str, GymDBConnection);
+                SqlCommand cmd = new SqlCommand(str, con);
 
                 //add parameters
                 cmd.Parameters.AddWithValue("@id", id);
@@ -120,9 +129,15 @@ namespace GymDataAccess
 
         public static List<Payment> ListData(int? memberId, DateTime? fromDate, DateTime? toDate)
         {
+            //prepare connection
+            SqlConnection con = GymDBConnection;
+
+
             //create empty list
             List<Payment> list = new List<Payment>();
-
+            
+            try
+            {
             //prepare select statement
             string str = "select * from payments where "
                 + " (member_id=@memberId or @memberId is null)"
@@ -130,15 +145,14 @@ namespace GymDataAccess
                 + " and (payment_date <= @toDate or @toDate is null)";
 
             //preparing command
-            SqlCommand comm = new SqlCommand(str, GymDBConnection);
+            SqlCommand comm = new SqlCommand(str, con);
 
             //add filter to command
             comm.Parameters.AddWithValue("@memberId", !memberId.HasValue ? (object)DBNull.Value : memberId.HasValue);
             comm.Parameters.AddWithValue("@fromDate", !fromDate.HasValue ? (object)DBNull.Value : fromDate.HasValue);
             comm.Parameters.AddWithValue("@toDate", !toDate.HasValue ? (object)DBNull.Value : toDate.HasValue);
 
-            try
-            {
+            
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
                 GymDBConnection.Open();

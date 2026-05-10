@@ -32,8 +32,11 @@ namespace GymDataAccess
 
         public override void LoadById(int id)
         {
+            //prepare connection
+            SqlConnection con = GymDBConnection;
+
             //prepare select statement
-            SqlCommand comm = new SqlCommand("select * from trainers where id=@id", GymDBConnection);
+            SqlCommand comm = new SqlCommand("select * from trainers where id=@id", con);
 
             //add parameter to command
             comm.Parameters.AddWithValue("@id", id);
@@ -66,6 +69,9 @@ namespace GymDataAccess
 
         public override void AddToDB(int userId)
         {
+            //prepare connection
+            SqlConnection con = GymDBConnection;
+
             try
             {
                 //prepare insert statement
@@ -74,7 +80,7 @@ namespace GymDataAccess
                     + "values (@name,@phone,@birthDate,@specialty_id,@createdBy)";
 
                 //preparing command
-                SqlCommand comm = new SqlCommand(str, GymDBConnection);
+                SqlCommand comm = new SqlCommand(str, con);
 
                 //add parameters to command
                 comm.Parameters.AddWithValue("@name", FullName);
@@ -96,6 +102,9 @@ namespace GymDataAccess
 
         public override void UpdateInDB()
         {
+            //prepare connection
+            SqlConnection con = GymDBConnection;
+
             try
             {
                 //prepare update statement
@@ -104,7 +113,7 @@ namespace GymDataAccess
                     + "specialty_id=@specialty_id where id=@id";
 
                 //preparing command
-                SqlCommand cmd = new SqlCommand(str, GymDBConnection);
+                SqlCommand cmd = new SqlCommand(str, con);
 
                 //add parameters to command
                 cmd.Parameters.AddWithValue("@id", Id);
