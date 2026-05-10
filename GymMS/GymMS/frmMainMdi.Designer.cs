@@ -33,6 +33,7 @@
             this.bn_sub = new System.Windows.Forms.Button();
             this.bn_payment = new System.Windows.Forms.Button();
             this.bn_booking = new System.Windows.Forms.Button();
+            this.bn_specialties = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bn_people
@@ -85,11 +86,22 @@
             this.bn_booking.UseVisualStyleBackColor = true;
             this.bn_booking.Click += new System.EventHandler(this.bn_booking_Click);
             // 
+            // bn_specialties
+            // 
+            this.bn_specialties.Location = new System.Drawing.Point(12, 124);
+            this.bn_specialties.Name = "bn_specialties";
+            this.bn_specialties.Size = new System.Drawing.Size(142, 50);
+            this.bn_specialties.TabIndex = 3;
+            this.bn_specialties.Text = "Specia;ties setup";
+            this.bn_specialties.UseVisualStyleBackColor = true;
+            this.bn_specialties.Click += new System.EventHandler(this.bn_specialties_Click);
+            // 
             // frmMainMdi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(910, 494);
+            this.Controls.Add(this.bn_specialties);
             this.Controls.Add(this.bn_booking);
             this.Controls.Add(this.bn_payment);
             this.Controls.Add(this.bn_sub);
@@ -112,5 +124,6 @@
         private System.Windows.Forms.Button bn_sub;
         private System.Windows.Forms.Button bn_payment;
         private System.Windows.Forms.Button bn_booking;
+        private System.Windows.Forms.Button bn_specialties;
     }
 }
