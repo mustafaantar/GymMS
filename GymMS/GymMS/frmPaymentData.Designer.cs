@@ -42,7 +42,7 @@
             // 
             // bn_save
             // 
-            this.bn_save.Location = new System.Drawing.Point(483, 78);
+            this.bn_save.Location = new System.Drawing.Point(419, 78);
             this.bn_save.Name = "bn_save";
             this.bn_save.Size = new System.Drawing.Size(75, 23);
             this.bn_save.TabIndex = 4;
@@ -56,7 +56,7 @@
             this.tb_id.Name = "tb_id";
             this.tb_id.ReadOnly = true;
             this.tb_id.Size = new System.Drawing.Size(119, 20);
-            this.tb_id.TabIndex = 6;
+            this.tb_id.TabIndex = 0;
             // 
             // label4
             // 
@@ -72,7 +72,7 @@
             this.bn_close.Location = new System.Drawing.Point(16, 78);
             this.bn_close.Name = "bn_close";
             this.bn_close.Size = new System.Drawing.Size(75, 23);
-            this.bn_close.TabIndex = 4;
+            this.bn_close.TabIndex = 5;
             this.bn_close.Text = "Close";
             this.bn_close.UseVisualStyleBackColor = true;
             this.bn_close.Click += new System.EventHandler(this.bn_close_Click);
@@ -93,22 +93,22 @@
             this.cb_subscription.Location = new System.Drawing.Point(88, 38);
             this.cb_subscription.Name = "cb_subscription";
             this.cb_subscription.Size = new System.Drawing.Size(207, 21);
-            this.cb_subscription.TabIndex = 10;
+            this.cb_subscription.TabIndex = 2;
             // 
             // d_payment_date
             // 
             this.d_payment_date.CustomFormat = "dd/MM/yyyy";
             this.d_payment_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.d_payment_date.Location = new System.Drawing.Point(454, 13);
+            this.d_payment_date.Location = new System.Drawing.Point(390, 13);
             this.d_payment_date.Name = "d_payment_date";
             this.d_payment_date.ShowUpDown = true;
             this.d_payment_date.Size = new System.Drawing.Size(104, 20);
-            this.d_payment_date.TabIndex = 16;
+            this.d_payment_date.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(364, 15);
+            this.label2.Location = new System.Drawing.Point(300, 15);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(75, 13);
             this.label2.TabIndex = 15;
@@ -117,7 +117,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(365, 41);
+            this.label7.Location = new System.Drawing.Point(301, 41);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(87, 13);
             this.label7.TabIndex = 7;
@@ -126,17 +126,17 @@
             // 
             // tb_amount
             // 
-            this.tb_amount.Location = new System.Drawing.Point(458, 38);
+            this.tb_amount.Location = new System.Drawing.Point(394, 38);
             this.tb_amount.Name = "tb_amount";
             this.tb_amount.Size = new System.Drawing.Size(100, 20);
-            this.tb_amount.TabIndex = 17;
+            this.tb_amount.TabIndex = 3;
             this.tb_amount.TextChanged += new System.EventHandler(this.tb_paid_amount_TextChanged);
             // 
             // frmPaymentData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(570, 114);
+            this.ClientSize = new System.Drawing.Size(506, 114);
             this.Controls.Add(this.tb_amount);
             this.Controls.Add(this.d_payment_date);
             this.Controls.Add(this.label2);

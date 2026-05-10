@@ -25,8 +25,7 @@ namespace GymMS
             try
             {
                 //fill subscriptions list
-                List<GymDataAccess.Subscription> list =
-                    GymDataAccess.Subscription.ListData(null, null, null, null);
+                List<GymDataAccess.Member> list = GymDataAccess.Person .ListMembersData(null);
 
                 cb_sub.Items.Add("-");
 

@@ -53,7 +53,7 @@
             this.d_birth_Date.Location = new System.Drawing.Point(288, 64);
             this.d_birth_Date.Name = "d_birth_Date";
             this.d_birth_Date.Size = new System.Drawing.Size(112, 20);
-            this.d_birth_Date.TabIndex = 25;
+            this.d_birth_Date.TabIndex = 3;
             // 
             // label5
             // 
@@ -105,14 +105,14 @@
             this.tb_address.Location = new System.Drawing.Point(76, 116);
             this.tb_address.Name = "tb_address";
             this.tb_address.Size = new System.Drawing.Size(324, 20);
-            this.tb_address.TabIndex = 14;
+            this.tb_address.TabIndex = 6;
             // 
             // tb_phone
             // 
             this.tb_phone.Location = new System.Drawing.Point(76, 64);
             this.tb_phone.Name = "tb_phone";
             this.tb_phone.Size = new System.Drawing.Size(119, 20);
-            this.tb_phone.TabIndex = 15;
+            this.tb_phone.TabIndex = 2;
             // 
             // tb_id
             // 
@@ -120,30 +120,31 @@
             this.tb_id.Name = "tb_id";
             this.tb_id.ReadOnly = true;
             this.tb_id.Size = new System.Drawing.Size(119, 20);
-            this.tb_id.TabIndex = 16;
+            this.tb_id.TabIndex = 0;
             // 
             // tb_fillname
             // 
             this.tb_fillname.Location = new System.Drawing.Point(76, 38);
             this.tb_fillname.Name = "tb_fillname";
             this.tb_fillname.Size = new System.Drawing.Size(324, 20);
-            this.tb_fillname.TabIndex = 17;
+            this.tb_fillname.TabIndex = 1;
             // 
             // bn_close
             // 
             this.bn_close.Location = new System.Drawing.Point(11, 142);
             this.bn_close.Name = "bn_close";
             this.bn_close.Size = new System.Drawing.Size(75, 23);
-            this.bn_close.TabIndex = 12;
+            this.bn_close.TabIndex = 7;
             this.bn_close.Text = "Close";
             this.bn_close.UseVisualStyleBackColor = true;
+            this.bn_close.Click += new System.EventHandler(this.bn_close_Click_1);
             // 
             // bn_save
             // 
             this.bn_save.Location = new System.Drawing.Point(309, 142);
             this.bn_save.Name = "bn_save";
             this.bn_save.Size = new System.Drawing.Size(75, 23);
-            this.bn_save.TabIndex = 13;
+            this.bn_save.TabIndex = 8;
             this.bn_save.Text = "Save";
             this.bn_save.UseVisualStyleBackColor = true;
             // 
@@ -164,7 +165,7 @@
             this.d_end_date.Name = "d_end_date";
             this.d_end_date.ShowCheckBox = true;
             this.d_end_date.Size = new System.Drawing.Size(112, 20);
-            this.d_end_date.TabIndex = 25;
+            this.d_end_date.TabIndex = 5;
             // 
             // label8
             // 
@@ -182,7 +183,7 @@
             this.d_start_date.Location = new System.Drawing.Point(76, 90);
             this.d_start_date.Name = "d_start_date";
             this.d_start_date.Size = new System.Drawing.Size(96, 20);
-            this.d_start_date.TabIndex = 25;
+            this.d_start_date.TabIndex = 4;
             // 
             // frmMemberData
             // 

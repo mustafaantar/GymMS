@@ -51,7 +51,7 @@
             this.bn_save.Location = new System.Drawing.Point(331, 144);
             this.bn_save.Name = "bn_save";
             this.bn_save.Size = new System.Drawing.Size(75, 23);
-            this.bn_save.TabIndex = 4;
+            this.bn_save.TabIndex = 7;
             this.bn_save.Text = "Save";
             this.bn_save.UseVisualStyleBackColor = true;
             this.bn_save.Click += new System.EventHandler(this.bn_save_Click);
@@ -63,7 +63,7 @@
             this.cb_type.Location = new System.Drawing.Point(306, 38);
             this.cb_type.Name = "cb_type";
             this.cb_type.Size = new System.Drawing.Size(100, 21);
-            this.cb_type.TabIndex = 10;
+            this.cb_type.TabIndex = 2;
             // 
             // label3
             // 
@@ -80,7 +80,7 @@
             this.tb_id.Name = "tb_id";
             this.tb_id.ReadOnly = true;
             this.tb_id.Size = new System.Drawing.Size(119, 20);
-            this.tb_id.TabIndex = 6;
+            this.tb_id.TabIndex = 0;
             // 
             // label4
             // 
@@ -96,7 +96,7 @@
             this.bn_close.Location = new System.Drawing.Point(12, 144);
             this.bn_close.Name = "bn_close";
             this.bn_close.Size = new System.Drawing.Size(75, 23);
-            this.bn_close.TabIndex = 4;
+            this.bn_close.TabIndex = 8;
             this.bn_close.Text = "Close";
             this.bn_close.UseVisualStyleBackColor = true;
             this.bn_close.Click += new System.EventHandler(this.bn_close_Click);
@@ -117,7 +117,7 @@
             this.cb_member.Location = new System.Drawing.Point(107, 38);
             this.cb_member.Name = "cb_member";
             this.cb_member.Size = new System.Drawing.Size(119, 21);
-            this.cb_member.TabIndex = 10;
+            this.cb_member.TabIndex = 1;
             // 
             // d_fromDate
             // 
@@ -128,7 +128,7 @@
             this.d_fromDate.ShowCheckBox = true;
             this.d_fromDate.ShowUpDown = true;
             this.d_fromDate.Size = new System.Drawing.Size(104, 20);
-            this.d_fromDate.TabIndex = 16;
+            this.d_fromDate.TabIndex = 3;
             // 
             // label2
             // 
@@ -157,14 +157,14 @@
             this.d_toDate.Name = "d_toDate";
             this.d_toDate.ShowUpDown = true;
             this.d_toDate.Size = new System.Drawing.Size(88, 20);
-            this.d_toDate.TabIndex = 16;
+            this.d_toDate.TabIndex = 4;
             // 
             // tb_amount
             // 
             this.tb_amount.Location = new System.Drawing.Point(125, 91);
             this.tb_amount.Name = "tb_amount";
             this.tb_amount.Size = new System.Drawing.Size(100, 20);
-            this.tb_amount.TabIndex = 17;
+            this.tb_amount.TabIndex = 5;
             // 
             // label6
             // 
@@ -189,7 +189,7 @@
             this.tb_paid_amount.Location = new System.Drawing.Point(306, 91);
             this.tb_paid_amount.Name = "tb_paid_amount";
             this.tb_paid_amount.Size = new System.Drawing.Size(100, 20);
-            this.tb_paid_amount.TabIndex = 17;
+            this.tb_paid_amount.TabIndex = 6;
             // 
             // frmSubscriptionData
             // 

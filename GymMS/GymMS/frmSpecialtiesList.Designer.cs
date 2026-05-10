@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.dgv_data = new System.Windows.Forms.DataGridView();
-            this.bn_add = new System.Windows.Forms.Button();
-            this.specialty_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.specialty_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bn_add = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_data)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,18 +48,14 @@
             this.dgv_data.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_data.Size = new System.Drawing.Size(268, 301);
             this.dgv_data.StandardTab = true;
-            this.dgv_data.TabIndex = 0;
+            this.dgv_data.TabIndex = 1;
             this.dgv_data.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_data_CellMouseDoubleClick);
             // 
-            // bn_add
+            // id
             // 
-            this.bn_add.Location = new System.Drawing.Point(214, 10);
-            this.bn_add.Name = "bn_add";
-            this.bn_add.Size = new System.Drawing.Size(66, 23);
-            this.bn_add.TabIndex = 3;
-            this.bn_add.Text = "Add";
-            this.bn_add.UseVisualStyleBackColor = true;
-            this.bn_add.Click += new System.EventHandler(this.bn_add_Click);
+            this.id.HeaderText = "Id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
             // 
             // specialty_name
             // 
@@ -67,11 +63,15 @@
             this.specialty_name.Name = "specialty_name";
             this.specialty_name.Width = 150;
             // 
-            // id
+            // bn_add
             // 
-            this.id.HeaderText = "Id";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
+            this.bn_add.Location = new System.Drawing.Point(214, 10);
+            this.bn_add.Name = "bn_add";
+            this.bn_add.Size = new System.Drawing.Size(66, 23);
+            this.bn_add.TabIndex = 0;
+            this.bn_add.Text = "Add";
+            this.bn_add.UseVisualStyleBackColor = true;
+            this.bn_add.Click += new System.EventHandler(this.bn_add_Click);
             // 
             // frmSpecialtiesList
             // 

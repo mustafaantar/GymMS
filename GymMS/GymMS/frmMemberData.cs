@@ -121,5 +121,18 @@ namespace GymMS
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void bn_close_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                //close the form
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
