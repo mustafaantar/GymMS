@@ -154,7 +154,7 @@ namespace GymDataAccess
             finally { con.Close(); }
         }
 
-        public static List<Subscription> ListData(int? memberId, int? typeId, DateTime? fromDate, DateTime? toDate)
+        public static List<Subscription> ListData(int memberId, int? typeId, DateTime? fromDate, DateTime? toDate)
         {
             //prepare connection
             SqlConnection con = GymDBConnection;
@@ -167,7 +167,7 @@ namespace GymDataAccess
                 //prepare the select statement
                 string str = "select * from subscriptions "
                 + "where member_id = @memberId"
-                + " and subscription_type = @TypeId"
+                + " and (subscription_type = @TypeId and @TypeId is null)"
                 + " and (start_date >= @fromDate or @fromDate is null)"
                 + " and (start_date <= @toDate or @toDate is null)";
 
