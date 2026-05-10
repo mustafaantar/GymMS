@@ -93,6 +93,9 @@ namespace GymMS
         {
             try
             {
+                //Validate data
+                GymDataValidation.CkechStartAndEndDate(DateTime.Now, d_booking_date.Value);
+
                 if (this.booking == null)
                 {
                     //create object and fill data then send it to the database

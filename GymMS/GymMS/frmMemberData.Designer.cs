@@ -141,12 +141,13 @@
             // 
             // bn_save
             // 
-            this.bn_save.Location = new System.Drawing.Point(309, 142);
+            this.bn_save.Location = new System.Drawing.Point(325, 142);
             this.bn_save.Name = "bn_save";
             this.bn_save.Size = new System.Drawing.Size(75, 23);
             this.bn_save.TabIndex = 8;
             this.bn_save.Text = "Save";
             this.bn_save.UseVisualStyleBackColor = true;
+            this.bn_save.Click += new System.EventHandler(this.bn_save_Click);
             // 
             // label7
             // 

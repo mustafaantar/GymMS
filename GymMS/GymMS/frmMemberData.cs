@@ -67,6 +67,11 @@ namespace GymMS
         {
             try
             {
+                //Validate data
+                GymDataValidation.CkechPhoneNo(tb_phone.Text);
+                GymDataValidation.CheckAge(d_birth_Date.Value);
+                GymDataValidation.CkechStartAndEndDate(d_end_date.Value, d_start_date.Value);
+
                 if (this.member == null)
                 {
                     //create object and fill data then send it to the database

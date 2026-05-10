@@ -75,6 +75,10 @@ namespace GymMS
         {
             try
             {
+                //Validate data
+                GymDataValidation.CkechAmount(int.Parse(tb_amount.Text));
+                GymDataValidation.CkechStartAndEndDate(DateTime.Now,d_payment_date.Value);
+
                 if (this.payment == null)
                 {
                     //create object and fill data then send it to the database

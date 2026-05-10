@@ -80,6 +80,9 @@ namespace GymMS
         {
             try
             {
+                //Validate data
+                GymDataValidation.CheckAge(dateTimePicker1.Value);
+
                 if (this.trainer == null)
                 {
                     //create object and fill data then send it to the database

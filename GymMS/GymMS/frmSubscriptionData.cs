@@ -80,6 +80,12 @@ namespace GymMS
         {
             try
             {
+                //validate date
+                GymDataValidation.CkechAmount(int.Parse(tb_amount.Text));
+                GymDataValidation.CkechAmount(int.Parse(tb_paid_amount.Text));
+                GymDataValidation.CkechSubscrptionAmount(int.Parse(tb_amount.Text),int.Parse(tb_paid_amount.Text));
+                GymDataValidation.CkechStartAndEndDate(d_toDate.Value, d_fromDate.Value);
+                
                 if (this.subscription == null)
                 {
                     //create object and fill data then send it to the database
