@@ -167,7 +167,7 @@ namespace GymDataAccess
                 //prepare the select statement
                 string str = "select * from subscriptions "
                 + "where (member_id = @memberId or @memberId is null)"
-                + " and (subscription_type = @TypeId and @TypeId is null)"
+                + " and (subscription_type = @TypeId or @TypeId is null)"
                 + " and (start_date >= @fromDate or @fromDate is null)"
                 + " and (start_date <= @toDate or @toDate is null)";
 
