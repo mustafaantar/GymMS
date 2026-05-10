@@ -75,6 +75,7 @@
             this.bn_add.TabIndex = 4;
             this.bn_add.Text = "Add";
             this.bn_add.UseVisualStyleBackColor = true;
+            this.bn_add.Click += new System.EventHandler(this.bn_add_Click_1);
             // 
             // dgv_data
             // 
