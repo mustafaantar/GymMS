@@ -160,6 +160,68 @@ namespace GymDataAccess
             return list;
         }
 
+        public static List<Trainer> ListTrainersData(string filter)
+        {
+            //prepare connection
+            SqlConnection con = GymDBConnection;
+
+            //create empty list
+            List<Trainer> list = new List<Trainer>();
+            try
+            {
+                //prepare select statement
+                string str = "select * from v_persons";
+
+                //if filter used add it to select statement
+                if ((filter != null) && (filter != ""))
+                    str += "where fullname like '%' + @filter + '%'";
+
+                //preparing command
+                SqlCommand comm = new SqlCommand(str, con);
+
+                //add filter to command
+                comm.Parameters.AddWithValue("@filter", string.IsNullOrEmpty(filter) ? (object)DBNull.Value : filter);
+
+
+                //open connection
+                if (GymDBConnection.State != System.Data.ConnectionState.Open)
+                    con.Open();
+
+                //Execute select statement
+                SqlDataReader reader = comm.ExecuteReader();
+
+                //if data exists read it
+                while (reader.Read())
+                {
+                    Person p;
+
+                    //create member or trainer object depending on person type
+                    if (reader["person_type"].ToString() == "Trainer")
+                        continue;
+                    p = new Member();
+
+                    //Assign data into object
+                    p.id = (int)reader["id"];
+                    p.fullName = reader["full_name"].ToString();
+                    p.phoneNumber = reader["phone_pumber"].ToString();
+                    p.address = reader["address"].ToString();
+                    p.birthDate = (DateTime)reader["birth_date"];
+                    p.createdBy = (int)reader["created_by"];
+                    p.creationDate = (DateTime)reader["creation_date"];
+
+                    //Add object to list
+                    list.Add((Trainer)p);
+                }
+            }
+            //any exception throw it to up level
+            catch (Exception ex) { throw ex; }
+            //close connection
+            finally { con.Close(); }
+
+            //return results
+            return list;
+        }
+
         public override string ToString()
         {
             //overridded method to display  person name
