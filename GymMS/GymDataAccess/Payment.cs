@@ -12,12 +12,12 @@ namespace GymDataAccess
         //variable members
         DateTime paymentDate;
         int subscriptionId;
-        decimal amount;
+        int amount;
 
         //Properties for Encapsulation
         public DateTime PaymentDate { get { return paymentDate; } set { paymentDate = value; } }
         public Subscription Subscription { get { return new Subscription(subscriptionId); } set { subscriptionId = value.Id; } }
-        public decimal Amount { get { return amount; } set { amount = value; } }
+        public int Amount { get { return amount; } set { amount = value; } }
 
         //constructors
         public Payment() { }
@@ -169,8 +169,9 @@ namespace GymDataAccess
                     p.id = (int)reader["id"];
                     p.paymentDate = (DateTime)reader["payment_date"];
                     p.subscriptionId = (int)reader["subscription_id"];
-                    p.amount = (decimal)reader["amount"];
+                    p.amount = (int)reader["amount"];
                     p.createdBy = (int)reader["created_by"];
+                    p.creationDate = (DateTime)reader["creation_date"];
 
                     //add object to list
                     list.Add(p);
