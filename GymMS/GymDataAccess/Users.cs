@@ -28,7 +28,7 @@ namespace GymDataAccess
         public string UserType
         {
             get { return userType == 'R' ? "Receiptist" : userType == 'M' ? "Manager" : "Accountant"; }
-            set { UserType = value; }
+            set { userType = value[0]; }
         }
 
         public bool IsActive
