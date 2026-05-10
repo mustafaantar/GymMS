@@ -50,14 +50,18 @@ namespace GymDataAccess
 
         public override void LoadById(int id)
         {
-            //prepare select statement
-            SqlCommand comm = new SqlCommand("select * from users where id=@id", GymDBConnection);
+            //prepare connection
+            SqlConnection con = GymDBConnection;
+
+            try
+            {
+                //prepare select statement
+                SqlCommand comm = new SqlCommand("select * from users where id=@id", con);
 
             //add parameters to command
             comm.Parameters.AddWithValue("@id", id);
 
-            try
-            {
+           
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
                 GymDBConnection.Open();
@@ -85,6 +89,9 @@ namespace GymDataAccess
         //methods
         public override void AddToDB(int userId)
         {
+            //prepare connection
+            SqlConnection con = GymDBConnection;
+
             //method to add data into database
             try
             {
@@ -93,7 +100,7 @@ namespace GymDataAccess
                                values (@user,@pass,@user_type,@active,@createdBy)";
 
                 //preparing command
-                SqlCommand comm = new SqlCommand(str, GymDBConnection);
+                SqlCommand comm = new SqlCommand(str, con);
 
                 //add parameters to command
                 comm.Parameters.AddWithValue("@user", username);
@@ -115,6 +122,9 @@ namespace GymDataAccess
 
         public override void UpdateInDB()
         {
+            //prepare connection
+            SqlConnection con = GymDBConnection;
+
             //method to edit data into database
             try
             {
@@ -125,7 +135,7 @@ namespace GymDataAccess
                                where id=@id";
 
                 //preparing command
-                SqlCommand cmd = new SqlCommand(str, GymDBConnection);
+                SqlCommand cmd = new SqlCommand(str, con);
 
                 //add parameters to command
                 cmd.Parameters.AddWithValue("@id", Id);
@@ -147,20 +157,24 @@ namespace GymDataAccess
 
         public static List<Users> ListData(string filter)
         {
+            //prepare connection
+            SqlConnection con = GymDBConnection;
+
             //create empty list
             List<Users> list = new List<Users>();
-
-            //prepare select statement
-            string str = "select * from users where (username like '%' + @filter + '%' or @filter is null)";
+            
+            try
+            {
+                //prepare select statement
+                string str = "select * from users where (username like '%' + @filter + '%' or @filter is null)";
 
             //preparing command
-            SqlCommand comm = new SqlCommand(str, GymDBConnection);
+            SqlCommand comm = new SqlCommand(str, con);
 
             //add filter to command
             comm.Parameters.AddWithValue("@filter", string.IsNullOrEmpty(filter) ? (object)DBNull.Value : filter);
 
-            try
-            {
+           
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
                 GymDBConnection.Open();
@@ -195,18 +209,22 @@ namespace GymDataAccess
 
         public static Users Login(string username, string password)
         {
-            //prepare select statement
-            string str = "select * from users where username=@username and password=@password";
+            //prepare connection
+            SqlConnection con = GymDBConnection;
+
+            try
+            {
+                //prepare select statement
+                string str = "select * from users where username=@username and password=@password";
 
             //preparing command
-            SqlCommand comm = new SqlCommand(str, GymDBConnection);
+            SqlCommand comm = new SqlCommand(str, con);
 
             //add parameters to command
             comm.Parameters.AddWithValue("@username", username);
             comm.Parameters.AddWithValue("@password", password);
 
-            try
-            {
+           
                 Users u = null;
 
                 //open connection
