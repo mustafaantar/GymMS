@@ -30,6 +30,12 @@ namespace GymDataAccess
             LoadById(id);
         }
 
+        //copy constrcutor
+        public Trainer(Trainer trainer):base(trainer)
+        {
+            
+        }
+
         public override void LoadById(int id)
         {
             //prepare connection

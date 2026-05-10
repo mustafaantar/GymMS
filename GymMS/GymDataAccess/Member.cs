@@ -39,11 +39,10 @@ namespace GymDataAccess
             LoadById(id);
         }
 
-        //copy constructor
-        public Member(Member copyMember)
+        //copy constrcutor
+        public Member(Member member) : base(member)
         {
-            this.id = copyMember.id;
-            LoadById(id);
+
         }
 
         public override void LoadById(int id)
