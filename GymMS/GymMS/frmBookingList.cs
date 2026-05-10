@@ -5,14 +5,14 @@ using System.Windows.Forms;
 
 namespace GymMS
 {
-    public partial class frmSubscriptionList : Form
+    public partial class frmBookingList : Form
     {
-        public frmSubscriptionList()
+        public frmBookingList()
         {
             InitializeComponent();
         }
 
-        private void frmSubscriptionList_Load(object sender, EventArgs e)
+        private void frmBookingList_Load(object sender, EventArgs e)
         {
             try
             {
@@ -21,20 +21,31 @@ namespace GymMS
 
                 cb_member.Items.Add("-");
 
-                //add members to comboBox
-                foreach (Member member in list)
-                    cb_member.Items.Add(member);
+                int index = 0;
 
-                //default selection
-                cb_member.SelectedIndex = 0;
+                //add items to comboBox
+                for (int i = 0; i < list.Count; i++)
+                {
+                    cb_member.Items.Add(list[i]);
+                }
 
-                //fill subscription type
-                cb_type.Items.Add("-");
-                cb_type.Items.Add("Weekly");
-                cb_type.Items.Add("Monthly");
-                cb_type.Items.Add("Yearly");
+                if (cb_member.Items.Count != 0)
+                    cb_member.SelectedIndex = index;
 
-                cb_type.SelectedIndex = 0;
+
+                //fill trainers list
+                list = GymDataAccess.Person.ListTrainersData(null);
+
+                cb_trainer.Items.Add("-");
+
+                //add items to comboBox
+                for (int i = 0; i < list.Count; i++)
+                {
+                    cb_trainer.Items.Add(list[i]);
+                }
+
+                if (cb_trainer.Items.Count != 0)
+                    cb_trainer.SelectedIndex = index;
             }
             catch (Exception ex)
             {
@@ -44,8 +55,9 @@ namespace GymMS
 
         private void bn_search_Click(object sender, EventArgs e)
         {
-            try
+             try
             {
+                //search for payments
                 Search();
             }
             catch (Exception ex)
@@ -61,10 +73,16 @@ namespace GymMS
                 //clear grid
                 dgv_data.Rows.Clear();
 
-                //filters
+                //check filters
                 int? memberId = null;
+
                 if (cb_member.SelectedIndex > 0)
                     memberId = ((Member)cb_member.SelectedItem).Id;
+
+                int? trainerId = null;
+
+                if (cb_trainer.SelectedIndex > 0)
+                    trainerId = ((Trainer)cb_member.SelectedItem).Id;
 
                 DateTime? fromDate = null;
                 if (f_fromDate.Checked)
@@ -74,36 +92,22 @@ namespace GymMS
                 if (f_toDate.Checked)
                     toDate = f_toDate.Value;
 
-                int? type = null;
-                if (cb_type.SelectedIndex > 0)
-                    type = cb_type.SelectedIndex;
-
-                //read data
-                List<Subscription> list = Subscription.ListData(
-                    memberId,
-                    type,
-                    fromDate,
-                    toDate
-                );
+                //read data from database
+                List<Booking> list = Booking.ListData(memberId,trainerId, fromDate, toDate);
 
                 //fill grid
-                foreach (Subscription s in list)
+                foreach (Booking p in list)
                 {
                     int rowIndex = dgv_data.Rows.Add(
-                        s.Id,
-                        s.Member.FullName,
-                        (s.SubscriptionType == 1 ? "Weekly" :
-                         s.SubscriptionType == 2 ? "Monthly" : "Yearly"),
-                        s.SubscriptionAmount,
-                        s.PaidAmount,
-                        s.StartDate,
-                        s.EndDate,
-                        s.CreatedBy.Username,
-                        s.CreationDate
-                    );
+                        p.Id,
+                        p.Member.FullName,
+                        p.Trainer.FullName,
+                        p.BookingDate,
+                        p.CreatedBy.Username,
+                        p.CreationDate);
 
-                    //store object
-                    dgv_data.Rows[rowIndex].Tag = s;
+                    //store object in row
+                    dgv_data.Rows[rowIndex].Tag = p;
                 }
             }
             catch (Exception ex)
@@ -116,8 +120,8 @@ namespace GymMS
         {
             try
             {
-                //open add form
-                (new frmSubscriptionData()).ShowDialog();
+                //open payment form (NOT subscription form)
+                (new frmBookingData()).ShowDialog();
 
                 //refresh data
                 Search();
@@ -136,13 +140,13 @@ namespace GymMS
                 if (dgv_data.SelectedRows.Count == 0)
                     return;
 
-                //get selected object
-                Subscription s = (Subscription)dgv_data.CurrentRow.Tag;
+                //get selected payment object
+                Booking p = (Booking)dgv_data.CurrentRow.Tag;
 
                 //open edit form
-                (new frmSubscriptionData(s)).ShowDialog();
+                (new frmBookingData(p)).ShowDialog();
 
-                //refresh data
+                //refresh grid
                 Search();
             }
             catch (Exception ex)
@@ -153,7 +157,7 @@ namespace GymMS
 
         private void bn_add_Click_1(object sender, EventArgs e)
         {
-            frmSubscriptionData f = new frmSubscriptionData();
+            frmBookingData f = new frmBookingData();
             f.ShowDialog();
             Search();
         }

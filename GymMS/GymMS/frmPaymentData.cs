@@ -1,5 +1,6 @@
 ﻿using GymDataAccess;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace GymMS
@@ -24,6 +25,14 @@ namespace GymMS
         {
             try
             {
+                List<Subscription> list = Subscription.ListData(null, null, null, null);
+                for (int i = 0; i < list.Count; i++)
+                {
+                    cb_subscription.Items.Add(list[i]);
+                }
+
+                if (list.Count != 0)
+                    cb_subscription.SelectedIndex = 0;
                 //if form opened for adding return (do nothing)
                 if (this.payment == null)
                     return;

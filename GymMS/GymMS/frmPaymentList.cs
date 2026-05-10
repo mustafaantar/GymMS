@@ -149,5 +149,12 @@ namespace GymMS
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void bn_add_Click_1(object sender, EventArgs e)
+        {
+            frmPaymentData f = new frmPaymentData();
+            f.ShowDialog();
+            Search();
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace GymMS
 {
-    partial class frmPaymentList
+    partial class frmBookingList
     {
         /// <summary>
         /// Required designer variable.
@@ -34,23 +34,23 @@
             this.dgv_data = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Member = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subscription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sub_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.payment_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.trainerId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.book_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.created_by = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.creatoin_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cb_sub = new System.Windows.Forms.ComboBox();
+            this.cb_member = new System.Windows.Forms.ComboBox();
             this.f_fromDate = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.f_toDate = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cb_trainer = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_data)).BeginInit();
             this.SuspendLayout();
             // 
             // bn_search
             // 
-            this.bn_search.Location = new System.Drawing.Point(610, 9);
+            this.bn_search.Location = new System.Drawing.Point(590, 9);
             this.bn_search.Name = "bn_search";
             this.bn_search.Size = new System.Drawing.Size(67, 23);
             this.bn_search.TabIndex = 3;
@@ -63,9 +63,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 13);
+            this.label1.Size = new System.Drawing.Size(48, 13);
             this.label1.TabIndex = 11;
-            this.label1.Text = "Subscription:";
+            this.label1.Text = "Member:";
             // 
             // bn_add
             // 
@@ -84,17 +84,15 @@
             this.dgv_data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
             this.Member,
-            this.subscription,
-            this.sub_date,
-            this.payment_date,
-            this.amount,
+            this.trainerId,
+            this.book_date,
             this.created_by,
             this.creatoin_date});
-            this.dgv_data.Location = new System.Drawing.Point(12, 39);
+            this.dgv_data.Location = new System.Drawing.Point(12, 65);
             this.dgv_data.Name = "dgv_data";
             this.dgv_data.RowHeadersWidth = 15;
             this.dgv_data.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_data.Size = new System.Drawing.Size(892, 445);
+            this.dgv_data.Size = new System.Drawing.Size(892, 419);
             this.dgv_data.StandardTab = true;
             this.dgv_data.TabIndex = 5;
             this.dgv_data.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_data_CellMouseDoubleClick);
@@ -113,29 +111,18 @@
             this.Member.ReadOnly = true;
             this.Member.Width = 225;
             // 
-            // subscription
+            // trainerId
             // 
-            this.subscription.HeaderText = "Sub. No.";
-            this.subscription.Name = "subscription";
-            this.subscription.ReadOnly = true;
+            this.trainerId.HeaderText = "Trainer";
+            this.trainerId.Name = "trainerId";
+            this.trainerId.ReadOnly = true;
+            this.trainerId.Width = 225;
             // 
-            // sub_date
+            // book_date
             // 
-            this.sub_date.HeaderText = "Sub. Date";
-            this.sub_date.Name = "sub_date";
-            this.sub_date.ReadOnly = true;
-            // 
-            // payment_date
-            // 
-            this.payment_date.HeaderText = "Payment date";
-            this.payment_date.Name = "payment_date";
-            this.payment_date.ReadOnly = true;
-            // 
-            // amount
-            // 
-            this.amount.HeaderText = "Amount";
-            this.amount.Name = "amount";
-            this.amount.ReadOnly = true;
+            this.book_date.HeaderText = "Booking date";
+            this.book_date.Name = "book_date";
+            this.book_date.ReadOnly = true;
             // 
             // created_by
             // 
@@ -149,20 +136,21 @@
             this.creatoin_date.Name = "creatoin_date";
             this.creatoin_date.ReadOnly = true;
             // 
-            // cb_sub
+            // cb_member
             // 
-            this.cb_sub.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_sub.FormattingEnabled = true;
-            this.cb_sub.Location = new System.Drawing.Point(86, 11);
-            this.cb_sub.Name = "cb_sub";
-            this.cb_sub.Size = new System.Drawing.Size(182, 21);
-            this.cb_sub.TabIndex = 0;
+            this.cb_member.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_member.FormattingEnabled = true;
+            this.cb_member.Location = new System.Drawing.Point(66, 11);
+            this.cb_member.Name = "cb_member";
+            this.cb_member.Size = new System.Drawing.Size(182, 21);
+            this.cb_member.TabIndex = 0;
             // 
             // f_fromDate
             // 
+            this.f_fromDate.Checked = false;
             this.f_fromDate.CustomFormat = "dd/MM/yyyy";
             this.f_fromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.f_fromDate.Location = new System.Drawing.Point(337, 12);
+            this.f_fromDate.Location = new System.Drawing.Point(317, 12);
             this.f_fromDate.Name = "f_fromDate";
             this.f_fromDate.ShowCheckBox = true;
             this.f_fromDate.ShowUpDown = true;
@@ -172,7 +160,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(274, 14);
+            this.label2.Location = new System.Drawing.Point(254, 14);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(57, 13);
             this.label2.TabIndex = 11;
@@ -180,9 +168,10 @@
             // 
             // f_toDate
             // 
+            this.f_toDate.Checked = false;
             this.f_toDate.CustomFormat = "dd/MM/yyyy";
             this.f_toDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.f_toDate.Location = new System.Drawing.Point(500, 12);
+            this.f_toDate.Location = new System.Drawing.Point(480, 12);
             this.f_toDate.Name = "f_toDate";
             this.f_toDate.ShowCheckBox = true;
             this.f_toDate.ShowUpDown = true;
@@ -192,13 +181,31 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(447, 14);
+            this.label3.Location = new System.Drawing.Point(427, 14);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 15;
             this.label3.Text = "To date:";
             // 
-            // frmPaymentList
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 41);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(43, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Trainer:";
+            // 
+            // cb_trainer
+            // 
+            this.cb_trainer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_trainer.FormattingEnabled = true;
+            this.cb_trainer.Location = new System.Drawing.Point(66, 38);
+            this.cb_trainer.Name = "cb_trainer";
+            this.cb_trainer.Size = new System.Drawing.Size(182, 21);
+            this.cb_trainer.TabIndex = 0;
+            // 
+            // frmBookingList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -206,18 +213,20 @@
             this.Controls.Add(this.f_toDate);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.f_fromDate);
-            this.Controls.Add(this.cb_sub);
+            this.Controls.Add(this.cb_trainer);
+            this.Controls.Add(this.cb_member);
             this.Controls.Add(this.bn_search);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.bn_add);
             this.Controls.Add(this.dgv_data);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmPaymentList";
+            this.Name = "frmBookingList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Payments list";
-            this.Load += new System.EventHandler(this.frmPaymentList_Load);
+            this.Text = "Booking list";
+            this.Load += new System.EventHandler(this.frmBookingList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_data)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -230,18 +239,18 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button bn_add;
         private System.Windows.Forms.DataGridView dgv_data;
-        private System.Windows.Forms.ComboBox cb_sub;
+        private System.Windows.Forms.ComboBox cb_member;
         private System.Windows.Forms.DateTimePicker f_fromDate;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker f_toDate;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Member;
-        private System.Windows.Forms.DataGridViewTextBoxColumn subscription;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sub_date;
-        private System.Windows.Forms.DataGridViewTextBoxColumn payment_date;
-        private System.Windows.Forms.DataGridViewTextBoxColumn amount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn trainerId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn book_date;
         private System.Windows.Forms.DataGridViewTextBoxColumn created_by;
         private System.Windows.Forms.DataGridViewTextBoxColumn creatoin_date;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cb_trainer;
     }
 }
