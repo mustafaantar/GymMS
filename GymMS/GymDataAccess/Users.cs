@@ -58,13 +58,13 @@ namespace GymDataAccess
                 //prepare select statement
                 SqlCommand comm = new SqlCommand("select * from users where id=@id", con);
 
-            //add parameters to command
-            comm.Parameters.AddWithValue("@id", id);
+                //add parameters to command
+                comm.Parameters.AddWithValue("@id", id);
 
-           
+
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
-                con.Open();
+                    con.Open();
 
                 //Execute select statement
                 SqlDataReader reader = comm.ExecuteReader();
@@ -111,7 +111,7 @@ namespace GymDataAccess
 
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
-                con.Open();
+                    con.Open();
 
                 //Execute insert statement
                 comm.ExecuteNonQuery();
@@ -146,7 +146,7 @@ namespace GymDataAccess
 
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
-                con.Open();
+                    con.Open();
 
                 //Execute update statement
                 cmd.ExecuteNonQuery();
@@ -162,22 +162,22 @@ namespace GymDataAccess
 
             //create empty list
             List<Users> list = new List<Users>();
-            
+
             try
             {
                 //prepare select statement
                 string str = "select * from users where (username like '%' + @filter + '%' or @filter is null)";
 
-            //preparing command
-            SqlCommand comm = new SqlCommand(str, con);
+                //preparing command
+                SqlCommand comm = new SqlCommand(str, con);
 
-            //add filter to command
-            comm.Parameters.AddWithValue("@filter", string.IsNullOrEmpty(filter) ? (object)DBNull.Value : filter);
+                //add filter to command
+                comm.Parameters.AddWithValue("@filter", string.IsNullOrEmpty(filter) ? (object)DBNull.Value : filter);
 
-           
+
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
-                con.Open();
+                    con.Open();
 
                 //Execute select statement
                 SqlDataReader reader = comm.ExecuteReader();
@@ -217,19 +217,19 @@ namespace GymDataAccess
                 //prepare select statement
                 string str = "select * from users where username=@username and password=@password";
 
-            //preparing command
-            SqlCommand comm = new SqlCommand(str, con);
+                //preparing command
+                SqlCommand comm = new SqlCommand(str, con);
 
-            //add parameters to command
-            comm.Parameters.AddWithValue("@username", username);
-            comm.Parameters.AddWithValue("@password", password);
+                //add parameters to command
+                comm.Parameters.AddWithValue("@username", username);
+                comm.Parameters.AddWithValue("@password", password);
 
-           
+
                 Users u = null;
 
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
-                con.Open();
+                    con.Open();
 
                 //Execute select statement
                 SqlDataReader reader = comm.ExecuteReader();

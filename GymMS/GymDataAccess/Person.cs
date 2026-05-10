@@ -60,20 +60,20 @@ namespace GymDataAccess
             SqlConnection con = GymDBConnection;
 
             //create empty list
-            List<Person> list = new List<Person>(); 
-            
+            List<Person> list = new List<Person>();
+
             try
             {
-            //prepare select statement
-            string str = "select * from v_persons where (full_name like '%' + @filter + '%' or @filter is null)";
+                //prepare select statement
+                string str = "select * from v_persons where (full_name like '%' + @filter + '%' or @filter is null)";
 
-            //preparing command
-            SqlCommand comm = new SqlCommand(str, con);
+                //preparing command
+                SqlCommand comm = new SqlCommand(str, con);
 
-            //add filter to command
-            comm.Parameters.AddWithValue("@filter", string.IsNullOrEmpty(filter) ? (object)DBNull.Value : filter);
+                //add filter to command
+                comm.Parameters.AddWithValue("@filter", string.IsNullOrEmpty(filter) ? (object)DBNull.Value : filter);
 
-           
+
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
                     con.Open();
@@ -114,23 +114,23 @@ namespace GymDataAccess
             List<Person> list = new List<Person>();
             try
             {
-            //prepare select statement
-            string str = "select * from v_persons";
+                //prepare select statement
+                string str = "select * from v_persons";
 
-            //if filter used add it to select statement
-            if ((filter != null) && (filter != ""))
-                str += "where fullname like '%' + @filter + '%'";
+                //if filter used add it to select statement
+                if ((filter != null) && (filter != ""))
+                    str += "where fullname like '%' + @filter + '%'";
 
-            //preparing command
-            SqlCommand comm = new SqlCommand(str, con);
+                //preparing command
+                SqlCommand comm = new SqlCommand(str, con);
 
-            //add filter to command
-            comm.Parameters.AddWithValue("@filter", string.IsNullOrEmpty(filter) ? (object)DBNull.Value : filter);
+                //add filter to command
+                comm.Parameters.AddWithValue("@filter", string.IsNullOrEmpty(filter) ? (object)DBNull.Value : filter);
 
-            
+
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
-                con.Open();
+                    con.Open();
 
                 //Execute select statement
                 SqlDataReader reader = comm.ExecuteReader();

@@ -31,9 +31,9 @@ namespace GymDataAccess
         }
 
         //copy constrcutor
-        public Trainer(Trainer trainer):base(trainer)
+        public Trainer(Trainer trainer) : base(trainer)
         {
-            
+
         }
 
         public override void LoadById(int id)
@@ -51,7 +51,7 @@ namespace GymDataAccess
             {
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
-                con.Open();
+                    con.Open();
 
                 //Execute select statement
                 SqlDataReader reader = comm.ExecuteReader();
@@ -97,7 +97,7 @@ namespace GymDataAccess
 
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
-                con.Open();
+                    con.Open();
 
                 //Execute insert statement
                 comm.ExecuteNonQuery();

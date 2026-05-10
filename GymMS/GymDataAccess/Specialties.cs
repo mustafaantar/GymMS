@@ -124,10 +124,10 @@ namespace GymDataAccess
                 //prepare select statement
                 string str = "select * from specialties";
 
-            //preparing command
-            SqlCommand comm = new SqlCommand(str, con);
+                //preparing command
+                SqlCommand comm = new SqlCommand(str, con);
 
-          
+
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
                     con.Open();

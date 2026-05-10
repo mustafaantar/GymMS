@@ -49,7 +49,7 @@ namespace GymDataAccess
         {
             //prepare connection
             SqlConnection con = GymDBConnection;
-            
+
             //read object data and assign it to the variable members
             try
             {
@@ -64,7 +64,7 @@ namespace GymDataAccess
 
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
-                con.Open();
+                    con.Open();
 
                 //Execute select statement
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -116,7 +116,7 @@ namespace GymDataAccess
 
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
-                con.Open();
+                    con.Open();
 
                 //Execute insert statement
                 comm.ExecuteNonQuery();

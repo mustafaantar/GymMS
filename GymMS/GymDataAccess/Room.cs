@@ -96,7 +96,7 @@ namespace GymDataAccess
 
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
-                con.Open();
+                    con.Open();
 
                 //execute insert statement
                 cmd.ExecuteNonQuery();
@@ -127,7 +127,7 @@ namespace GymDataAccess
 
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
-                con.Open();
+                    con.Open();
 
                 //execute update statement
                 cmd.ExecuteNonQuery();
