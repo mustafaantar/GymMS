@@ -40,7 +40,7 @@ namespace GymDataAccess
 
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
-                    GymDBConnection.Open();
+                    con.Open();
 
                 //execute command
                 SqlDataReader datareader = cmd.ExecuteReader();
@@ -60,7 +60,7 @@ namespace GymDataAccess
             //any exception throw it to up level
             catch (Exception ex) { throw ex; }
             //close connection
-            finally { GymDBConnection.Close(); }
+            finally { con.Close(); }
         }
 
         public override void AddToDB(int userId)
@@ -85,7 +85,7 @@ namespace GymDataAccess
 
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
-                GymDBConnection.Open();
+                con.Open();
 
                 //execute command
                 cmd.ExecuteNonQuery();
@@ -93,7 +93,7 @@ namespace GymDataAccess
             //any exception throw it to up level
             catch (Exception ex) { throw ex; }
             //close connection
-            finally { GymDBConnection.Close(); }
+            finally { con.Close(); }
         }
 
         public override void UpdateInDB()
@@ -116,7 +116,7 @@ namespace GymDataAccess
 
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
-                    GymDBConnection.Open();
+                    con.Open();
 
                 //execute command
                 cmd.ExecuteNonQuery();
@@ -124,7 +124,7 @@ namespace GymDataAccess
             //any exception throw it to up level
             catch (Exception ex) { throw ex; }
             //close connection
-            finally { GymDBConnection.Close(); }
+            finally { con.Close(); }
         }
 
         public static List<Payment> ListData(int? memberId, DateTime? fromDate, DateTime? toDate)
@@ -155,7 +155,7 @@ namespace GymDataAccess
             
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
-                GymDBConnection.Open();
+                con.Open();
 
                 //execute select statement
                 SqlDataReader reader = comm.ExecuteReader();
@@ -178,7 +178,7 @@ namespace GymDataAccess
             //any exception throw it to up level
             catch (Exception ex) { throw ex; }
             //close connection
-            finally { GymDBConnection.Close(); }
+            finally { con.Close(); }
 
             //return result list
             return list;

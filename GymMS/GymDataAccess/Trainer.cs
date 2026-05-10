@@ -45,7 +45,7 @@ namespace GymDataAccess
             {
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
-                GymDBConnection.Open();
+                con.Open();
 
                 //Execute select statement
                 SqlDataReader reader = comm.ExecuteReader();
@@ -64,7 +64,7 @@ namespace GymDataAccess
                 }
             }
             //close connection
-            finally { GymDBConnection.Close(); }
+            finally { con.Close(); }
         }
 
         public override void AddToDB(int userId)
@@ -91,13 +91,13 @@ namespace GymDataAccess
 
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
-                GymDBConnection.Open();
+                con.Open();
 
                 //Execute insert statement
                 comm.ExecuteNonQuery();
             }
             //close connection
-            finally { GymDBConnection.Close(); }
+            finally { con.Close(); }
         }
 
         public override void UpdateInDB()
@@ -124,13 +124,13 @@ namespace GymDataAccess
 
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
-                    GymDBConnection.Open();
+                    con.Open();
 
                 //Execute update statement
                 cmd.ExecuteNonQuery();
             }
             //close connection
-            finally { GymDBConnection.Close(); }
+            finally { con.Close(); }
         }
 
         public override string ToString()
