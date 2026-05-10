@@ -205,7 +205,7 @@ namespace GymDataAccess
                     //create member or trainer object depending on person type
                     if (reader["person_type"].ToString() == "Trainer")
                         continue;
-                    p = new Member();
+                    p = new Trainer();
 
                     //Assign data into object
                     p.id = (int)reader["id"];
