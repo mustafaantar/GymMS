@@ -1,5 +1,4 @@
 ﻿using GymDataAccess;
-using GymDataAccess.GymDataAccess;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;

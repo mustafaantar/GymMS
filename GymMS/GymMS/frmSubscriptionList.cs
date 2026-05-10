@@ -17,8 +17,7 @@ namespace GymMS
             try
             {
                 //fill members list
-                List<GymDataAccess.Member> list =
-                    GymDataAccess.Person.ListMembersData(null);
+                List<GymDataAccess.Person> list = GymDataAccess.Person.ListMembersData(null);
 
                 cb_member.Items.Add("-");
 
