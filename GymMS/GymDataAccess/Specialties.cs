@@ -62,7 +62,7 @@ namespace GymDataAccess
             try
             {
                 SqlCommand cmd = new SqlCommand(
-                "insert into specialties (specialty_name, created_by, creation_date) values (@name, @createdBy, @creationDate)", con);
+                "insert into specialties (specialty_name, created_by, creation_date) values (@name, @createdBy)", con);
 
                 //add parameter values
                 cmd.Parameters.AddWithValue("@name", specialtyName);
