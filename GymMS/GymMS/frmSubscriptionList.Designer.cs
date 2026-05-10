@@ -56,7 +56,7 @@
             this.bn_search.Location = new System.Drawing.Point(816, 9);
             this.bn_search.Name = "bn_search";
             this.bn_search.Size = new System.Drawing.Size(67, 23);
-            this.bn_search.TabIndex = 12;
+            this.bn_search.TabIndex = 4;
             this.bn_search.Text = "Search";
             this.bn_search.UseVisualStyleBackColor = true;
             this.bn_search.Click += new System.EventHandler(this.bn_search_Click);
@@ -75,7 +75,7 @@
             this.bn_add.Location = new System.Drawing.Point(889, 8);
             this.bn_add.Name = "bn_add";
             this.bn_add.Size = new System.Drawing.Size(66, 23);
-            this.bn_add.TabIndex = 9;
+            this.bn_add.TabIndex = 5;
             this.bn_add.Text = "Add";
             this.bn_add.UseVisualStyleBackColor = true;
             // 
@@ -99,7 +99,7 @@
             this.dgv_data.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_data.Size = new System.Drawing.Size(943, 445);
             this.dgv_data.StandardTab = true;
-            this.dgv_data.TabIndex = 8;
+            this.dgv_data.TabIndex = 6;
             this.dgv_data.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_data_CellMouseDoubleClick);
             // 
             // id
@@ -166,7 +166,7 @@
             this.cb_member.Location = new System.Drawing.Point(66, 11);
             this.cb_member.Name = "cb_member";
             this.cb_member.Size = new System.Drawing.Size(182, 21);
-            this.cb_member.TabIndex = 13;
+            this.cb_member.TabIndex = 0;
             // 
             // f_fromDate
             // 
@@ -177,7 +177,7 @@
             this.f_fromDate.ShowCheckBox = true;
             this.f_fromDate.ShowUpDown = true;
             this.f_fromDate.Size = new System.Drawing.Size(104, 20);
-            this.f_fromDate.TabIndex = 14;
+            this.f_fromDate.TabIndex = 2;
             // 
             // label2
             // 
@@ -197,7 +197,7 @@
             this.f_toDate.ShowCheckBox = true;
             this.f_toDate.ShowUpDown = true;
             this.f_toDate.Size = new System.Drawing.Size(104, 20);
-            this.f_toDate.TabIndex = 16;
+            this.f_toDate.TabIndex = 3;
             // 
             // label3
             // 
@@ -215,7 +215,7 @@
             this.cb_type.Location = new System.Drawing.Point(319, 11);
             this.cb_type.Name = "cb_type";
             this.cb_type.Size = new System.Drawing.Size(113, 21);
-            this.cb_type.TabIndex = 18;
+            this.cb_type.TabIndex = 1;
             // 
             // label4
             // 

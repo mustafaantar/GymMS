@@ -32,11 +32,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.bn_add = new System.Windows.Forms.Button();
             this.dgv_data = new System.Windows.Forms.DataGridView();
-            this.cb_sub = new System.Windows.Forms.ComboBox();
-            this.f_fromDate = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.f_toDate = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Member = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.subscription = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,6 +40,11 @@
             this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.created_by = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.creatoin_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cb_sub = new System.Windows.Forms.ComboBox();
+            this.f_fromDate = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.f_toDate = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_data)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,7 +53,7 @@
             this.bn_search.Location = new System.Drawing.Point(610, 9);
             this.bn_search.Name = "bn_search";
             this.bn_search.Size = new System.Drawing.Size(67, 23);
-            this.bn_search.TabIndex = 12;
+            this.bn_search.TabIndex = 3;
             this.bn_search.Text = "Search";
             this.bn_search.UseVisualStyleBackColor = true;
             this.bn_search.Click += new System.EventHandler(this.bn_search_Click);
@@ -72,7 +72,7 @@
             this.bn_add.Location = new System.Drawing.Point(838, 8);
             this.bn_add.Name = "bn_add";
             this.bn_add.Size = new System.Drawing.Size(66, 23);
-            this.bn_add.TabIndex = 9;
+            this.bn_add.TabIndex = 4;
             this.bn_add.Text = "Add";
             this.bn_add.UseVisualStyleBackColor = true;
             // 
@@ -95,57 +95,8 @@
             this.dgv_data.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_data.Size = new System.Drawing.Size(892, 445);
             this.dgv_data.StandardTab = true;
-            this.dgv_data.TabIndex = 8;
+            this.dgv_data.TabIndex = 5;
             this.dgv_data.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_data_CellMouseDoubleClick);
-            // 
-            // cb_sub
-            // 
-            this.cb_sub.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_sub.FormattingEnabled = true;
-            this.cb_sub.Location = new System.Drawing.Point(86, 11);
-            this.cb_sub.Name = "cb_sub";
-            this.cb_sub.Size = new System.Drawing.Size(182, 21);
-            this.cb_sub.TabIndex = 13;
-            // 
-            // f_fromDate
-            // 
-            this.f_fromDate.CustomFormat = "dd/MM/yyyy";
-            this.f_fromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.f_fromDate.Location = new System.Drawing.Point(337, 12);
-            this.f_fromDate.Name = "f_fromDate";
-            this.f_fromDate.ShowCheckBox = true;
-            this.f_fromDate.ShowUpDown = true;
-            this.f_fromDate.Size = new System.Drawing.Size(104, 20);
-            this.f_fromDate.TabIndex = 14;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(274, 14);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 13);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "From date:";
-            // 
-            // f_toDate
-            // 
-            this.f_toDate.CustomFormat = "dd/MM/yyyy";
-            this.f_toDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.f_toDate.Location = new System.Drawing.Point(500, 12);
-            this.f_toDate.Name = "f_toDate";
-            this.f_toDate.ShowCheckBox = true;
-            this.f_toDate.ShowUpDown = true;
-            this.f_toDate.Size = new System.Drawing.Size(104, 20);
-            this.f_toDate.TabIndex = 16;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(447, 14);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 13);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "To date:";
             // 
             // id
             // 
@@ -196,6 +147,55 @@
             this.creatoin_date.HeaderText = "Creation date";
             this.creatoin_date.Name = "creatoin_date";
             this.creatoin_date.ReadOnly = true;
+            // 
+            // cb_sub
+            // 
+            this.cb_sub.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_sub.FormattingEnabled = true;
+            this.cb_sub.Location = new System.Drawing.Point(86, 11);
+            this.cb_sub.Name = "cb_sub";
+            this.cb_sub.Size = new System.Drawing.Size(182, 21);
+            this.cb_sub.TabIndex = 0;
+            // 
+            // f_fromDate
+            // 
+            this.f_fromDate.CustomFormat = "dd/MM/yyyy";
+            this.f_fromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.f_fromDate.Location = new System.Drawing.Point(337, 12);
+            this.f_fromDate.Name = "f_fromDate";
+            this.f_fromDate.ShowCheckBox = true;
+            this.f_fromDate.ShowUpDown = true;
+            this.f_fromDate.Size = new System.Drawing.Size(104, 20);
+            this.f_fromDate.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(274, 14);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(57, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "From date:";
+            // 
+            // f_toDate
+            // 
+            this.f_toDate.CustomFormat = "dd/MM/yyyy";
+            this.f_toDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.f_toDate.Location = new System.Drawing.Point(500, 12);
+            this.f_toDate.Name = "f_toDate";
+            this.f_toDate.ShowCheckBox = true;
+            this.f_toDate.ShowUpDown = true;
+            this.f_toDate.Size = new System.Drawing.Size(104, 20);
+            this.f_toDate.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(447, 14);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 13);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "To date:";
             // 
             // frmPaymentList
             // 

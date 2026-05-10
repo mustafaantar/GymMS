@@ -64,14 +64,14 @@
             this.tb_password.Location = new System.Drawing.Point(265, 38);
             this.tb_password.Name = "tb_password";
             this.tb_password.Size = new System.Drawing.Size(119, 20);
-            this.tb_password.TabIndex = 5;
+            this.tb_password.TabIndex = 2;
             // 
             // tb_username
             // 
             this.tb_username.Location = new System.Drawing.Point(76, 38);
             this.tb_username.Name = "tb_username";
             this.tb_username.Size = new System.Drawing.Size(119, 20);
-            this.tb_username.TabIndex = 6;
+            this.tb_username.TabIndex = 1;
             // 
             // bn_save
             // 
@@ -90,7 +90,7 @@
             this.cb_type.Location = new System.Drawing.Point(76, 64);
             this.cb_type.Name = "cb_type";
             this.cb_type.Size = new System.Drawing.Size(119, 21);
-            this.cb_type.TabIndex = 10;
+            this.cb_type.TabIndex = 3;
             // 
             // label3
             // 
@@ -107,7 +107,7 @@
             this.tb_id.Name = "tb_id";
             this.tb_id.ReadOnly = true;
             this.tb_id.Size = new System.Drawing.Size(119, 20);
-            this.tb_id.TabIndex = 6;
+            this.tb_id.TabIndex = 0;
             // 
             // label4
             // 
@@ -123,7 +123,7 @@
             this.bn_close.Location = new System.Drawing.Point(12, 112);
             this.bn_close.Name = "bn_close";
             this.bn_close.Size = new System.Drawing.Size(75, 23);
-            this.bn_close.TabIndex = 4;
+            this.bn_close.TabIndex = 5;
             this.bn_close.Text = "Close";
             this.bn_close.UseVisualStyleBackColor = true;
             this.bn_close.Click += new System.EventHandler(this.bn_close_Click);

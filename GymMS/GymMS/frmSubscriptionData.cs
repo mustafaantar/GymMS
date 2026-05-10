@@ -18,7 +18,6 @@ namespace GymMS
         {
             InitializeComponent();
 
-            //assign existing object (FIXED: previously wrong initialization)
             this.subscription = s;
         }
 

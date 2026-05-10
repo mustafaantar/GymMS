@@ -186,7 +186,6 @@ namespace GymDataAccess
 
                 //execute select statement
                 SqlDataReader reader = comm.ExecuteReader();
-
                 while (reader.Read())
                 {
                     //create new Subscriptions object
