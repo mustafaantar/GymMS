@@ -50,16 +50,16 @@ namespace GymDataAccess
             { //prepare select statement
                 string str = "select * from subscriptions where id=@id";
 
-            //prepare SQL statement
-            SqlCommand comm = new SqlCommand(str, con);
+                //prepare SQL statement
+                SqlCommand comm = new SqlCommand(str, con);
 
-            //Add parameters to the command (to avoid SQL Injuction
-            comm.Parameters.AddWithValue("@id", id);
+                //Add parameters to the command (to avoid SQL Injuction
+                comm.Parameters.AddWithValue("@id", id);
 
-           
+
                 //open the connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
-                con.Open();
+                    con.Open();
 
                 //execute select statement
                 SqlDataReader reader = comm.ExecuteReader();
@@ -68,15 +68,15 @@ namespace GymDataAccess
                 if (reader.Read())
                 {
                     //assign the data into the variable members of the object
-                    id = (int)reader["id"];
-                    memberId = (int)reader["member_id"];
-                    subscriptionType = (int)reader["subscription_type"];
-                    subscriptionAmount = (int)reader["subscription_amount"];
-                    paidAmount = (int)reader["paid_amount"];
-                    startDate = (DateTime)reader["start_date"];
-                    endDate = (DateTime)reader["end_date"];
-                    createdBy = (int)reader["created_by"];
-                    creationDate = (DateTime)reader["creation_date"];
+                    this.id = (int)reader["id"];
+                    this.memberId = (int)reader["member_id"];
+                    this.subscriptionType = (int)reader["subscription_type"];
+                    this.subscriptionAmount = (int)reader["subscription_amount"];
+                    this.paidAmount = (int)reader["paid_amount"];
+                    this.startDate = (DateTime)reader["start_date"];
+                    this.endDate = (DateTime)reader["end_date"];
+                    this.createdBy = (int)reader["created_by"];
+                    this.creationDate = (DateTime)reader["creation_date"];
                 }
             }
             //close the conneciton
@@ -110,7 +110,7 @@ namespace GymDataAccess
 
                 //Open the database connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
-                con.Open();
+                    con.Open();
 
                 //execute the insert statement
                 comm.ExecuteNonQuery();
@@ -171,18 +171,18 @@ namespace GymDataAccess
                 + " and (start_date >= @fromDate or @fromDate is null)"
                 + " and (start_date <= @toDate or @toDate is null)";
 
-            //prepare SQL command
-            SqlCommand comm = new SqlCommand(str, con);
+                //prepare SQL command
+                SqlCommand comm = new SqlCommand(str, con);
 
-            comm.Parameters.AddWithValue("@memberId", (object)memberId ?? DBNull.Value);
-            comm.Parameters.AddWithValue("@TypeId", (object)typeId ?? DBNull.Value);
-            comm.Parameters.AddWithValue("@fromDate", (object)fromDate ?? DBNull.Value);
-            comm.Parameters.AddWithValue("@toDate", (object)toDate ?? DBNull.Value);
+                comm.Parameters.AddWithValue("@memberId", (object)memberId ?? DBNull.Value);
+                comm.Parameters.AddWithValue("@TypeId", (object)typeId ?? DBNull.Value);
+                comm.Parameters.AddWithValue("@fromDate", (object)fromDate ?? DBNull.Value);
+                comm.Parameters.AddWithValue("@toDate", (object)toDate ?? DBNull.Value);
 
 
                 //open the connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
-                con.Open();
+                    con.Open();
 
                 //execute select statement
                 SqlDataReader reader = comm.ExecuteReader();
