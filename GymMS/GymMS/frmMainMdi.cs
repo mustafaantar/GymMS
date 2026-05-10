@@ -34,7 +34,9 @@ namespace GymMS
                         break;
 
                     case "A":
+                        bn_users.Hide();
                         bn_people.Hide();
+                        bn_booking.Hide();
                         break;
                 }
             }
