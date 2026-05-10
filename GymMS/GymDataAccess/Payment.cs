@@ -85,7 +85,7 @@ namespace GymDataAccess
 
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
-                con.Open();
+                    con.Open();
 
                 //execute command
                 cmd.ExecuteNonQuery();
@@ -127,7 +127,7 @@ namespace GymDataAccess
             finally { con.Close(); }
         }
 
-        public static List<Payment> ListData(int? memberId, DateTime? fromDate, DateTime? toDate)
+        public static List<Payment> ListData(int? subscriptionId, DateTime? fromDate, DateTime? toDate)
         {
             //prepare connection
             SqlConnection con = GymDBConnection;
@@ -135,27 +135,27 @@ namespace GymDataAccess
 
             //create empty list
             List<Payment> list = new List<Payment>();
-            
+
             try
             {
-            //prepare select statement
-            string str = "select * from payments where "
-                + " (member_id=@memberId or @memberId is null)"
-                + " and (payment_date >= @fromDate or @fromDate is null)"
-                + " and (payment_date <= @toDate or @toDate is null)";
+                //prepare select statement
+                string str = "select * from payments where "
+                    + " (subscription_id = @subscriptionId or @subscriptionId is null)"
+                    + " and (payment_date >= @fromDate or @fromDate is null)"
+                    + " and (payment_date <= @toDate or @toDate is null)";
 
-            //preparing command
-            SqlCommand comm = new SqlCommand(str, con);
+                //preparing command
+                SqlCommand comm = new SqlCommand(str, con);
 
-            //add filter to command
-            comm.Parameters.AddWithValue("@memberId", !memberId.HasValue ? (object)DBNull.Value : memberId.HasValue);
-            comm.Parameters.AddWithValue("@fromDate", !fromDate.HasValue ? (object)DBNull.Value : fromDate.HasValue);
-            comm.Parameters.AddWithValue("@toDate", !toDate.HasValue ? (object)DBNull.Value : toDate.HasValue);
+                //add filter to command
+                comm.Parameters.AddWithValue("@subscriptionId", !subscriptionId.HasValue ? (object)DBNull.Value : subscriptionId);
+                comm.Parameters.AddWithValue("@fromDate", !fromDate.HasValue ? (object)DBNull.Value : fromDate);
+                comm.Parameters.AddWithValue("@toDate", !toDate.HasValue ? (object)DBNull.Value : toDate);
 
-            
+
                 //open connection
                 if (GymDBConnection.State != System.Data.ConnectionState.Open)
-                con.Open();
+                    con.Open();
 
                 //execute select statement
                 SqlDataReader reader = comm.ExecuteReader();
@@ -183,7 +183,7 @@ namespace GymDataAccess
             //return result list
             return list;
         }
-        
+
         public override string ToString()
         {
             //overridded method to display payment No.
