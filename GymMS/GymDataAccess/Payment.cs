@@ -52,7 +52,7 @@ namespace GymDataAccess
                     id = (int)datareader["id"];
                     paymentDate = (DateTime)datareader["payment_date"];
                     subscriptionId = (int)datareader["subscription_id"];
-                    amount = (decimal)datareader["amount"];
+                    amount = (int)datareader["amount"];
                     createdBy = (int)datareader["created_by"];
                     creationDate = (DateTime)datareader["creation_date"];
                 }
