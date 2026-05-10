@@ -47,6 +47,13 @@ namespace GymDataAccess
             LoadById(id);
         }
 
+        //copy constructor
+        public Person(Person copyPerson)
+        {
+            this.id = copyPerson.id;
+            LoadById(id);
+        }
+
         public static List<Person> ListData(string filter)
         {
             //prepare connection
