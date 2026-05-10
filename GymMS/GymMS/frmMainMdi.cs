@@ -110,7 +110,15 @@ namespace GymMS
 
         private void bn_booking_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                frmBookingList f = new frmBookingList();
+                OpenForm(f);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void bn_specialties_Click(object sender, EventArgs e)
