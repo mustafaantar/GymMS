@@ -170,6 +170,7 @@ namespace GymDataAccess
                     p.paymentDate = (DateTime)reader["payment_date"];
                     p.subscriptionId = (int)reader["subscription_id"];
                     p.amount = (decimal)reader["amount"];
+                    p.createdBy = (int)reader["created_by"];
 
                     //add object to list
                     list.Add(p);
