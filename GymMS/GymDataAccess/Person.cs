@@ -98,13 +98,13 @@ namespace GymDataAccess
             return list;
         }
 
-        public static List<Member> ListMembersData(string filter)
+        public static List<Person> ListMembersData(string filter)
         {
             //prepare connection
             SqlConnection con = GymDBConnection;
 
             //create empty list
-            List<Member> list = new List<Member>();
+            List<Person> list = new List<Person>();
             try
             {
             //prepare select statement
@@ -160,13 +160,13 @@ namespace GymDataAccess
             return list;
         }
 
-        public static List<Trainer> ListTrainersData(string filter)
+        public static List<Person> ListTrainersData(string filter)
         {
             //prepare connection
             SqlConnection con = GymDBConnection;
 
             //create empty list
-            List<Trainer> list = new List<Trainer>();
+            List<Person> list = new List<Person>();
             try
             {
                 //prepare select statement
