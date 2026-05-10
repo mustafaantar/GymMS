@@ -168,8 +168,8 @@ namespace GymDataAccess
                 string str = "select * from subscriptions "
                 + "where member_id = @memberId"
                 + " and subscription_type = @TypeId"
-                + " and (subscription_date >= @fromDate or @fromDate is null)"
-                + " and (subscription_date <= @toDate or @toDate is null)";
+                + " and (start_date >= @fromDate or @fromDate is null)"
+                + " and (start_date <= @toDate or @toDate is null)";
 
             //prepare SQL command
             SqlCommand comm = new SqlCommand(str, con);
