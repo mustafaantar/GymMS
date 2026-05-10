@@ -92,7 +92,7 @@ namespace GymMS
                 {
                     int rowIndex = dgv_data.Rows.Add(
                         s.Id,
-                        s.Member.Id,
+                        s.Member.FullName,
                         (s.SubscriptionType == 1 ? "Weekly" :
                          s.SubscriptionType == 2 ? "Monthly" : "Yearly"),
                         s.SubscriptionAmount,
@@ -150,6 +150,13 @@ namespace GymMS
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void bn_add_Click_1(object sender, EventArgs e)
+        {
+            frmSubscriptionData f = new frmSubscriptionData();
+            f.ShowDialog();
+            Search();
         }
     }
 }

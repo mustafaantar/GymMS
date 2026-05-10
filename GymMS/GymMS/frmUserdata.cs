@@ -25,7 +25,7 @@ namespace GymMS
             try
             {
                 //fill user type list
-                cb_type.Items.Add("Receiption");
+                cb_type.Items.Add("Receiptist");
                 cb_type.Items.Add("Manager");
                 cb_type.Items.Add("Accountant");
 
