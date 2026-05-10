@@ -25,7 +25,7 @@ namespace GymMS
             try
             {
                 //fill subscriptions list
-                List<GymDataAccess.Member> list = GymDataAccess.Person .ListMembersData(null);
+                List<GymDataAccess.Subscription> list = GymDataAccess.Subscription.ListData(null, null, null, null);
 
                 cb_sub.Items.Add("-");
 
@@ -52,7 +52,7 @@ namespace GymMS
 
         private void bn_search_Click(object sender, EventArgs e)
         {
-            try
+             try
             {
                 //search for payments
                 Search();
@@ -94,6 +94,7 @@ namespace GymMS
                         p.Id,
                         p.Subscription.Member.FullName,
                         p.Subscription.Id,
+                        p.Subscription.StartDate,
                         p.PaymentDate,
                         p.Amount,
                         p.CreatedBy.Username,
